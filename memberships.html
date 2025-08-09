@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daycare Membership Plans - Find Your Perfect Childcare Solution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Usage Policy */
+        .usage-policy {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .usage-policy h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .usage-policy p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .policy-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .policy-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .policy-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pricing Cards */
+        .pricing-section {
+            margin: 3rem 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .pricing-card.popular {
+            border: 3px solid #e74c3c;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-duration {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-savings {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-icon {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button.popular {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .comparison-table .feature-name {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .check-mark {
+            color: #27ae60;
+            font-size: 1.2rem;
+        }
+
+        .cross-mark {
+            color: #e74c3c;
+            font-size: 1.2rem;
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .guarantee-badge {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+        }
+
+        .guarantee-badge span {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .trust-badge {
+            padding: 1rem;
+        }
+
+        .trust-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #3498db;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .testimonial-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Payment Options */
+        .payment-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="container">
+        <div class="header fade-in">
+            <h1>🏠 Daycare Membership Plans</h1>
+            <p>Find the perfect childcare solution for your family with our flexible membership options. Quality care, trusted providers, unbeatable value.</p>
+        </div>
+
+        <!-- Usage Policy -->
+        <div class="usage-policy fade-in">
+            <h3>📋 How Our Membership Works</h3>
+            <p><strong>One Slot Per Month Policy:</strong> Each membership tier allows you to book one daycare slot per month. This ensures fair access to quality daycare services while maintaining affordability for all families.</p>
+            
+            <div class="policy-highlights">
+                <div class="policy-item">
+                    <div class="policy-icon">📅</div>
+                    <strong>Monthly Booking</strong>
+                    <p>Reserve one slot each month</p>
+                </div>
+                <div class="policy-item">
+                    <div class="policy-icon">🔄</div>
+                    <strong>Flexible Scheduling</strong>
+                    <p>Book any available day in the month</p>
+                </div>
+                <div class="policy-item">
+                    <div class="policy-icon">⏰</div>
+                    <strong>Full Day Care</strong>
+                    <p>8-10 hours of professional childcare</p>
+                </div>
+                <div class="policy-item">
+                    <div class="policy-icon">🎯</div>
+                    <strong>Quality Assured</strong>
+                    <p>Pre-vetted, certified providers only</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="pricing-section">
+            <div class="pricing-grid">
+                <!-- One Time Plan -->
+                <div class="pricing-card fade-in">
+                    <div class="plan-name">One Time</div>
+                    <div class="plan-duration">3 months commitment</div>
+                    <div class="plan-price">₹2,999</div>
+                    <div class="price-period">total cost</div>
+                    <div class="plan-savings" style="background: #95a5a6;">₹999/month</div>
+                    
+                    <ul class="plan-features">
+                        <li><span class="feature-icon">✓</span> 3 daycare slots (one per month)</li>
+                        <li><span class="feature-icon">✓</span> Basic provider matching</li>
+                        <li><span class="feature-icon">✓</span> Standard customer support</li>
+                        <li><span class="feature-icon">✓</span> Mobile app access</li>
+                        <li><span class="feature-icon">✓</span> Emergency backup options</li>
+                        <li><span class="feature-icon">✗</span> Priority booking</li>
+                        <li><span class="feature-icon">✗</span> Additional services</li>
+                    </ul>
+                    
+                    <button class="cta-button">Get Started</button>
+                </div>
+
+                <!-- Term Plan -->
+                <div class="pricing-card fade-in">
+                    <div class="plan-name">Term</div>
+                    <div class="plan-duration">6 months commitment</div>
+                    <div class="plan-price">₹4,999</div>
+                    <div class="price-period">total cost</div>
+                    <div class="plan-savings">Save ₹1,000 • ₹833/month</div>
+                    
+                    <ul class="plan-features">
+                        <li><span class="feature-icon">✓</span> 6 daycare slots (one per month)</li>
+                        <li><span class="feature-icon">✓</span> Advanced provider matching</li>
+                        <li><span class="feature-icon">✓</span> Priority customer support</li>
+                        <li><span class="feature-icon">✓</span> Mobile app access</li>
+                        <li><span class="feature-icon">✓</span> Emergency backup options</li>
+                        <li><span class="feature-icon">✓</span> Priority booking</li>
+                        <li><span class="feature-icon">✗</span> Additional services</li>
+                    </ul>
+                    
+                    <button class="cta-button">Choose Term</button>
+                </div>
+
+                <!-- Half-yearly Plan (Popular) -->
+                <div class="pricing-card popular fade-in">
+                    <div class="plan-name">Half-yearly</div>
+                    <div class="plan-duration">12 months commitment</div>
+                    <div class="plan-price">₹7,999</div>
+                    <div class="price-period">total cost</div>
+                    <div class="plan-savings">Save ₹4,000 • ₹666/month</div>
+                    
+                    <ul class="plan-features">
+                        <li><span class="feature-icon">✓</span> 12 daycare slots (one per month)</li>
+                        <li><span class="feature-icon">✓</span> Premium provider matching</li>
+                        <li><span class="feature-icon">✓</span> Priority customer support</li>
+                        <li><span class="feature-icon">✓</span> Mobile app access</li>
+                        <li><span class="feature-icon">✓</span> Emergency backup options</li>
+                        <li><span class="feature-icon">✓</span> Priority booking</li>
+                        <li><span class="feature-icon">✓</span> Meal planning assistance</li>
+                    </ul>
+                    
+                    <button class="cta-button popular">Most Popular Choice</button>
+                </div>
+
+                <!-- Annual Plan -->
+                <div class="pricing-card fade-in">
+                    <div class="plan-name">Annual</div>
+                    <div class="plan-duration">24 months commitment</div>
+                    <div class="plan-price">₹12,999</div>
+                    <div class="price-period">total cost</div>
+                    <div class="plan-savings">Save ₹11,000 • ₹541/month</div>
+                    
+                    <ul class="plan-features">
+                        <li><span class="feature-icon">✓</span> 24 daycare slots (one per month)</li>
+                        <li><span class="feature-icon">✓</span> Premium provider matching</li>
+                        <li><span class="feature-icon">✓</span> Dedicated account manager</li>
+                        <li><span class="feature-icon">✓</span> Mobile app access</li>
+                        <li><span class="feature-icon">✓</span> Emergency backup options</li>
+                        <li><span class="feature-icon">✓</span> Priority booking</li>
+                        <li><span class="feature-icon">✓</span> All additional services included</li>
+                    </ul>
+                    
+                    <button class="cta-button">Maximum Value</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section fade-in">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Compare All Plans</h2>
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="feature-name">Features</th>
+                            <th>One Time</th>
+                            <th>Term</th>
+                            <th style="background: #ffe6e6;">Half-yearly</th>
+                            <th>Annual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">Monthly Daycare Slots</td>
+                            <td>3 slots</td>
+                            <td>6 slots</td>
+                            <td><strong>12 slots</strong></td>
+                            <td>24 slots</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Cost per Month</td>
+                            <td>₹999</td>
+                            <td>₹833</td>
+                            <td><strong>₹666</strong></td>
+                            <td>₹541</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Provider Matching</td>
+                            <td>Basic</td>
+                            <td>Advanced</td>
+                            <td><strong>Premium</strong></td>
+                            <td>Premium</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Priority Booking</td>
+                            <td><span class="cross-mark">✗</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Emergency Backup</td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Meal Planning</td>
+                            <td><span class="cross-mark">✗</span></td>
+                            <td><span class="cross-mark">✗</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Account Manager</td>
+                            <td><span class="cross-mark">✗</span></td>
+                            <td><span class="cross-mark">✗</span></td>
+                            <td><span class="cross-mark">✗</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Total Savings</td>
+                            <td>-</td>
+                            <td>₹1,000</td>
+                            <td><strong>₹4,000</strong></td>
+                            <td>₹11,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Money-back Guarantee -->
+        <div class="guarantee-section fade-in">
+            <div class="guarantee-badge">
+                <span>100</span>
+            </div>
+            <h2 style="color: #2c3e50; margin-bottom: 1rem;">100-Day Money-Back Guarantee</h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">If we can't find a suitable daycare location within 100 days of your membership purchase, we'll refund your money in full. No questions asked. Your satisfaction is our priority.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏠</div>
+                    <strong>Location Matching</strong>
+                    <p>We work tirelessly to find daycare options in your area</p>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📞</div>
+                    <strong>Personal Support</strong>
+                    <p>Dedicated team helps with your search process</p>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
+                    <strong>Full Refund</strong>
+                    <p>Complete money-back if we can't deliver</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-section fade-in">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Trusted by Thousands of Parents</h2>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <div class="trust-icon">🛡️</div>
+                    <strong>Licensed</strong>
+                    <p>All providers are licensed and verified</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">⭐</div>
+                    <strong>4.9/5 Rating</strong>
+                    <p>Based on 5,000+ parent reviews</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">🔒</div>
+                    <strong>Secure</strong>
+                    <p>Bank-level encryption for all data</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">🏆</div>
+                    <strong>Award Winning</strong>
+                    <p>Best Childcare App 2024</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">👨‍👩‍👧‍👦</div>
+                    <strong>50,000+</strong>
+                    <p>Happy families served</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">📱</div>
+                    <strong>24/7 Support</strong>
+                    <p>Always here when you need us</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section fade-in">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">What Parents Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"The Half-yearly plan has been incredible value for our family. The daycare providers are amazing, and the peace of mind is priceless. Highly recommend!"</div>
+                    <div class="testimonial-author">Sarah Johnson</div>
+                    <div class="testimonial-role">Mother of 2, Half-yearly Member</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Started with the Term plan and immediately upgraded to Annual. The quality of care and the app's ease of use exceeded all expectations."</div>
+                    <div class="testimonial-author">Michael Chen</div>
+                    <div class="testimonial-role">Working Parent, Annual Member</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"The money-back guarantee gave me confidence to try their service. Thankfully, I didn't need it - found great daycare options within 2 weeks!"</div>
+                    <div class="testimonial-author">Priya Patel</div>
+                    <div class="testimonial-role">Single Mom, Term Member</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Options -->
+        <div class="payment-section fade-in">
+            <h2 style="color: #2c3e50; margin-bottom: 1rem;">Flexible Payment Options</h2>
+            <p style="color: #666; margin-bottom: 2rem;">Choose the payment method that works best for your family</p>
+            
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <span style="font-size: 1.5rem;">💳</span>
+                    <span>Credit/Debit Card</span>
+                </div>
+                <div class="payment-method">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <span>UPI & Net Banking</span>
+                </div>
+                <div class="payment-method">
+                    <span style="font-size: 1.5rem;">📱</span>
+                    <span>Digital Wallets</span>
+                </div>
+                <div class="payment-method">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <span>EMI Options Available</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Add click handlers for CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
+                const planPrice = this.closest('.pricing-card').querySelector('.plan-price').textContent;
+                
+                // Simulate checkout process
+                alert(`🎉 Great choice! You've selected the ${planName} plan for ${planPrice}.\n\nNext Steps:\n• Secure payment processing\n• Instant membership activation\n• Access to daycare provider network\n• 100-day money-back guarantee\n\nClick OK to proceed to checkout!`);
+            });
+        });
+
+        // Add hover effects to pricing cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('popular')) {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('popular')) {
+                    this.style.transform = 'translateY(0) scale(1)';
+                } else {
+                    this.style.transform = 'scale(1.05)';
+                }
+            });
+        });
+
+        // Add interactive comparison table highlighting
+        document.querySelectorAll('.comparison-table th').forEach((header, index) => {
+            if (index > 0) { // Skip the first column (features)
+                header.addEventListener('mouseenter', function() {
+                    // Highlight entire column
+                    document.querySelectorAll(`.comparison-table td:nth-child(${index + 1}), .comparison-table th:nth-child(${index + 1})`).forEach(cell => {
+                        cell.style.backgroundColor = '#e3f2fd';
+                        cell.style.transition = 'background-color 0.3s ease';
+                    });
+                });
+                
+                header.addEventListener('mouseleave', function() {
+                    // Remove highlight
+                    document.querySelectorAll(`.comparison-table td:nth-child(${index + 1}), .comparison-table th:nth-child(${index + 1})`).forEach(cell => {
+                        cell.style.backgroundColor = '';
+                    });
+                });
+            }
+        });
+
+        // Calculate and display savings dynamically
+        function updateSavings() {
+            const oneTimeMonthly = 999;
+            const plans = [
+                { name: 'Term', months: 6, total: 4999 },
+                { name: 'Half-yearly', months: 12, total: 7999 },
+                { name: 'Annual', months: 24, total: 12999 }
+            ];
+
+            plans.forEach(plan => {
+                const monthlyRate = plan.total / plan.months;
+                const totalSavings = (oneTimeMonthly * plan.months) - plan.total;
+                console.log(`${plan.name}: ₹${monthlyRate.toFixed(0)}/month, Save ₹${totalSavings}`);
+            });
+        }
+
+        // Add loading states for buttons
+        function addButtonLoadingState() {
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    this.textContent = 'Processing...';
+                    this.style.opacity = '0.7';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.opacity = '1';
+                        this.disabled = false;
+                    }, 2000);
+                });
+            });
+        }
+
+        // Add mobile-specific enhancements
+        function addMobileEnhancements() {
+            if (window.innerWidth <= 768) {
+                // Make pricing cards stack better on mobile
+                const pricingCards = document.querySelectorAll('.pricing-card');
+                pricingCards.forEach(card => {
+                    card.style.marginBottom = '1rem';
+                });
+
+                // Improve table scrolling on mobile
+                const table = document.querySelector('.comparison-table');
+                if (table) {
+                    table.parentElement.style.overflowX = 'auto';
+                    table.parentElement.style.webkitOverflowScrolling = 'touch';
+                }
+
+                // Add touch-friendly interactions
+                document.querySelectorAll('.pricing-card').forEach(card => {
+                    card.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.98)';
+                    });
+                    
+                    card.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            if (!this.classList.contains('popular')) {
+                                this.style.transform = 'translateY(0) scale(1)';
+                            } else {
+                                this.style.transform = 'scale(1.05)';
+                            }
+                        }, 100);
+                    });
+                });
+            }
+        }
+
+        // Add scroll-based animations for better UX
+        function addScrollAnimations() {
+            const scrollElements = document.querySelectorAll('.pricing-card, .testimonial-card, .trust-badge');
+            
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+
+            const displayScrollElement = (element) => {
+                element.classList.add('scrolled-in-view');
+            };
+
+            const hideScrollElement = (element) => {
+                element.classList.remove('scrolled-in-view');
+            };
+
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', handleScrollAnimation);
+        }
+
+        // Add plan recommendation logic
+        function addPlanRecommendation() {
+            const recommendations = {
+                'new-parent': 'One Time',
+                'working-parent': 'Half-yearly',
+                'budget-conscious': 'Term',
+                'long-term': 'Annual'
+            };
+
+            // You could add a quick questionnaire here
+            console.log('Plan recommendations available:', recommendations);
+        }
+
+        // Add FAQ toggle functionality
+        function addFAQToggle() {
+            // This would be useful for a FAQ section
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                
+                if (question && answer) {
+                    question.addEventListener('click', () => {
+                        answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+                    });
+                }
+            });
+        }
+
+        // Initialize all enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSavings();
+            addButtonLoadingState();
+            addMobileEnhancements();
+            addScrollAnimations();
+            addPlanRecommendation();
+            addFAQToggle();
+            
+            // Add live chat widget simulation
+            setTimeout(() => {
+                const chatWidget = document.createElement('div');
+                chatWidget.innerHTML = '💬';
+                chatWidget.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    width: 60px;
+                    height: 60px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    color: white;
+                    cursor: pointer;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                    z-index: 1000;
+                    transition: all 0.3s ease;
+                `;
+                
+                chatWidget.addEventListener('click', () => {
+                    alert('💬 Live Chat\n\nHi! I\'m here to help you choose the perfect daycare membership plan for your family. \n\n• Compare plan benefits\n• Find daycare providers in your area\n• Answer questions about our guarantee\n• Help with payment options\n\nHow can I assist you today?');
+                });
+                
+                chatWidget.addEventListener('mouseenter', () => {
+                    chatWidget.style.transform = 'scale(1.1)';
+                });
+                
+                chatWidget.addEventListener('mouseleave', () => {
+                    chatWidget.style.transform = 'scale(1)';
+                });
+                
+                document.body.appendChild(chatWidget);
+            }, 3000);
+        });
+
+        // Add analytics tracking simulation
+        function trackEvent(eventName, planName = null) {
+            console.log(`Analytics: ${eventName}`, planName ? { plan: planName } : {});
+            // In real implementation, this would send to analytics service
+        }
+
+        // Track page views and interactions
+        trackEvent('page_view', 'pricing_page');
+
+        document.querySelectorAll('.cta-button').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const planName = button.closest('.pricing-card').querySelector('.plan-name').textContent;
+                trackEvent('plan_selected', planName);
+            });
+        });
+    </script>
+</body>
+</html>

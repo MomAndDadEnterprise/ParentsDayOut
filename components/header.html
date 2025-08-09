@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parents Day Out - Header Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Top Bar - Sunshine Banner */
+        .top-banner {
+            background: linear-gradient(135deg, #FFD166, #FFEEA8);
+            color: #5E4200;
+            padding: 12px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .banner-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .banner-highlight {
+            background-color: #EF476F;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            margin-left: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .banner-actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .banner-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #5E4200;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .banner-action:hover {
+            color: #EF476F;
+            transform: translateY(-1px);
+        }
+
+        .banner-icon {
+            font-size: 17px;
+        }
+
+        @media (max-width: 768px) {
+            .banner-container {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 1.5rem;
+            }
+            
+            .banner-message {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .banner-actions {
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-message {
+                font-size: 14px;
+            }
+            
+            .banner-actions {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            
+            .banner-action span {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="banner-container">
+            <div class="banner-message">
+                <span class="banner-icon">🏆</span>
+                <span>Hyderabad's #1 Rated Daycare - 200+ New Members This Month!</span>
+                <span class="banner-highlight">Limited-Time Discounts!</span>
+            </div>
+            <div class="banner-actions">
+                <a href="https://wa.me/919876543210" class="banner-action">
+                    <span class="banner-icon">💬</span>
+                    <span>Chat Now</span>
+                </a>
+                <a href="mompreneurs.html" class="banner-action">
+                    <span class="banner-icon">👩‍💼</span>
+                    <span>Mom Business Hub</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.querySelector('.top-banner');
+            setTimeout(() => {
+                banner.style.opacity = '1';
+            }, 100);
+            
+            console.log('🌟 Parents Day Out header banner loaded successfully!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities & Programs - Parents Day Out</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: "🎨";
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* Age Filter */
+        .age-filter {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .filter-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .age-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .age-btn {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .age-btn:hover, .age-btn.active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(252, 182, 159, 0.4);
+            background: linear-gradient(135deg, #fcb69f, #ffecd2);
+        }
+
+        /* Daily Schedule */
+        .schedule-section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        .schedule-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .schedule-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .schedule-time {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 150px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .schedule-content {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 0 2rem;
+            flex: 1;
+            box-shadow: 0 5px 15px rgba(252, 182, 159, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .schedule-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .schedule-activity {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .activity-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .schedule-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Themed Activities */
+        .themes-section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .theme-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .theme-card:hover::before {
+            opacity: 1;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .theme-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .theme-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .theme-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .theme-age {
+            background: rgba(255, 255, 255, 0.7);
+            color: #667eea;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Activity Categories */
+        .categories-section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .category-tab.active, .category-tab:hover {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .category-content {
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .activity-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .activity-item:hover {
+            transform: scale(1.05);
+        }
+
+        .activity-item-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-item-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Gamification Section */
+        .rewards-section {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rewards-section::before {
+            content: "🎉🌟🎊✨🎈";
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            right: 0;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .reward-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem 1rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .reward-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .reward-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .reward-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-title {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .gallery-date {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-tabs {
+                justify-content: center;
+            }
+
+            .schedule-item {
+                flex-direction: column !important;
+                text-align: center;
+            }
+
+            .schedule-item:nth-child(even) {
+                flex-direction: column !important;
+            }
+
+            .schedule-content {
+                margin: 1rem 0 0 0;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+
+            .themes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .age-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Interactive elements */
+        .interactive-element {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Activities & Programs</div>
+                <div class="nav-tabs">
+                    <button class="nav-tab active" data-section="schedule">Daily Schedule</button>
+                    <button class="nav-tab" data-section="themes">Themes</button>
+                    <button class="nav-tab" data-section="categories">Activities</button>
+                    <button class="nav-tab" data-section="rewards">Rewards</button>
+                    <button class="nav-tab" data-section="gallery">Gallery</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Where Every Day is an Adventure! 🌟</h1>
+            <p>Curated experiences designed for little minds to grow, explore, and shine</p>
+        </div>
+    </section>
+
+    <!-- Age Filter -->
+    <section class="age-filter">
+        <div class="container">
+            <h2 class="filter-title">Filter Activities by Age Group 👶</h2>
+            <div class="age-buttons">
+                <button class="age-btn active" data-age="all">All Ages</button>
+                <button class="age-btn" data-age="nursery">Nursery (2-3 years)</button>
+                <button class="age-btn" data-age="lkg">LKG (3-4 years)</button>
+                <button class="age-btn" data-age="ukg">UKG (4-5 years)</button>
+                <button class="age-btn" data-age="grade1">Grade I (5-6 years)</button>
+                <button class="age-btn" data-age="grade2">Grade II (6-7 years)</button>
+                <button class="age-btn" data-age="grade3">Grade III (7-8 years)</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Daily Schedule Section -->
+        <section class="schedule-section fade-in-up" id="schedule">
+            <h2 class="section-title">🕘 Perfect Day Timeline</h2>
+            <div class="schedule-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="schedule-item">
+                    <div class="schedule-time">9:30 AM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">☕</span>
+                            Welcome & Parent Breakfast
+                        </div>
+                        <div class="schedule-description">Free breakfast for parents while kids settle in with morning activities</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">10:00 AM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🥯</span>
+                            Kids Breakfast & Circle Time
+                        </div>
+                        <div class="schedule-description">Nutritious breakfast followed by morning circle discussions and planning</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">10:30 AM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🎨</span>
+                            Daily Theme Activity
+                        </div>
+                        <div class="schedule-description">Special themed activities like Color Days, Superhero Adventures, or Science Experiments</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">11:30 AM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🏃</span>
+                            Physical Activity Time
+                        </div>
+                        <div class="schedule-description">Dance, aerobics, yoga, or outdoor games to keep little bodies active</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🎭</span>
+                            Creative Expression
+                        </div>
+                        <div class="schedule-description">Art, craft, music, storytelling, or drama activities</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">1:00 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🍽️</span>
+                            Lunch Time
+                        </div>
+                        <div class="schedule-description">Fresh, nutritious lunch from Mom's Love kitchen with live monitoring</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">2:00 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">📚</span>
+                            Rest & Story Time
+                        </div>
+                        <div class="schedule-description">Quiet time with stories, gentle music, and relaxation</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">2:30 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🧩</span>
+                            Learning Games & Competitions
+                        </div>
+                        <div class="schedule-description">Educational games, puzzles, and mini competitions with rewards</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">3:30 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🍪</span>
+                            Snack Time
+                        </div>
+                        <div class="schedule-description">Healthy snacks and hydration break</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">4:00 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">⚽</span>
+                            Free Play & Outdoor Fun
+                        </div>
+                        <div class="schedule-description">Unstructured play time with toys, games, and outdoor activities</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">5:00 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🎒</span>
+                            Wrap-up & Preparation
+                        </div>
+                        <div class="schedule-description">Clean up, reflection time, and getting ready for pickup</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">5:30 PM</div>
+                    <div class="schedule-content">
+                        <div class="schedule-activity">
+                            <span class="activity-icon">🤗</span>
+                            Pickup Time
+                        </div>
+                        <div class="schedule-description">Happy reunions with parents and sharing of the day's adventures</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Themed Activities Section -->
+        <section class="themes-section fade-in-up" id="themes">
+            <h2 class="section-title">🎪 Exciting Weekly Themes</h2>
+            <div class="themes-grid">
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">🌈</div>
+                    <div class="theme-title">Rainbow Color Days</div>
+                    <div class="theme-description">Each day celebrates a different color with matching activities, foods, and dress codes!</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">👔</div>
+                    <div class="theme-title">Pajama Party Day</div>
+                    <div class="theme-description">Cozy comfort day with movies, storytelling, and relaxation activities</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="lkg ukg grade1">
+                    <div class="theme-icon">🦸</div>
+                    <div class="theme-title">Superhero Adventure</div>
+                    <div class="theme-description">Dress up as superheroes and save the day with exciting missions!</div>
+                    <div class="theme-age">3-6 years</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">👨‍🍳</div>
+                    <div class="theme-title">Little Chef Day</div>
+                    <div class="theme-description">Safe cooking activities where kids create simple, healthy snacks</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">🦁</div>
+                    <div class="theme-title">Animal Safari</div>
+                    <div class="theme-description">Explore the animal kingdom with games, sounds, and wildlife education</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="ukg grade1 grade2">
+                    <div class="theme-icon">🚀</div>
+                    <div class="theme-title">Space Explorer</div>
+                    <div class="theme-description">Journey to the stars with space crafts, planet learning, and astronaut training</div>
+                    <div class="theme-age">4-7 years</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">👑</div>
+                    <div class="theme-title">Princess & Prince Day</div>
+                    <div class="theme-description">Royal adventures with castle crafts, fairy tales, and noble quests</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">🏃‍♀️</div>
+                    <div class="theme-title">Mini Olympics</div>
+                    <div class="theme-description">Fun sports competitions with medals, team spirit, and healthy competition</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">🪔</div>
+                    <div class="theme-title">Cultural Festival</div>
+                    <div class="theme-description">Celebrate Indian traditions with traditional dress, food, and customs</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="ukg grade1 grade2 grade3">
+                    <div class="theme-icon">🌱</div>
+                    <div class="theme-title">Eco Warrior Day</div>
+                    <div class="theme-description">Environmental awareness with recycling crafts and nature conservation</div>
+                    <div class="theme-age">4-8 years</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">🏴‍☠️</div>
+                    <div class="theme-title">Pirate Adventure</div>
+                    <div class="theme-description">Treasure hunts, pirate crafts, and swashbuckling adventures</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="grade1 grade2 grade3">
+                    <div class="theme-icon">🔬</div>
+                    <div class="theme-title">Science Lab Day</div>
+                    <div class="theme-description">Safe, fun experiments and discoveries in our mini laboratory</div>
+                    <div class="theme-age">5-8 years</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">🎨</div>
+                    <div class="theme-title">Art Gallery Day</div>
+                    <div class="theme-description">Create masterpieces and showcase artistic talents in our mini gallery</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">🎵</div>
+                    <div class="theme-title">Music Mania</div>
+                    <div class="theme-description">Musical instruments, singing, rhythm games, and melody making</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="all">
+                    <div class="theme-icon">👨‍🌾</div>
+                    <div class="theme-title">Little Farmers</div>
+                    <div class="theme-description">Gardening activities, plant care, and learning about nature's growth</div>
+                    <div class="theme-age">All Ages</div>
+                </div>
+
+                <div class="theme-card interactive-element" data-age="grade1 grade2 grade3">
+                    <div class="theme-icon">🌍</div>
+                    <div class="theme-title">Around the World</div>
+                    <div class="theme-description">Explore different countries, cultures, languages, and traditions</div>
+                    <div class="theme-age">5-8 years</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity Categories Section -->
+        <section class="categories-section fade-in-up" id="categories">
+            <h2 class="section-title">🎯 Activity Categories</h2>
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="physical">🏃 Physical</button>
+                <button class="category-tab" data-category="creative">🎨 Creative</button>
+                <button class="category-tab" data-category="educational">📚 Educational</button>
+                <button class="category-tab" data-category="social">👥 Social</button>
+            </div>
+
+            <div class="category-content active" id="physical">
+                <div class="activity-grid">
+                    <div class="activity-item">
+                        <div class="activity-item-icon">💃</div>
+                        <div class="activity-item-title">Dance Sessions</div>
+                        <div>Bollywood, Classical, Western moves</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🤸</div>
+                        <div class="activity-item-title">Kids Aerobics</div>
+                        <div>Fun fitness routines and exercises</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🧘</div>
+                        <div class="activity-item-title">Yoga & Stretching</div>
+                        <div>Mindful movements and relaxation</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🏃</div>
+                        <div class="activity-item-title">Obstacle Courses</div>
+                        <div>Challenging physical adventures</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">⚽</div>
+                        <div class="activity-item-title">Ball Games</div>
+                        <div>Soccer, basketball, catch games</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🏃‍♀️</div>
+                        <div class="activity-item-title">Running Races</div>
+                        <div>Sprint competitions and relay races</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🤹</div>
+                        <div class="activity-item-title">Balance Games</div>
+                        <div>Coordination and stability activities</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🏊</div>
+                        <div class="activity-item-title">Swimming Movements</div>
+                        <div>Swimming motions and water safety</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="creative">
+                <div class="activity-grid">
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🎨</div>
+                        <div class="activity-item-title">Painting & Drawing</div>
+                        <div>Watercolors, crayons, sketching</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🏺</div>
+                        <div class="activity-item-title">Clay Modeling</div>
+                        <div>Sculpting and pottery basics</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">📄</div>
+                        <div class="activity-item-title">Origami</div>
+                        <div>Paper folding art and crafts</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">✂️</div>
+                        <div class="activity-item-title">Craft Making</div>
+                        <div>DIY projects and handmade items</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">📖</div>
+                        <div class="activity-item-title">Story Creation</div>
+                        <div>Writing and illustrating stories</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🎭</div>
+                        <div class="activity-item-title">Drama & Role Play</div>
+                        <div>Acting and character development</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🎵</div>
+                        <div class="activity-item-title">Music Making</div>
+                        <div>Instruments and singing activities</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">📸</div>
+                        <div class="activity-item-title">Photography</div>
+                        <div>Basic camera skills and creativity</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="educational">
+                <div class="activity-grid">
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🔢</div>
+                        <div class="activity-item-title">Number Games</div>
+                        <div>Math puzzles and counting fun</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🔤</div>
+                        <div class="activity-item-title">Alphabet Adventures</div>
+                        <div>Letter recognition and phonics</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🧠</div>
+                        <div class="activity-item-title">Memory Games</div>
+                        <div>Brain training and recall exercises</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🧩</div>
+                        <div class="activity-item-title">Puzzle Solving</div>
+                        <div>Jigsaw puzzles and brain teasers</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🔬</div>
+                        <div class="activity-item-title">Science Experiments</div>
+                        <div>Safe discovery and exploration</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🗣️</div>
+                        <div class="activity-item-title">Language Activities</div>
+                        <div>Vocabulary building and communication</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🌍</div>
+                        <div class="activity-item-title">Geography Games</div>
+                        <div>World exploration and mapping</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">⏰</div>
+                        <div class="activity-item-title">Time Learning</div>
+                        <div>Clock reading and time concepts</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="social">
+                <div class="activity-grid">
+                    <div class="activity-item">
+                        <div class="activity-item-icon">👥</div>
+                        <div class="activity-item-title">Team Building</div>
+                        <div>Cooperation and group activities</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🎪</div>
+                        <div class="activity-item-title">Group Games</div>
+                        <div>Interactive multiplayer fun</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🗨️</div>
+                        <div class="activity-item-title">Communication Skills</div>
+                        <div>Speaking and listening practice</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🤝</div>
+                        <div class="activity-item-title">Sharing Activities</div>
+                        <div>Learning to share and take turns</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">❤️</div>
+                        <div class="activity-item-title">Empathy Building</div>
+                        <div>Understanding feelings and emotions</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🎯</div>
+                        <div class="activity-item-title">Leadership Games</div>
+                        <div>Taking initiative and guiding others</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🌟</div>
+                        <div class="activity-item-title">Confidence Building</div>
+                        <div>Self-esteem and public speaking</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-item-icon">🎊</div>
+                        <div class="activity-item-title">Celebration Activities</div>
+                        <div>Birthdays and special occasions</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rewards & Gamification Section -->
+        <section class="rewards-section fade-in-up" id="rewards">
+            <h2 class="section-title">🏆 Gamified Rewards System</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Every activity is an opportunity to earn stars, badges, and exciting rewards!</p>
+            
+            <div class="rewards-grid">
+                <div class="reward-item">
+                    <div class="reward-icon">⭐</div>
+                    <div class="reward-title">Daily Stars</div>
+                    <div class="reward-description">Earn stars for participation, kindness, and achievements</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-icon">🏅</div>
+                    <div class="reward-title">Weekly Badges</div>
+                    <div class="reward-description">Special badges for consistent participation and skill development</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-icon">🎁</div>
+                    <div class="reward-title">Monthly Prizes</div>
+                    <div class="reward-description">Exciting prizes for accumulated stars and achievements</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-icon">👑</div>
+                    <div class="reward-title">Champion Status</div>
+                    <div class="reward-description">Recognition as daily, weekly, or monthly champions</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-icon">🌟</div>
+                    <div class="reward-title">Skill Certificates</div>
+                    <div class="reward-description">Certificates for mastering new skills and abilities</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-icon">🎪</div>
+                    <div class="reward-title">Special Privileges</div>
+                    <div class="reward-description">Extra playtime, leadership roles, and choice activities</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section fade-in-up" id="gallery">
+            <h2 class="section-title">📸 Activity Gallery</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Memories from our amazing adventures and activities!</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">🌈</div>
+                    <div class="gallery-title">Rainbow Color Day</div>
+                    <div class="gallery-date">Last Week</div>
+                </div>
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">🦸‍♀️</div>
+                    <div class="gallery-title">Superhero Adventure</div>
+                    <div class="gallery-date">2 weeks ago</div>
+                </div>
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">🔬</div>
+                    <div class="gallery-title">Science Lab Day</div>
+                    <div class="gallery-date">3 weeks ago</div>
+                </div>
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">🎨</div>
+                    <div class="gallery-title">Art Gallery Exhibition</div>
+                    <div class="gallery-date">1 month ago</div>
+                </div>
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">👔</div>
+                    <div class="gallery-title">Pajama Party Fun</div>
+                    <div class="gallery-date">1 month ago</div>
+                </div>
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">🏃‍♂️</div>
+                    <div class="gallery-title">Mini Olympics</div>
+                    <div class="gallery-date">6 weeks ago</div>
+                </div>
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">🎵</div>
+                    <div class="gallery-title">Music Mania Day</div>
+                    <div class="gallery-date">2 months ago</div>
+                </div>
+                <div class="gallery-item interactive-element">
+                    <div class="gallery-icon">🌱</div>
+                    <div class="gallery-title">Little Farmers</div>
+                    <div class="gallery-date">2 months ago</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('section[id]');
+
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetSection = tab.dataset.section;
+                
+                // Remove active class from all tabs
+                navTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Scroll to target section
+                const targetElement = document.getElementById(targetSection);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Age filter functionality
+        const ageButtons = document.querySelectorAll('.age-btn');
+        const themeCards = document.querySelectorAll('.theme-card');
+
+        ageButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selectedAge = btn.dataset.age;
+                
+                // Update active button
+                ageButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter theme cards
+                themeCards.forEach(card => {
+                    const cardAges = card.dataset.age.split(' ');
+                    if (selectedAge === 'all' || cardAges.includes(selectedAge)) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease-in';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Category tabs functionality
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const categoryContents = document.querySelectorAll('.category-content');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetCategory = tab.dataset.category;
+                
+                // Update active tab
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show target content
+                categoryContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === targetCategory) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in-up elements
+        document.querySelectorAll('.fade-in-up').forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`;
+            observer.observe(element);
+        });
+
+        // Interactive element animations
+        const interactiveElements = document.querySelectorAll('.interactive-element');
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Schedule item hover effects
+        const scheduleItems = document.querySelectorAll('.schedule-content');
+        scheduleItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.background = 'linear-gradient(135deg, #fcb69f, #ffecd2)';
+                item.style.transform = 'translateY(-5px)';
+                item.style.boxShadow = '0 10px 25px rgba(252, 182, 159, 0.3)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.background = 'linear-gradient(135deg, #ffecd2, #fcb69f)';
+                item.style.transform = 'translateY(0)';
+                item.style.boxShadow = '0 5px 15px rgba(252, 182, 159, 0.2)';
+            });
+        });
+
+        // Gallery item click functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('.gallery-title').textContent;
+                const date = item.querySelector('.gallery-date').textContent;
+                
+                // Create modal (simplified version)
+                const modal = document.createElement('div');
+                modal.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.8);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 1000;
+                        cursor: pointer;
+                    ">
+                        <div style="
+                            background: white;
+                            padding: 2rem;
+                            border-radius: 15px;
+                            text-align: center;
+                            max-width: 500px;
+                            margin: 2rem;
+                        ">
+                            <h3 style="color: #333; margin-bottom: 1rem;">${title}</h3>
+                            <p style="color: #666; margin-bottom: 1.5rem;">Date: ${date}</p>
+                            <div style="font-size: 4rem; margin: 1rem 0;">${item.querySelector('.gallery-icon').textContent}</div>
+                            <p style="color: #999; font-size: 0.9rem;">Photos and videos will be available here for registered parents!</p>
+                            <button style="
+                                background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+                                color: white;
+                                border: none;
+                                padding: 0.8rem 2rem;
+                                border-radius: 25px;
+                                margin-top: 1rem;
+                                cursor: pointer;
+                                font-weight: bold;
+                            " onclick="this.parentElement.parentElement.remove()">Close</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Close modal when clicking outside
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            });
+        });
+
+        // Add sparkle effect to rewards section
+        const createSparkle = () => {
+            const rewardsSection = document.querySelector('.rewards-section');
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.cssText = `
+                position: absolute;
+                font-size: 1.5rem;
+                pointer-events: none;
+                animation: sparkleFloat 3s linear;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                z-index: 1;
+            `;
+            
+            const sparkleStyle = document.createElement('style');
+            sparkleStyle.textContent = `
+                @keyframes sparkleFloat {
+                    0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+                    50% { opacity: 1; transform: translateY(-20px) rotate(180deg); }
+                    100% { opacity: 0; transform: translateY(-40px) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(sparkleStyle);
+            
+            rewardsSection.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        };
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 2000);
+
+        // Theme card click functionality
+        themeCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.theme-title').textContent;
+                const description = card.querySelector('.theme-description').textContent;
+                const age = card.querySelector('.theme-age').textContent;
+                const icon = card.querySelector('.theme-icon').textContent;
+                
+                const modal = document.createElement('div');
+                modal.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.8);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 1000;
+                        cursor: pointer;
+                    ">
+                        <div style="
+                            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                            padding: 3rem;
+                            border-radius: 20px;
+                            text-align: center;
+                            max-width: 600px;
+                            margin: 2rem;
+                        ">
+                            <div style="font-size: 5rem; margin-bottom: 1rem;">${icon}</div>
+                            <h3 style="color: #333; margin-bottom: 1rem; font-size: 2rem;">${title}</h3>
+                            <p style="color: #666; margin-bottom: 1.5rem; font-size: 1.1rem;">${description}</p>
+                            <div style="
+                                background: rgba(255, 255, 255, 0.7);
+                                color: #667eea;
+                                padding: 0.5rem 1rem;
+                                border-radius: 15px;
+                                font-size: 1rem;
+                                font-weight: bold;
+                                display: inline-block;
+                                margin-bottom: 2rem;
+                            ">Age Group: ${age}</div>
+                            <br>
+                            <button style="
+                                background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+                                color: white;
+                                border: none;
+                                padding: 1rem 2rem;
+                                border-radius: 30px;
+                                cursor: pointer;
+                                font-weight: bold;
+                                font-size: 1.1rem;
+                                margin-right: 1rem;
+                            " onclick="this.parentElement.parentElement.remove()">Book This Theme</button>
+                            <button style="
+                                background: transparent;
+                                color: #333;
+                                border: 2px solid #333;
+                                padding: 1rem 2rem;
+                                border-radius: 30px;
+                                cursor: pointer;
+                                font-weight: bold;
+                                font-size: 1.1rem;
+                            " onclick="this.parentElement.parentElement.remove()">Close</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            });
+        });
+
+        console.log('🎨 Activities page loaded successfully!');
+    </script>
+</body>
+</html>

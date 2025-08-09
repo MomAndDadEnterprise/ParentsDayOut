@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Locations - Premium Daycare Network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .city-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .city-nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #2c3e50;
+            backdrop-filter: blur(10px);
+        }
+
+        .city-nav-btn:hover, .city-nav-btn.active {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        /* City Content Sections */
+        .city-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .city-content.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* City Header */
+        .city-header {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .city-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from { transform: translateX(0) translateY(0); }
+            to { transform: translateX(-50px) translateY(-50px); }
+        }
+
+        .city-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .city-tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content Grid */
+        .city-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .map-container {
+            height: 400px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Info Panel */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #e74c3c;
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #e74c3c;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Facility Gallery */
+        .gallery-section {
+            padding: 3rem 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500, #32cd32, #3498db);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 3rem 2rem;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Coming Soon Cities */
+        .coming-soon {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .coming-soon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .coming-soon-card {
+            background: linear-gradient(135deg, #95a5a6, #bdc3c7);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coming-soon-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .coming-soon-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .notify-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .notify-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .city-title {
+                font-size: 2rem;
+            }
+
+            .city-main {
+                grid-template-columns: 1fr;
+            }
+
+            .city-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .team-grid, .gallery-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏠 Our Locations</h1>
+            <p>Premium daycare services across major cities in India. Find quality childcare near you with our trusted network of certified providers.</p>
+        </div>
+
+        <!-- City Navigation -->
+        <div class="city-nav">
+            <button class="city-nav-btn active" onclick="showCity('vijayawada')">Vijayawada</button>
+            <button class="city-nav-btn" onclick="showCity('vizag')">Visakhapatnam</button>
+            <button class="city-nav-btn" onclick="showCity('hyderabad')">Hyderabad</button>
+            <button class="city-nav-btn" onclick="showCity('bangalore')">Bangalore</button>
+        </div>
+
+        <!-- Vijayawada -->
+        <div id="vijayawada" class="city-content active">
+            <div class="city-header" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                <h2 class="city-title">🏛️ Vijayawada</h2>
+                <p class="city-tagline">"Where Krishna flows, love grows" - Premium childcare in the heart of Andhra Pradesh</p>
+            </div>
+
+            <div class="city-main">
+                <div class="map-section">
+                    <div class="map-header">
+                        <h3>📍 Our Vijayawada Centers</h3>
+                    </div>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🗺️</div>
+                            <p>Interactive Google Maps</p>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
+                                3 Centers Available<br>
+                                Near Benz Circle, Governorpet, Labbipet
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-panel">
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🚇</span> Accessibility</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• 5 min from Vijayawada Railway Station</li>
+                            <li>• Near Benz Circle (Metro connectivity)</li>
+                            <li>• Bus stops: APSRTC, Private buses</li>
+                            <li>• Parking available</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🏛️</span> Landmarks</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Kanaka Durga Temple (2 km)</li>
+                            <li>• Prakasam Barrage (1.5 km)</li>
+                            <li>• Indira Gandhi Stadium (1 km)</li>
+                            <li>• PVP Square Mall (500m)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🎭</span> Local Culture</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Telugu cultural programs</li>
+                            <li>• Kuchipudi dance classes</li>
+                            <li>• Traditional festival celebrations</li>
+                            <li>• Local cuisine introduction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="team-section">
+                <h2 style="text-align: center; color: #2c3e50; margin-bottom: 1rem;">Meet Our Vijayawada Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-photo">👩‍💻</div>
+                        <div class="team-name">Meera Patel</div>
+                        <div class="team-role">Center Director</div>
+                        <div class="team-bio">Former Google employee turned child educator. Expert in integrating technology with traditional learning.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👨‍🔬</div>
+                        <div class="team-name">Rajesh Gupta</div>
+                        <div class="team-role">STEM Coordinator</div>
+                        <div class="team-bio">IIT graduate with passion for early STEM education and hands-on learning experiences.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👩‍🏫</div>
+                        <div class="team-name">Fatima Khan</div>
+                        <div class="team-role">Cultural Integration Head</div>
+                        <div class="team-bio">Specializes in Hyderabadi culture and multilingual education programs for diverse families.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2 style="text-align: center; margin-bottom: 1rem;">Get in Touch - Hyderabad</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h4>Phone</h4>
+                        <p>+91 40-123-4567</p>
+                        <p>Daily: 6:00 AM - 8:00 PM</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h4>Email</h4>
+                        <p>hyderabad@daycare.com</p>
+                        <p>Response within 1 hour</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h4>Address</h4>
+                        <p>789, HITEC City, Madhapur</p>
+                        <p>Hyderabad, TS - 500081</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🤝</div>
+                        <h4>Partnerships</h4>
+                        <p>Microsoft, Google Offices</p>
+                        <p>International Schools</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bangalore -->
+        <div id="bangalore" class="city-content">
+            <div class="city-header" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
+                <h2 class="city-title">🌳 Bangalore</h2>
+                <p class="city-tagline">"Silicon Valley of India" - Garden city childcare with global standards</p>
+            </div>
+
+            <div class="city-main">
+                <div class="map-section">
+                    <div class="map-header">
+                        <h3>📍 Our Bangalore Centers</h3>
+                    </div>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🗺️</div>
+                            <p>Interactive Google Maps</p>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
+                                12 Centers Available<br>
+                                Koramangala, Whitefield, Electronic City, Indiranagar
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-panel">
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🚊</span> Accessibility</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Namma Metro connectivity</li>
+                            <li>• IT corridor proximity</li>
+                            <li>• Major bus routes access</li>
+                            <li>• Airport: 35 km</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🏛️</span> Landmarks</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Lalbagh Botanical Garden (3 km)</li>
+                            <li>• Cubbon Park (4 km)</li>
+                            <li>• UB City Mall (2 km)</li>
+                            <li>• Bangalore Palace (5 km)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🌍</span> Global Culture</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• International curriculum</li>
+                            <li>• Multi-cultural environment</li>
+                            <li>• Global best practices</li>
+                            <li>• English-Kannada programs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <h2 style="text-align: center; color: #2c3e50; margin-bottom: 1rem;">Meet Our Bangalore Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-photo">👩‍🎓</div>
+                        <div class="team-name">Dr. Sarah Williams</div>
+                        <div class="team-role">Center Director</div>
+                        <div class="team-bio">International early childhood development expert with 18 years experience across 5 countries.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👨‍🌾</div>
+                        <div class="team-name">Karthik Nair</div>
+                        <div class="team-role">Garden Learning Coordinator</div>
+                        <div class="team-bio">Horticulturist creating organic garden spaces for children to learn about nature and sustainability.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👩‍🍳</div>
+                        <div class="team-name">Chef Anita</div>
+                        <div class="team-role">Nutrition & Culinary Head</div>
+                        <div class="team-bio">Award-winning chef specializing in international cuisine adapted for young children's nutritional needs.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2 style="text-align: center; margin-bottom: 1rem;">Get in Touch - Bangalore</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h4>Phone</h4>
+                        <p>+91 80-123-4567</p>
+                        <p>Daily: 6:00 AM - 8:00 PM</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h4>Email</h4>
+                        <p>bangalore@daycare.com</p>
+                        <p>Response within 30 minutes</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h4>Address</h4>
+                        <p>321, Brigade Road, MG Road</p>
+                        <p>Bangalore, KA - 560001</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🤝</div>
+                        <h4>Partnerships</h4>
+                        <p>Tech Giants, MNCs</p>
+                        <p>International Schools Network</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coming Soon Section -->
+        <div class="coming-soon">
+            <h2 style="color: #2c3e50; margin-bottom: 1rem;">🚀 Coming Soon to These Cities</h2>
+            <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">We're expanding our premium daycare network! Be the first to know when we launch in your city.</p>
+            
+            <div class="coming-soon-grid">
+                <div class="coming-soon-card">
+                    <div class="coming-soon-icon">🏢</div>
+                    <h3>Noida</h3>
+                    <p style="margin: 1rem 0; font-size: 0.9rem;">NCR's premium location</p>
+                    <p style="font-size: 0.8rem; opacity: 0.8;">Expected: Q2 2025</p>
+                    <button class="notify-btn" onclick="notifyMe('Noida')">Notify Me</button>
+                </div>
+                
+                <div class="coming-soon-card">
+                    <div class="coming-soon-icon">🏭</div>
+                    <h3>Pune</h3>
+                    <p style="margin: 1rem 0; font-size: 0.9rem;">IT hub expansion</p>
+                    <p style="font-size: 0.8rem; opacity: 0.8;">Expected: Q3 2025</p>
+                    <button class="notify-btn" onclick="notifyMe('Pune')">Notify Me</button>
+                </div>
+                
+                <div class="coming-soon-card">
+                    <div class="coming-soon-icon">🏛️</div>
+                    <h3>Ahmedabad</h3>
+                    <p style="margin: 1rem 0; font-size: 0.9rem;">Heritage city care</p>
+                    <p style="font-size: 0.8rem; opacity: 0.8;">Expected: Q4 2025</p>
+                    <button class="notify-btn" onclick="notifyMe('Ahmedabad')">Notify Me</button>
+                </div>
+                
+                <div class="coming-soon-card">
+                    <div class="coming-soon-icon">🏢</div>
+                    <h3>Gurgaon</h3>
+                    <p style="margin: 1rem 0; font-size: 0.9rem;">Millennium city launch</p>
+                    <p style="font-size: 0.8rem; opacity: 0.8;">Expected: Q1 2026</p>
+                    <button class="notify-btn" onclick="notifyMe('Gurgaon')">Notify Me</button>
+                </div>
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div style="background: rgba(52, 152, 219, 0.1); padding: 2rem; border-radius: 15px; margin-top: 3rem; text-align: center;">
+                <h3 style="color: #2c3e50; margin-bottom: 1rem;">📧 Stay Updated</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">Join our waitlist and get exclusive early access to new locations</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <input type="email" placeholder="Enter your email" style="padding: 1rem; border: none; border-radius: 25px; min-width: 250px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <button style="background: #3498db; color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // City navigation functionality
+        function showCity(cityName) {
+            // Hide all city content
+            document.querySelectorAll('.city-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all nav buttons
+            document.querySelectorAll('.city-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected city content
+            document.getElementById(cityName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to content smoothly
+            document.getElementById(cityName).scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+
+            // Track analytics
+            console.log(`City viewed: ${cityName}`);
+        }
+
+        // Notify me functionality for coming soon cities
+        function notifyMe(cityName) {
+            const email = prompt(`🔔 Get notified when we launch in ${cityName}!\n\nEnter your email address:`);
+            if (email && email.includes('@')) {
+                alert(`✅ Thank you! We'll notify you as soon as we launch in ${cityName}.\n\nYour email: ${email}\n\nExpected benefits:\n• Early bird discounts\n• Priority slot booking\n• Exclusive city launch events`);
+                
+                // In real implementation, this would call an API
+                console.log(`Notification signup: ${cityName} - ${email}`);
+            } else if (email) {
+                alert('❌ Please enter a valid email address.');
+            }
+        }
+
+        // Enhanced map integration (simulation)
+        function initializeMaps() {
+            const mapContainers = document.querySelectorAll('.map-container');
+            mapContainers.forEach((container, index) => {
+                container.addEventListener('click', function() {
+                    const cityName = this.closest('.city-content').id;
+                    alert(`🗺️ Interactive Map for ${cityName.charAt(0).toUpperCase() + cityName.slice(1)}\n\n• Click markers to see center details\n• Get directions to any location\n• View real-time availability\n• Book virtual tours\n\nThis would open Google Maps integration with all center locations marked.`);
+                });
+            });
+        }
+
+        // Virtual tour functionality
+        function initializeVirtualTours() {
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Virtual Tour')) {
+                    button.addEventListener('click', function() {
+                        const cityName = this.closest('.city-content').id;
+                        alert(`📹 Virtual Tour - ${cityName.charAt(0).toUpperCase() + cityName.slice(1)}\n\n• 360° facility walkthrough\n• Meet our staff virtually\n• See safety measures in action\n• Interactive Q&A session\n• Book physical visit\n\nStarting virtual tour... (This would open an immersive 3D tour)`);
+                    });
+                }
+            });
+        }
+
+        // Gallery lightbox functionality
+        function initializeGallery() {
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const caption = this.querySelector('.gallery-caption').textContent;
+                    alert(`📸 Gallery View\n\n${caption}\n\n• High-resolution photos\n• Multiple angles\n• Safety feature highlights\n• 360° room views\n\nThis would open a full gallery lightbox with detailed facility photos.`);
+                });
+            });
+        }
+
+        // Contact form enhancements
+        function enhanceContactForms() {
+            document.querySelectorAll('.contact-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const contactType = this.querySelector('h4').textContent;
+                    const cityName = this.closest('.city-content').id;
+                    
+                    if (contactType === 'Phone') {
+                        alert(`📞 Calling ${cityName.charAt(0).toUpperCase() + cityName.slice(1)} Center...\n\nOur team is ready to:\n• Answer your questions\n• Schedule facility tours\n• Discuss enrollment options\n• Provide pricing information\n\nConnecting you now...`);
+                    } else if (contactType === 'Email') {
+                        alert(`📧 Email Composer\n\nSending email to ${cityName}@daycare.com\n\nPre-filled template with:\n• Your contact information\n• Child's age and needs\n• Preferred visit times\n• Specific questions\n\nThis would open your email client.`);
+                    }
+                });
+            });
+        }
+
+        // Team member interactions
+        function initializeTeamInteractions() {
+            document.querySelectorAll('.team-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const name = this.querySelector('.team-name').textContent;
+                    const role = this.querySelector('.team-role').textContent;
+                    const bio = this.querySelector('.team-bio').textContent;
+                    
+                    alert(`👋 Meet ${name}\n${role}\n\n${bio}\n\n• Schedule a meet & greet\n• Ask questions about their approach\n• Learn about their experience\n• View certifications\n\nWould you like to connect with ${name}?`);
+                });
+            });
+        }
+
+        // Smooth scrolling for all internal links
+        function initializeSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Newsletter subscription
+        function initializeNewsletter() {
+            const subscribeBtn = document.querySelector('button[type="button"]');
+            if (subscribeBtn && subscribeBtn.textContent === 'Subscribe') {
+                subscribeBtn.addEventListener('click', function() {
+                    const emailInput = this.previousElementSibling;
+                    const email = emailInput.value;
+                    
+                    if (email && email.includes('@')) {
+                        alert(`🎉 Successfully subscribed!\n\nEmail: ${email}\n\nYou'll receive:\n• Launch date announcements\n• Early bird discounts\n• Exclusive content\n• City-specific updates\n\nThank you for joining our community!`);
+                        emailInput.value = '';
+                    } else {
+                        alert('❌ Please enter a valid email address.');
+                    }
+                });
+            }
+        }
+
+        // Mobile-specific enhancements
+        function addMobileEnhancements() {
+            if (window.innerWidth <= 768) {
+                // Add swipe navigation for cities
+                let startX = null;
+                const cities = ['vijayawada', 'vizag', 'hyderabad', 'bangalore'];
+                let currentCityIndex = 0;
+
+                document.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                });
+
+                document.addEventListener('touchend', e => {
+                    if (!startX) return;
+                    
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+                    
+                    if (Math.abs(diffX) > 100) { // Minimum swipe distance
+                        if (diffX > 0 && currentCityIndex < cities.length - 1) {
+                            // Swipe left - next city
+                            currentCityIndex++;
+                            showCityByIndex(currentCityIndex);
+                        } else if (diffX < 0 && currentCityIndex > 0) {
+                            // Swipe right - previous city
+                            currentCityIndex--;
+                            showCityByIndex(currentCityIndex);
+                        }
+                    }
+                    
+                    startX = null;
+                });
+            }
+        }
+
+        function showCityByIndex(index) {
+            const cities = ['vijayawada', 'vizag', 'hyderabad', 'bangalore'];
+            const buttons = document.querySelectorAll('.city-nav-btn');
+            
+            if (index >= 0 && index < cities.length) {
+                buttons[index].click();
+            }
+        }
+
+        // Initialize all functionality when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMaps();
+            initializeVirtualTours();
+            initializeGallery();
+            enhanceContactForms();
+            initializeTeamInteractions();
+            initializeSmoothScrolling();
+            initializeNewsletter();
+            addMobileEnhancements();
+            
+            console.log('Location pages initialized successfully!');
+            
+            // Add entrance animations
+            setTimeout(() => {
+                document.querySelectorAll('.city-content.active .team-card, .city-content.active .gallery-item').forEach((element, index) => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        element.style.transition = 'all 0.6s ease';
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 500);
+        });
+
+        // Add performance monitoring
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded');
+            // In real implementation, this would send performance metrics
+        });
+
+        // Add accessibility enhancements
+        function enhanceAccessibility() {
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    // Ensure proper tab order
+                    const focusableElements = document.querySelectorAll(
+                        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                    );
+                    
+                    // Add visible focus indicators
+                    focusableElements.forEach(element => {
+                        element.addEventListener('focus', function() {
+                            this.style.outline = '3px solid #3498db';
+                            this.style.outlineOffset = '2px';
+                        });
+                        
+                        element.addEventListener('blur', function() {
+                            this.style.outline = '';
+                            this.style.outlineOffset = '';
+                        });
+                    });
+                }
+            });
+        }
+
+        // Initialize accessibility features
+        enhanceAccessibility();
+    </script>
+</body>
+</html>-grid">
+                    <div class="team-card">
+                        <div class="team-photo">👩‍🏫</div>
+                        <div class="team-name">Lakshmi Devi</div>
+                        <div class="team-role">Center Director</div>
+                        <div class="team-bio">15+ years in early childhood education. Specialized in Telugu cultural integration and child psychology.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👨‍⚕️</div>
+                        <div class="team-name">Dr. Ravi Kumar</div>
+                        <div class="team-role">Pediatric Consultant</div>
+                        <div class="team-bio">MD Pediatrics, ensuring health and wellness protocols for all children in our care.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👩‍🍳</div>
+                        <div class="team-name">Sunitha Rao</div>
+                        <div class="team-role">Nutrition Specialist</div>
+                        <div class="team-bio">Expert in Andhra cuisine and child nutrition. Creates healthy, locally-inspired meal plans.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="gallery-section">
+                <h2 style="text-align: center; color: #2c3e50; margin-bottom: 1rem;">Facility Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            🏫
+                            <div class="gallery-caption">Main Building - Spacious classrooms with AC and safety measures</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            🎮
+                            <div class="gallery-caption">Play Area - Safe indoor and outdoor play zones</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            🍽️
+                            <div class="gallery-caption">Dining Hall - Hygienic kitchen serving healthy Telugu meals</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button style="background: #3498db; color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer;">📹 Virtual Tour</button>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h2 style="text-align: center; margin-bottom: 1rem;">Get in Touch - Vijayawada</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h4>Phone</h4>
+                        <p>+91 866-123-4567</p>
+                        <p>Daily: 7:00 AM - 7:00 PM</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h4>Email</h4>
+                        <p>vijayawada@daycare.com</p>
+                        <p>Response within 2 hours</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h4>Address</h4>
+                        <p>123, MG Road, Near Benz Circle</p>
+                        <p>Vijayawada, AP - 520010</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🤝</div>
+                        <h4>Partnerships</h4>
+                        <p>Vijayawada Municipal Corp.</p>
+                        <p>Local NGOs & Schools</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visakhapatnam -->
+        <div id="vizag" class="city-content">
+            <div class="city-header" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                <h2 class="city-title">🌊 Visakhapatnam</h2>
+                <p class="city-tagline">"City of Destiny" - Coastal care with love and tradition</p>
+            </div>
+
+            <div class="city-main">
+                <div class="map-section">
+                    <div class="map-header">
+                        <h3>📍 Our Vizag Centers</h3>
+                    </div>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🗺️</div>
+                            <p>Interactive Google Maps</p>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
+                                4 Centers Available<br>
+                                MVP Colony, Dwaraka Nagar, Gajuwaka
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-panel">
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🚢</span> Accessibility</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Near Vizag Port (3 km)</li>
+                            <li>• Railway Station connectivity</li>
+                            <li>• Beach Road accessibility</li>
+                            <li>• Airport: 15 km</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🏖️</span> Landmarks</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• RK Beach (2 km)</li>
+                            <li>• Kailasagiri Hill Park (4 km)</li>
+                            <li>• VUDA Park (1.5 km)</li>
+                            <li>• Submarine Museum (3 km)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🎨</span> Coastal Culture</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Beach safety education</li>
+                            <li>• Maritime heritage programs</li>
+                            <li>• Fishing community stories</li>
+                            <li>• Coastal art and crafts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section for Vizag -->
+            <div class="team-section">
+                <h2 style="text-align: center; color: #2c3e50; margin-bottom: 1rem;">Meet Our Visakhapatnam Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-photo">👩‍💼</div>
+                        <div class="team-name">Priya Sharma</div>
+                        <div class="team-role">Center Director</div>
+                        <div class="team-bio">Marine biology background with 12 years in childcare. Passionate about coastal education.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👨‍🎨</div>
+                        <div class="team-name">Arjun Reddy</div>
+                        <div class="team-role">Creative Arts Coordinator</div>
+                        <div class="team-bio">Local artist specializing in maritime themes and traditional Vizag crafts for children.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👩‍⚕️</div>
+                        <div class="team-name">Dr. Kavitha</div>
+                        <div class="team-role">Health & Safety Officer</div>
+                        <div class="team-bio">Pediatric nurse with expertise in coastal climate health management for children.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery and Contact sections similar to Vijayawada with Vizag-specific content -->
+            <div class="contact-section">
+                <h2 style="text-align: center; margin-bottom: 1rem;">Get in Touch - Visakhapatnam</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h4>Phone</h4>
+                        <p>+91 891-123-4567</p>
+                        <p>Daily: 6:30 AM - 7:30 PM</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h4>Email</h4>
+                        <p>vizag@daycare.com</p>
+                        <p>Response within 2 hours</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h4>Address</h4>
+                        <p>456, Beach Road, MVP Colony</p>
+                        <p>Visakhapatnam, AP - 530017</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🤝</div>
+                        <h4>Partnerships</h4>
+                        <p>Port Trust Schools</p>
+                        <p>Coastal Community Centers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hyderabad -->
+        <div id="hyderabad" class="city-content">
+            <div class="city-header" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                <h2 class="city-title">💎 Hyderabad</h2>
+                <p class="city-tagline">"City of Pearls" - Premium childcare in the tech capital</p>
+            </div>
+
+            <div class="city-main">
+                <div class="map-section">
+                    <div class="map-header">
+                        <h3>📍 Our Hyderabad Centers</h3>
+                    </div>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🗺️</div>
+                            <p>Interactive Google Maps</p>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
+                                8 Centers Available<br>
+                                Hi-Tech City, Gachibowli, Madhapur, Banjara Hills
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-panel">
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🚇</span> Accessibility</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Metro connectivity (Hi-Tech City)</li>
+                            <li>• IT corridor locations</li>
+                            <li>• MMTS train stations nearby</li>
+                            <li>• Airport: 25 km</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🏰</span> Landmarks</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• Charminar (8 km)</li>
+                            <li>• Golconda Fort (12 km)</li>
+                            <li>• Hussain Sagar Lake (5 km)</li>
+                            <li>• HITEC City IT Hub (2 km)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">💻</span> Tech Culture</h3>
+                        <ul style="list-style: none; color: #666;">
+                            <li>• STEM learning programs</li>
+                            <li>• Tech-savvy parenting support</li>
+                            <li>• Digital literacy for kids</li>
+                            <li>• Innovation workshops</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <h2 style="text-align: center; color: #2c3e50; margin-bottom: 1rem;">Meet Our Hyderabad Team</h2>
+                <div class="team-grid">
+                    <div class="team

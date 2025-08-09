@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parents Day Out - Live Gallery Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --dark-glass: rgba(0, 0, 0, 0.1);
+            --text-primary: #2d3748;
+            --text-light: #718096;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --border-radius: 20px;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--primary-gradient);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--primary-gradient);
+        }
+        
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            animation: bgShift 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgShift {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            33% { transform: rotate(1deg) scale(1.02); }
+            66% { transform: rotate(-1deg) scale(0.98); }
+        }
+        
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            color: white;
+        }
+        
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            min-height: calc(100vh - 100px);
+        }
+        
+        /* Control Panel */
+        .control-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .panel-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .live-indicator {
+            background: #ef4444;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .control-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .filter-input,
+        .filter-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .filter-input:focus,
+        .filter-select:focus {
+            outline: none;
+            border-color: rgba(240, 147, 251, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
+        }
+        
+        .quick-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .quick-filter {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .quick-filter:hover,
+        .quick-filter.active {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+        
+        /* Live CCTV Section */
+        .live-cctv {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .cctv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .cctv-feed {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16/9;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cctv-feed.recording {
+            border-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+        }
+        
+        .feed-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            background: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(255,255,255,0.1));
+        }
+        
+        .feed-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .feed-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: currentColor;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .feed-controls {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cctv-feed:hover .feed-controls {
+            opacity: 1;
+        }
+        
+        .control-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .control-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+        
+        /* Gallery Grid */
+        .gallery-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: flex-end;
+        }
+        
+        .view-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .view-btn.active,
+        .view-btn:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .gallery-grid.timeline-view {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .media-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-strong);
+            border-color: rgba(240, 147, 251, 0.3);
+        }
+        
+        .media-thumbnail {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(240, 147, 251, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .media-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .media-item:hover .media-thumbnail::before {
+            left: 100%;
+        }
+        
+        .media-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+        }
+        
+        .media-item:hover .media-overlay {
+            opacity: 1;
+        }
+        
+        .media-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .media-info {
+            padding: 1rem;
+            color: white;
+        }
+        
+        .media-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .media-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .media-tags {
+            display: flex;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        
+        .media-tag {
+            background: rgba(240, 147, 251, 0.3);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+        
+        /* Timeline View */
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+        }
+        
+        .timeline-time {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-width: 80px;
+        }
+        
+        .timeline-thumbnail {
+            width: 80px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            color: white;
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .timeline-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        /* Load More Button */
+        .load-more {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .load-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .load-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .load-btn:hover::before {
+            left: 100%;
+        }
+        
+        .load-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+        
+        /* Floating Action Buttons */
+        .fab-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1500;
+        }
+        
+        .fab {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-strong);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem 0.5rem;
+            }
+            
+            .control-panel,
+            .live-cctv,
+            .gallery-section {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .control-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .cctv-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .panel-title {
+                font-size: 1.4rem;
+            }
+            
+            .fab-container {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .fab {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .user-info {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-filters {
+                justify-content: center;
+            }
+            
+            .view-toggle {
+                justify-content: center;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .timeline-time {
+                min-width: auto;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            background: var(--success-gradient);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow-soft);
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        /* Privacy Controls */
+        .privacy-settings {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .privacy-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch.active {
+            background: var(--success-gradient);
+        }
+        
+        .toggle-knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 19px;
+            height: 19px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch.active .toggle-knob {
+            left: 28px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">📹</div>
+                <span>Parents Day Out Portal</span>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <div>
+                    <div style="font-weight: 600;">Welcome, Sarah</div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Child: Emma (Grade 2)</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Control Panel -->
+        <section class="control-panel">
+            <h2 class="panel-title">
+                📊 Dashboard
+                <span class="live-indicator">🔴 LIVE</span>
+            </h2>
+            
+            <div class="control-grid">
+                <!-- Search & Filters -->
+                <div class="control-section">
+                    <h3 class="section-title">🔍 Search & Filter</h3>
+                    <div class="filter-group">
+                        <input type="text" class="filter-input" placeholder="Search by activity, child name..." id="searchInput">
+                        <input type="date" class="filter-input" id="dateFilter">
+                        <select class="filter-select" id="locationFilter">
+                            <option value="">All Locations</option>
+                            <option value="vijayawada">Vijayawada</option>
+                            <option value="hyderabad">Hyderabad</option>
+                            <option value="bangalore">Bangalore</option>
+                        </select>
+                        <select class="filter-select" id="activityFilter">
+                            <option value="">All Activities</option>
+                            <option value="playtime">Play Time</option>
+                            <option value="mealtime">Meal Time</option>
+                            <option value="learning">Learning</option>
+                            <option value="nap">Nap Time</option>
+                            <option value="outdoor">Outdoor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Quick Filters -->
+                <div class="control-section">
+                    <h3 class="section-title">⚡ Quick Filters</h3>
+                    <div class="quick-filters">
+                        <button class="quick-filter active" onclick="setQuickFilter('today')">Today</button>
+                        <button class="quick-filter" onclick="setQuickFilter('thisweek')">This Week</button>
+                        <button class="quick-filter" onclick="setQuickFilter('photos')">Photos Only</button>
+                        <button class="quick-filter" onclick="setQuickFilter('videos')">Videos Only</button>
+                        <button class="quick-filter" onclick="setQuickFilter('highlights')">Highlights</button>
+                    </div>
+                </div>
+
+                <!-- Privacy Settings -->
+                <div class="control-section">
+                    <h3 class="section-title">🔒 Privacy Controls</h3>
+                    <div class="privacy-settings">
+                        <div class="privacy-toggle">
+                            <span>Allow Downloads</span>
+                            <div class="toggle-switch active" onclick="togglePrivacy(this)">
+                                <div class="toggle-knob"></div>
+                            </div>
+                        </div>
+                        <div class="privacy-toggle">
+                            <span>Social Sharing</span>
+                            <div class="toggle-switch" onclick="togglePrivacy(this)">
+                                <div class="toggle-knob"></div>
+                            </div>
+                        </div>
+                        <div class="privacy-toggle">
+                            <span>Auto-delete after 30 days</span>
+                            <div class="toggle-switch active" onclick="togglePrivacy(this)">
+                                <div class="toggle-knob"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live CCTV Section -->
+        <section class="live-cctv">
+            <h2 class="panel-title">📹 Live CCTV Feeds</h2>
+            <div class="cctv-grid">
+                <div class="cctv-feed recording">
+                    <div class="feed-placeholder">
+                        🎭<br>
+                        <small style="font-size: 1rem; margin-top: 1rem;">Playroom A</small>
+                    </div>
+                    <div class="feed-label">Playroom A</div>
+                    <div class="feed-status">
+                        <div class="status-dot"></div>
+                        LIVE
+                    </div>
+                    <div class="feed-controls">
+                        <button class="control-btn" onclick="toggleRecording(this)">⏺️</button>
+                        <button class="control-btn" onclick="takeSnapshot(this)">📸</button>
+                        <button class="control-btn" onclick="toggleFullscreen(this)">⛶</button>
+                    </div>
+                </div>
+                
+                <div class="cctv-feed">
+                    <div class="feed-placeholder">
+                        🍽️<br>
+                        <small style="font-size: 1rem; margin-top: 1rem;">Dining Hall</small>
+                    </div>
+                    <div class="feed-label">Dining Hall</div>
+                    <div class="feed-status">
+                        <div class="status-dot"></div>
+                        LIVE
+                    </div>
+                    <div class="feed-controls">
+                        <button class="control-btn" onclick="toggleRecording(this)">⏺️</button>
+                        <button class="control-btn" onclick="takeSnapshot(this)">📸</button>
+                        <button class="control-btn" onclick="toggleFullscreen(this)">⛶</button>
+                    </div>
+                </div>
+                
+                <div class="cctv-feed recording">
+                    <div class="feed-placeholder">
+                        🌳<br>
+                        <small style="font-size: 1rem; margin-top: 1rem;">Outdoor Area</small>
+                    </div>
+                    <div class="feed-label">Outdoor Area</div>
+                    <div class="feed-status">
+                        <div class="status-dot"></div>
+                        LIVE
+                    </div>
+                    <div class="feed-controls">
+                        <button class="control-btn" onclick="toggleRecording(this)">⏺️</button>
+                        <button class="control-btn" onclick="takeSnapshot(this)">📸</button>
+                        <button class="control-btn" onclick="toggleFullscreen(this)">⛶</button>
+                    </div>
+                </div>
+                
+                <div class="cctv-feed">
+                    <div class="feed-placeholder">
+                        💤<br>
+                        <small style="font-size: 1rem; margin-top: 1rem;">Nap Room</small>
+                    </div>
+                    <div class="feed-label">Nap Room</div>
+                    <div class="feed-status">
+                        <div class="status-dot"></div>
+                        LIVE
+                    </div>
+                    <div class="feed-controls">
+                        <button class="control-btn" onclick="toggleRecording(this)">⏺️</button>
+                        <button class="control-btn" onclick="takeSnapshot(this)">📸</button>
+                        <button class="control-btn" onclick="toggleFullscreen(this)">⛶</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 class="panel-title" style="margin-bottom: 0;">📸 Gallery & Timeline</h2>
+                <div class="view-toggle">
+                    <button class="view-btn active" onclick="toggleView('grid')">
+                        <span>🔳</span> Grid View
+                    </button>
+                    <button class="view-btn" onclick="toggleView('timeline')">
+                        <span>📅</span> Timeline
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Today's Highlights -->
+                <div class="media-item" onclick="openModal('highlight1')">
+                    <div class="media-thumbnail">
+                        🎨
+                        <div class="media-overlay">
+                            <div class="media-actions">
+                                <button class="action-btn" onclick="event.stopPropagation(); downloadMedia('highlight1')">📥</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); shareMedia('highlight1')">📤</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); favoriteMedia('highlight1')">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <div class="media-title">Art Class Masterpieces</div>
+                        <div class="media-details">
+                            <span>📹 2:34</span>
+                            <span>Today 10:30 AM</span>
+                        </div>
+                        <div class="media-tags">
+                            <span class="media-tag">Art</span>
+                            <span class="media-tag">Creative</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item" onclick="openModal('lunch1')">
+                    <div class="media-thumbnail">
+                        🥗
+                        <div class="media-overlay">
+                            <div class="media-actions">
+                                <button class="action-btn" onclick="event.stopPropagation(); downloadMedia('lunch1')">📥</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); shareMedia('lunch1')">📤</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); favoriteMedia('lunch1')">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <div class="media-title">Healthy Lunch Time</div>
+                        <div class="media-details">
+                            <span>📸 Photo</span>
+                            <span>Today 12:15 PM</span>
+                        </div>
+                        <div class="media-tags">
+                            <span class="media-tag">Meal</span>
+                            <span class="media-tag">Nutrition</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item" onclick="openModal('play1')">
+                    <div class="media-thumbnail">
+                        🎪
+                        <div class="media-overlay">
+                            <div class="media-actions">
+                                <button class="action-btn" onclick="event.stopPropagation(); downloadMedia('play1')">📥</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); shareMedia('play1')">📤</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); favoriteMedia('play1')">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <div class="media-title">Fun Circus Games</div>
+                        <div class="media-details">
+                            <span>📹 4:12</span>
+                            <span>Today 2:45 PM</span>
+                        </div>
+                        <div class="media-tags">
+                            <span class="media-tag">Play</span>
+                            <span class="media-tag">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item" onclick="openModal('story1')">
+                    <div class="media-thumbnail">
+                        📚
+                        <div class="media-overlay">
+                            <div class="media-actions">
+                                <button class="action-btn" onclick="event.stopPropagation(); downloadMedia('story1')">📥</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); shareMedia('story1')">📤</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); favoriteMedia('story1')">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <div class="media-title">Story Time Adventures</div>
+                        <div class="media-details">
+                            <span>📹 1:45</span>
+                            <span>Yesterday 3:30 PM</span>
+                        </div>
+                        <div class="media-tags">
+                            <span class="media-tag">Reading</span>
+                            <span class="media-tag">Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item" onclick="openModal('music1')">
+                    <div class="media-thumbnail">
+                        🎵
+                        <div class="media-overlay">
+                            <div class="media-actions">
+                                <button class="action-btn" onclick="event.stopPropagation(); downloadMedia('music1')">📥</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); shareMedia('music1')">📤</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); favoriteMedia('music1')">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <div class="media-title">Music & Movement</div>
+                        <div class="media-details">
+                            <span>📸 Photos</span>
+                            <span>Yesterday 11:00 AM</span>
+                        </div>
+                        <div class="media-tags">
+                            <span class="media-tag">Music</span>
+                            <span class="media-tag">Dance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item" onclick="openModal('outdoor1')">
+                    <div class="media-thumbnail">
+                        🌞
+                        <div class="media-overlay">
+                            <div class="media-actions">
+                                <button class="action-btn" onclick="event.stopPropagation(); downloadMedia('outdoor1')">📥</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); shareMedia('outdoor1')">📤</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); favoriteMedia('outdoor1')">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <div class="media-title">Sunny Day Outside</div>
+                        <div class="media-details">
+                            <span>📹 3:22</span>
+                            <span>Yesterday 10:15 AM</span>
+                        </div>
+                        <div class="media-tags">
+                            <span class="media-tag">Outdoor</span>
+                            <span class="media-tag">Exercise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more">
+                <button class="load-btn" onclick="loadMore()">
+                    <span class="loading" style="display: none;"></span>
+                    <span class="btn-text">Load More Memories</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="mediaModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalContent">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab" onclick="refreshFeeds()" title="Refresh Feeds">
+            🔄
+        </button>
+        <button class="fab" onclick="downloadDay()" title="Download Day's Highlights">
+            📥
+        </button>
+        <button class="fab" onclick="emergencyAccess()" title="Emergency Access">
+            🚨
+        </button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Global state
+        let currentView = 'grid';
+        let currentFilter = 'today';
+        let galleryData = [];
+        let isLoading = false;
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            startLiveUpdates();
+            setupEventListeners();
+        });
+
+        function initializeApp() {
+            loadGalleryData();
+            updateLastSeen();
+            checkPrivacySettings();
+            
+            // Simulate real-time updates
+            setInterval(updateLiveIndicators, 3000);
+            setInterval(checkForNewMedia, 30000);
+            
+            showToast('Welcome back! Live feeds are active.', 'success');
+        }
+
+        function startLiveUpdates() {
+            // Simulate live feed updates
+            const feeds = document.querySelectorAll('.cctv-feed');
+            feeds.forEach(feed => {
+                setInterval(() => {
+                    // Simulate feed activity
+                    const isActive = Math.random() > 0.3;
+                    if (isActive) {
+                        feed.classList.add('recording');
+                    } else {
+                        feed.classList.remove('recording');
+                    }
+                }, 5000 + Math.random() * 10000);
+            });
+        }
+
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', debounce(handleSearch, 300));
+            document.getElementById('dateFilter').addEventListener('change', applyFilters);
+            document.getElementById('locationFilter').addEventListener('change', applyFilters);
+            document.getElementById('activityFilter').addEventListener('change', applyFilters);
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', handleKeyboardShortcuts);
+            
+            // Touch gestures for mobile
+            let touchStartX, touchStartY;
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+            
+            document.addEventListener('touchend', e => {
+                if (!touchStartX || !touchStartY) return;
+                
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                
+                const deltaX = touchStartX - touchEndX;
+                const deltaY = touchStartY - touchEndY;
+                
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                    if (deltaX > 0) {
+                        // Swipe left - next day
+                        navigateDay('next');
+                    } else {
+                        // Swipe right - previous day
+                        navigateDay('prev');
+                    }
+                }
+            });
+        }
+
+        function handleKeyboardShortcuts(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'f':
+                        e.preventDefault();
+                        document.getElementById('searchInput').focus();
+                        break;
+                    case 'd':
+                        e.preventDefault();
+                        downloadDay();
+                        break;
+                    case 'r':
+                        e.preventDefault();
+                        refreshFeeds();
+                        break;
+                }
+            }
+            
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        }
+
+        function setQuickFilter(filter) {
+            // Update active filter
+            document.querySelectorAll('.quick-filter').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            currentFilter = filter;
+            applyFilters();
+            
+            showToast(`Filter applied: ${filter}`, 'info');
+        }
+
+        function applyFilters() {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const grid = document.getElementById('galleryGrid');
+            
+            // Show loading state
+            grid.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                // Simulate filtering
+                filterGalleryItems();
+                grid.style.opacity = '1';
+                isLoading = false;
+                
+                showToast('Gallery updated', 'success');
+            }, 800);
+        }
+
+        function handleSearch(query) {
+            if (query.length === 0) {
+                showAllItems();
+                return;
+            }
+            
+            const items = document.querySelectorAll('.media-item');
+            let visibleCount = 0;
+            
+            items.forEach(item => {
+                const title = item.querySelector('.media-title').textContent.toLowerCase();
+                const tags = Array.from(item.querySelectorAll('.media-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matches = title.includes(query.toLowerCase()) || 
+                               tags.some(tag => tag.includes(query.toLowerCase()));
+                
+                if (matches) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            showToast(`Found ${visibleCount} items`, 'info');
+        }
+
+        function showAllItems() {
+            document.querySelectorAll('.media-item').forEach(item => {
+                item.style.display = 'block';
+            });
+        }
+
+        function filterGalleryItems() {
+            // This would typically filter based on API calls
+            // For demo, we'll just show/hide existing items
+            const items = document.querySelectorAll('.media-item');
+            
+            items.forEach((item, index) => {
+                const shouldShow = Math.random() > 0.2; // Simulate filtering
+                item.style.display = shouldShow ? 'block' : 'none';
+                
+                if (shouldShow) {
+                    item.style.animation = `fadeInUp 0.5s ease ${index * 0.1}s both`;
+                }
+            });
+        }
+
+        function toggleView(view) {
+            currentView = view;
+            
+            // Update button states
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const grid = document.getElementById('galleryGrid');
+            
+            if (view === 'timeline') {
+                grid.classList.add('timeline-view');
+                showTimelineView();
+            } else {
+                grid.classList.remove('timeline-view');
+                showGridView();
+            }
+            
+            showToast(`Switched to ${view} view`, 'info');
+        }
+
+        function showTimelineView() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = `
+                <div class="timeline-item">
+                    <div class="timeline-time">2:45 PM</div>
+                    <div class="timeline-thumbnail">🎪</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Circus Theme Play Time</div>
+                        <div class="timeline-description">Emma enjoyed juggling practice and learned to balance on the mini tightrope. Great coordination skills!</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">12:15 PM</div>
+                    <div class="timeline-thumbnail">🥗</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Nutritious Lunch</div>
+                        <div class="timeline-description">Today's menu: Grilled chicken with vegetables, brown rice, and fresh fruit. Emma ate everything!</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:30 AM</div>
+                    <div class="timeline-thumbnail">🎨</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Creative Art Session</div>
+                        <div class="timeline-description">Watercolor painting activity. Emma created a beautiful landscape with mountains and trees.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">9:45 AM</div>
+                    <div class="timeline-thumbnail">👋</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Morning Arrival</div>
+                        <div class="timeline-description">Emma arrived with a big smile and immediately joined the morning circle time activities.</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showGridView() {
+            // This would restore the original grid content
+            location.reload(); // Simple reload for demo
+        }
+
+        function togglePrivacy(toggle) {
+            toggle.classList.toggle('active');
+            
+            const setting = toggle.parentElement.querySelector('span').textContent;
+            const isActive = toggle.classList.contains('active');
+            
+            showToast(`${setting}: ${isActive ? 'Enabled' : 'Disabled'}`, 'info');
+            
+            // Save privacy settings
+            savePrivacySettings();
+        }
+
+        function savePrivacySettings() {
+            const settings = {};
+            document.querySelectorAll('.privacy-toggle').forEach(toggle => {
+                const setting = toggle.querySelector('span').textContent;
+                const isActive = toggle.querySelector('.toggle-switch').classList.contains('active');
+                settings[setting] = isActive;
+            });
+            
+            // In real app, this would save to backend
+            console.log('Privacy settings saved:', settings);
+        }
+
+        function toggleRecording(btn) {
+            const feed = btn.closest('.cctv-feed');
+            feed.classList.toggle('recording');
+            
+            const isRecording = feed.classList.contains('recording');
+            showToast(`Recording ${isRecording ? 'started' : 'stopped'}`, isRecording ? 'success' : 'info');
+        }
+
+        function takeSnapshot(btn) {
+            const feed = btn.closest('.cctv-feed');
+            const label = feed.querySelector('.feed-label').textContent;
+            
+            // Simulate snapshot
+            showToast(`📸 Snapshot saved from ${label}`, 'success');
+            
+            // Add flash effect
+            feed.style.background = 'rgba(255, 255, 255, 0.5)';
+            setTimeout(() => {
+                feed.style.background = '';
+            }, 200);
+        }
+
+        function toggleFullscreen(btn) {
+            const feed = btn.closest('.cctv-feed');
+            
+            if (feed.classList.contains('fullscreen')) {
+                exitFullscreen(feed);
+            } else {
+                enterFullscreen(feed);
+            }
+        }
+
+        function enterFullscreen(feed) {
+            feed.classList.add('fullscreen');
+            feed.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 2000;
+                background: black;
+            `;
+            
+            // Add exit button
+            const exitBtn = document.createElement('button');
+            exitBtn.innerHTML = '×';
+            exitBtn.style.cssText = `
+                position: absolute;
+                top: 2rem;
+                right: 2rem;
+                background: rgba(0,0,0,0.7);
+                color: white;
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                cursor: pointer;
+                z-index: 2001;
+            `;
+            exitBtn.onclick = () => exitFullscreen(feed);
+            feed.appendChild(exitBtn);
+        }
+
+        function exitFullscreen(feed) {
+            feed.classList.remove('fullscreen');
+            feed.style.cssText = '';
+            
+            const exitBtn = feed.querySelector('button');
+            if (exitBtn && exitBtn.innerHTML === '×') {
+                exitBtn.remove();
+            }
+        }
+
+        function openModal(mediaId) {
+            const modal = document.getElementById('mediaModal');
+            const content = document.getElementById('modalContent');
+            
+            // Sample modal content based on mediaId
+            const mediaData = {
+                highlight1: {
+                    title: 'Art Class Masterpieces',
+                    type: 'video',
+                    duration: '2:34',
+                    date: 'Today 10:30 AM',
+                    description: 'Emma created beautiful watercolor paintings during today\'s art session. She showed excellent creativity and fine motor skills.',
+                    tags: ['Art', 'Creative', 'Learning']
+                },
+                lunch1: {
+                    title: 'Healthy Lunch Time',
+                    type: 'photo',
+                    date: 'Today 12:15 PM',
+                    description: 'Emma enjoyed a nutritious lunch with friends. Today\'s menu included grilled chicken, steamed vegetables, and fresh fruit.',
+                    tags: ['Meal', 'Nutrition', 'Social']
+                }
+                // Add more media data as needed
+            };
+            
+            const data = mediaData[mediaId] || mediaData.highlight1;
+            
+            content.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="width: 100%; max-width: 600px; aspect-ratio: 16/9; background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(240, 147, 251, 0.3)); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; margin: 0 auto 1rem;">
+                        ${data.type === 'video' ? '▶️' : '📸'}
+                    </div>
+                    <h2 style="color: white; margin-bottom: 0.5rem;">${data.title}</h2>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">${data.date}</p>
+                    <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">${data.description}</p>
+                    
+                    <div style="display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem;">
+                        ${data.tags.map(tag => `<span style="background: rgba(240, 147, 251, 0.3); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                        <button onclick="downloadMedia('${mediaId}')" style="background: var(--success-gradient); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: 600;">📥 Download</button>
+                        <button onclick="shareMedia('${mediaId}')" style="background: var(--accent-gradient); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: 600;">📤 Share</button>
+                        <button onclick="favoriteMedia('${mediaId}')" style="background: var(--warning-gradient); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: 600;">❤️ Favorite</button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('mediaModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function downloadMedia(mediaId) {
+            showToast('📥 Download started...', 'success');
+            
+            // Simulate download progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    showToast('✅ Download complete!', 'success');
+                } else {
+                    showToast(`📥 Downloading... ${progress}%`, 'info');
+                }
+            }, 200);
+        }
+
+        function shareMedia(mediaId) {
+            showToast('📤 Preparing share link...', 'info');
+            
+            // Simulate share functionality
+            setTimeout(() => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Emma\'s Day at Parents Day Out',
+                        text: 'Check out this sweet moment!',
+                        url: window.location.href + '#media=' + mediaId
+                    });
+                } else {
+                    // Fallback for browsers without Web Share API
+                    navigator.clipboard.writeText(window.location.href + '#media=' + mediaId);
+                    showToast('📋 Share link copied to clipboard!', 'success');
+                }
+            }, 1000);
+        }
+
+        function favoriteMedia(mediaId) {
+            const btn = event.target;
+            const isFavorited = btn.textContent.includes('💖');
+            
+            if (isFavorited) {
+                btn.innerHTML = '❤️ Favorite';
+                showToast('💔 Removed from favorites', 'info');
+            } else {
+                btn.innerHTML = '💖 Favorited';
+                showToast('💖 Added to favorites!', 'success');
+            }
+        }
+
+        function loadMore() {
+            const btn = document.querySelector('.load-btn');
+            const loading = btn.querySelector('.loading');
+            const text = btn.querySelector('.btn-text');
+            
+            loading.style.display = 'inline-block';
+            text.textContent = 'Loading...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                // Simulate loading more content
+                const grid = document.getElementById('galleryGrid');
+                const newItems = generateMoreGalleryItems(6);
+                
+                newItems.forEach(item => {
+                    grid.appendChild(item);
+                });
+                
+                loading.style.display = 'none';
+                text.textContent = 'Load More Memories';
+                btn.disabled = false;
+                
+                showToast('✨ More memories loaded!', 'success');
+            }, 2000);
+        }
+
+        function generateMoreGalleryItems(count) {
+            const activities = [
+                { emoji: '🧩', title: 'Puzzle Time', tag1: 'Learning', tag2: 'Focus' },
+                { emoji: '🏃', title: 'PE Class', tag1: 'Exercise', tag2: 'Health' },
+                { emoji: '🎭', title: 'Drama Play', tag1: 'Creative', tag2: 'Expression' },
+                { emoji: '🔬', title: 'Science Fun', tag1: 'STEM', tag2: 'Discovery' },
+                { emoji: '🍪', title: 'Cooking Class', tag1: 'Life Skills', tag2: 'Fun' },
+                { emoji: '🌱', title: 'Garden Time', tag1: 'Nature', tag2: 'Learning' }
+            ];
+            
+            const items = [];
+            
+            for (let i = 0; i < count; i++) {
+                const activity = activities[i % activities.length];
+                const mediaId = 'generated_' + Date.now() + '_' + i;
+                
+                const item = document.createElement('div');
+                item.className = 'media-item';
+                item.onclick = () => openModal(mediaId);
+                
+                item.innerHTML = `
+                    <div class="media-thumbnail">
+                        ${activity.emoji}
+                        <div class="media-overlay">
+                            <div class="media-actions">
+                                <button class="action-btn" onclick="event.stopPropagation(); downloadMedia('${mediaId}')">📥</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); shareMedia('${mediaId}')">📤</button>
+                                <button class="action-btn" onclick="event.stopPropagation(); favoriteMedia('${mediaId}')">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <div class="media-title">${activity.title}</div>
+                        <div class="media-details">
+                            <span>${Math.random() > 0.5 ? '📹' : '📸'} ${Math.random() > 0.5 ? Math.floor(Math.random() * 5) + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0') : 'Photo'}</span>
+                            <span>${Math.floor(Math.random() * 7)} days ago</span>
+                        </div>
+                        <div class="media-tags">
+                            <span class="media-tag">${activity.tag1}</span>
+                            <span class="media-tag">${activity.tag2}</span>
+                        </div>
+                    </div>
+                `;
+                
+                items.push(item);
+            }
+            
+            return items;
+        }
+
+        function refreshFeeds() {
+            const btn = event.target;
+            btn.style.transform = 'rotate(360deg)';
+            btn.style.transition = 'transform 1s ease';
+            
+            showToast('🔄 Refreshing live feeds...', 'info');
+            
+            setTimeout(() => {
+                btn.style.transform = 'rotate(0deg)';
+                showToast('✅ Feeds refreshed successfully!', 'success');
+                
+                // Simulate feed refresh by updating timestamps
+                document.querySelectorAll('.feed-status').forEach(status => {
+                    status.style.animation = 'none';
+                    setTimeout(() => {
+                        status.style.animation = 'pulse 2s infinite';
+                    }, 100);
+                });
+            }, 1500);
+        }
+
+        function downloadDay() {
+            showToast('📦 Preparing daily highlights package...', 'info');
+            
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 15;
+                showToast(`📦 Packaging... ${progress}%`, 'info');
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    showToast('🎉 Daily highlights ready for download!', 'success');
+                }
+            }, 300);
+        }
+
+        function emergencyAccess() {
+            const isConfirmed = confirm('This will notify staff and provide immediate access to all live feeds. Continue?');
+            
+            if (isConfirmed) {
+                showToast('🚨 Emergency access activated. Staff notified.', 'warning');
+                
+                // Highlight all feeds as active
+                document.querySelectorAll('.cctv-feed').forEach(feed => {
+                    feed.classList.add('recording');
+                    feed.style.borderColor = '#ef4444';
+                    feed.style.boxShadow = '0 0 30px rgba(239, 68, 68, 0.5)';
+                });
+                
+                // Show emergency banner
+                const banner = document.createElement('div');
+                banner.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    background: #ef4444;
+                    color: white;
+                    text-align: center;
+                    padding: 1rem;
+                    z-index: 3000;
+                    font-weight: bold;
+                `;
+                banner.textContent = '🚨 EMERGENCY ACCESS ACTIVE - All feeds monitoring';
+                document.body.appendChild(banner);
+                
+                setTimeout(() => {
+                    banner.remove();
+                    document.querySelectorAll('.cctv-feed').forEach(feed => {
+                        feed.style.borderColor = '';
+                        feed.style.boxShadow = '';
+                    });
+                }, 10000);
+            }
+        }
+
+        function navigateDay(direction) {
+            const dateFilter = document.getElementById('dateFilter');
+            const currentDate = dateFilter.value ? new Date(dateFilter.value) : new Date();
+            
+            if (direction === 'next') {
+                currentDate.setDate(currentDate.getDate() + 1);
+            } else {
+                currentDate.setDate(currentDate.getDate() - 1);
+            }
+            
+            dateFilter.value = currentDate.toISOString().split('T')[0];
+            applyFilters();
+            
+            showToast(`📅 Viewing ${direction === 'next' ? 'next' : 'previous'} day`, 'info');
+        }
+
+        function updateLiveIndicators() {
+            const indicators = document.querySelectorAll('.live-indicator, .feed-status');
+            indicators.forEach(indicator => {
+                indicator.style.animation = 'none';
+                setTimeout(() => {
+                    indicator.style.animation = 'pulse 2s infinite';
+                }, 100);
+            });
+        }
+
+        function checkForNewMedia() {
+            if (Math.random() > 0.7) { // 30% chance of new media
+                showToast('📸 New photo available!', 'success');
+                
+                // Add a small notification badge
+                const badge = document.createElement('div');
+                badge.style.cssText = `
+                    position: fixed;
+                    top: 120px;
+                    right: 2rem;
+                    background: #ef4444;
+                    color: white;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.8rem;
+                    z-index: 2000;
+                    animation: bounceIn 0.5s ease;
+                `;
+                badge.textContent = '1';
+                document.body.appendChild(badge);
+                
+                setTimeout(() => {
+                    badge.remove();
+                }, 5000);
+            }
+        }
+
+        function loadGalleryData() {
+            // Simulate loading gallery data from API
+            galleryData = [
+                { id: 'highlight1', title: 'Art Class', type: 'video', timestamp: new Date() },
+                { id: 'lunch1', title: 'Lunch Time', type: 'photo', timestamp: new Date() }
+                // More data would be loaded here
+            ];
+        }
+
+        function updateLastSeen() {
+            const lastSeen = localStorage.getItem('lastSeen') || new Date().toISOString();
+            localStorage.setItem('lastSeen', new Date().toISOString());
+        }
+
+        function checkPrivacySettings() {
+            // Load and apply saved privacy settings
+            const settings = JSON.parse(localStorage.getItem('privacySettings') || '{}');
+            
+            document.querySelectorAll('.privacy-toggle').forEach(toggle => {
+                const setting = toggle.querySelector('span').textContent;
+                const isActive = settings[setting] !== false; // Default to true
+                
+                if (isActive) {
+                    toggle.querySelector('.toggle-switch').classList.add('active');
+                } else {
+                    toggle.querySelector('.toggle-switch').classList.remove('active');
+                }
+            });
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                showToast('👋 Logging out...', 'info');
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1000);
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            
+            // Set toast color based on type
+            switch(type) {
+                case 'success':
+                    toast.style.background = 'var(--success-gradient)';
+                    break;
+                case 'warning':
+                    toast.style.background = 'var(--warning-gradient)';
+                    break;
+                case 'error':
+                    toast.style.background = '#ef4444';
+                    break;
+                default:
+                    toast.style.background = 'var(--accent-gradient)';
+            }
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Add some CSS animations that were missing
+        const additionalStyles = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes bounceIn {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.3);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1.05);
+                }
+                70% {
+                    transform: scale(0.9);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
