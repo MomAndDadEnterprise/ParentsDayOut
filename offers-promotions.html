@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Big - Exciting Promotions & Cash Prizes!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+            to { text-shadow: 2px 2px 20px rgba(255,255,255,0.6); }
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            color: #f0f0f0;
+            margin-bottom: 20px;
+        }
+        
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .countdown-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .countdown-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Tab System */
+        .tabs-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            padding: 5px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .tab-button {
+            padding: 15px 30px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #666;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .prize-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .prize-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .prize-card.grand-prize {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+            border: 3px solid #ff6b35;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+        }
+        
+        .prize-amount {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .prize-rank {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tier-info {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tier-warning {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid #ff6b35;
+        }
+
+        .membership-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .membership-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border-left: 5px solid #667eea;
+        }
+
+        .progress-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .city-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            padding: 5px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .city-tab {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: #666;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .city-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .progress-bar-container {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 15px;
+            width: 65%;
+            transition: width 2s ease;
+            position: relative;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .milestones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .milestone {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .milestone:hover {
+            transform: scale(1.05);
+        }
+        
+        .milestone.achieved {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+        }
+        
+        .milestone-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .milestone-reward {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .city-progress-content {
+            display: none;
+        }
+
+        .city-progress-content.active {
+            display: block;
+        }
+
+        .progress-category {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+
+        .category-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .winners-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .coming-soon-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+
+        .coming-soon-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .coming-soon-text {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .social-sharing {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .share-btn.facebook { background: #3b5998; }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.whatsapp { background: #25d366; }
+        .share-btn.telegram { background: #0088cc; }
+        
+        .rules-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .rules-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .rules-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .rules-list {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .rules-list li {
+            margin-bottom: 8px;
+        }
+        
+        .terms-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .terms-content {
+            color: #666;
+            line-height: 1.8;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .countdown {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                padding: 15px;
+                min-width: 80px;
+            }
+            
+            .countdown-number {
+                font-size: 2em;
+            }
+            
+            .prize-amount {
+                font-size: 2em;
+            }
+
+            .tab-button {
+                min-width: 150px;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+
+            .city-tab {
+                min-width: 100px;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div id="header-container"></div>
+<div id="nav-container"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎉 EXCITING PROMOTIONS & CASH PRIZES! 🎉</h1>
+            <p>Join our exclusive contest and win amazing rewards!</p>
+            <button class="cta-button" onclick="joinContest()">JOIN NOW & WIN BIG!</button>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="countdown-container">
+            <h2 class="countdown-title">⏰ Contest Ends In:</h2>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">15</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">12</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">45</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">30</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Tabs Section -->
+        <div class="tabs-container">
+            <h2 class="section-title">💰 PRIZE CATEGORIES</h2>
+            
+            <div class="tab-navigation">
+                <button class="tab-button active" onclick="switchTab(this, 'refer-earn')">🤝 Refer & Earn</button>
+                <button class="tab-button" onclick="switchTab(this, 'first-100')">🏆 The First 100</button>
+                <button class="tab-button" onclick="switchTab(this, 'ultimate-collab')">🎯 Ultimate Collab</button>
+            </div>
+
+            <!-- Refer & Earn Tab -->
+            <div id="refer-earn" class="tab-content active">
+                <div class="tier-info">
+                    <h3>💎 Join as a Member and get higher rewards for referrals!</h3>
+                    <p>The more you refer, the more you earn. Unlock amazing bonuses with each successful referral.</p>
+                </div>
+                
+                <div class="membership-levels">
+                    <div class="membership-card">
+                        <h4>🥉 Bronze Member</h4>
+                        <p><strong>₹500</strong> per referral</p>
+                        <p>Base rewards for all members</p>
+                    </div>
+                    <div class="membership-card">
+                        <h4>🥈 Silver Member</h4>
+                        <p><strong>₹750</strong> per referral</p>
+                        <p>Enhanced rewards + bonuses</p>
+                    </div>
+                    <div class="membership-card">
+                        <h4>🥇 Gold Member</h4>
+                        <p><strong>₹1,000</strong> per referral</p>
+                        <p>Premium rewards + exclusive perks</p>
+                    </div>
+                    <div class="membership-card">
+                        <h4>💎 Diamond Member</h4>
+                        <p><strong>₹1,500</strong> per referral</p>
+                        <p>Maximum rewards + VIP benefits</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The First 100 Tab -->
+            <div id="first-100" class="tab-content">
+                <div class="tier-info">
+                    <h3>🎊 From each city, One lucky winner will win exciting cash prizes!</h3>
+                    <p>Be among the first 100 members from your city and stand a chance to win based on your membership level.</p>
+                </div>
+                
+                <div class="prizes-grid">
+                    <div class="prize-card grand-prize">
+                        <div class="prize-rank">💎 DIAMOND WINNER</div>
+                        <div class="prize-amount">₹1,00,000</div>
+                        <p>One Diamond member per city</p>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-rank">🥇 GOLD WINNER</div>
+                        <div class="prize-amount">₹75,000</div>
+                        <p>One Gold member per city</p>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-rank">🥈 SILVER WINNER</div>
+                        <div class="prize-amount">₹50,000</div>
+                        <p>One Silver member per city</p>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-rank">🥉 BRONZE WINNER</div>
+                        <div class="prize-amount">₹25,000</div>
+                        <p>One Bronze member per city</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ultimate Collab Tab -->
+            <div id="ultimate-collab" class="tab-content">
+                <div class="tier-warning">
+                    <h3>⚡ ULTIMATE TARGET CHALLENGE - TIERED REWARDS!</h3>
+                    <p><strong>⚠️ WARNING:</strong> If targets are not reached during the duration, prizes will be gone forever!</p>
+                </div>
+                
+                <div class="prizes-grid">
+                    <div class="prize-card grand-prize">
+                        <div class="prize-rank">💎 DIAMOND TARGET</div>
+                        <div class="prize-amount">₹2,50,000</div>
+                        <p>2 winners per city</p>
+                        <small>Target: 500 Diamond members</small>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-rank">🥇 GOLD TARGET</div>
+                        <div class="prize-amount">₹1,50,000</div>
+                        <p>2 winners per city</p>
+                        <small>Target: 300 Gold members</small>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-rank">🥈 SILVER TARGET</div>
+                        <div class="prize-amount">₹1,00,000</div>
+                        <p>2 winners per city</p>
+                        <small>Target: 200 Silver members</small>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-rank">🥉 BRONZE TARGET</div>
+                        <div class="prize-amount">₹75,000</div>
+                        <p>2 winners per city</p>
+                        <small>Target: 100 Bronze members</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Section with City Tabs -->
+        <div class="progress-section">
+            <h2 class="section-title">📈 CITY-WISE PROGRESS</h2>
+            
+            <div class="city-tabs">
+                <button class="city-tab active" onclick="switchCity(this, 'mumbai')">Mumbai</button>
+                <button class="city-tab" onclick="switchCity(this, 'delhi')">Delhi</button>
+                <button class="city-tab" onclick="switchCity(this, 'bangalore')">Bangalore</button>
+                <button class="city-tab" onclick="switchCity(this, 'hyderabad')">Hyderabad</button>
+                <button class="city-tab" onclick="switchCity(this, 'chennai')">Chennai</button>
+                <button class="city-tab" onclick="switchCity(this, 'pune')">Pune</button>
+            </div>
+
+            <!-- Mumbai Progress -->
+            <div id="mumbai-progress" class="city-progress-content active">
+                <div class="progress-category">
+                    <div class="category-title">🏆 The First 100 Progress</div>
+                    <div class="progress-text"><strong>65 of 100 spots filled!</strong></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 65%;"></div>
+                    </div>
+                    <p style="text-align: center; color: #666;">Only <strong>35 spots remaining</strong></p>
+                </div>
+
+                <div class="progress-category">
+                    <div class="category-title">🎯 Ultimate Target Challenge</div>
+                    <div class="milestones">
+                        <div class="milestone achieved">
+                            <div class="milestone-number">50 Bronze</div>
+                            <div class="milestone-reward">Target: 100</div>
+                            <div style="color: green; font-weight: bold; margin-top: 5px;">50% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">30 Silver</div>
+                            <div class="milestone-reward">Target: 200</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">15% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">15 Gold</div>
+                            <div class="milestone-reward">Target: 300</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">5% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">5 Diamond</div>
+                            <div class="milestone-reward">Target: 500</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">1% Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delhi Progress -->
+            <div id="delhi-progress" class="city-progress-content">
+                <div class="progress-category">
+                    <div class="category-title">🏆 The First 100 Progress</div>
+                    <div class="progress-text"><strong>42 of 100 spots filled!</strong></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 42%;"></div>
+                    </div>
+                    <p style="text-align: center; color: #666;">Only <strong>58 spots remaining</strong></p>
+                </div>
+
+                <div class="progress-category">
+                    <div class="category-title">🎯 Ultimate Target Challenge</div>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <div class="milestone-number">25 Bronze</div>
+                            <div class="milestone-reward">Target: 100</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">25% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">18 Silver</div>
+                            <div class="milestone-reward">Target: 200</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">9% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">8 Gold</div>
+                            <div class="milestone-reward">Target: 300</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">3% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">2 Diamond</div>
+                            <div class="milestone-reward">Target: 500</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">0.4% Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bangalore Progress -->
+            <div id="bangalore-progress" class="city-progress-content">
+                <div class="progress-category">
+                    <div class="category-title">🏆 The First 100 Progress</div>
+                    <div class="progress-text"><strong>38 of 100 spots filled!</strong></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 38%;"></div>
+                    </div>
+                    <p style="text-align: center; color: #666;">Only <strong>62 spots remaining</strong></p>
+                </div>
+
+                <div class="progress-category">
+                    <div class="category-title">🎯 Ultimate Target Challenge</div>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <div class="milestone-number">20 Bronze</div>
+                            <div class="milestone-reward">Target: 100</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">20% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">12 Silver</div>
+                            <div class="milestone-reward">Target: 200</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">6% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">6 Gold</div>
+                            <div class="milestone-reward">Target: 300</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">2% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">1 Diamond</div>
+                            <div class="milestone-reward">Target: 500</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">0.2% Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hyderabad Progress -->
+            <div id="hyderabad-progress" class="city-progress-content">
+                <div class="progress-category">
+                    <div class="category-title">🏆 The First 100 Progress</div>
+                    <div class="progress-text"><strong>28 of 100 spots filled!</strong></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 28%;"></div>
+                    </div>
+                    <p style="text-align: center; color: #666;">Only <strong>72 spots remaining</strong></p>
+                </div>
+
+                <div class="progress-category">
+                    <div class="category-title">🎯 Ultimate Target Challenge</div>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <div class="milestone-number">15 Bronze</div>
+                            <div class="milestone-reward">Target: 100</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">15% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">8 Silver</div>
+                            <div class="milestone-reward">Target: 200</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">4% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">3 Gold</div>
+                            <div class="milestone-reward">Target: 300</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">1% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">2 Diamond</div>
+                            <div class="milestone-reward">Target: 500</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">0.4% Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chennai Progress -->
+            <div id="chennai-progress" class="city-progress-content">
+                <div class="progress-category">
+                    <div class="category-title">🏆 The First 100 Progress</div>
+                    <div class="progress-text"><strong>33 of 100 spots filled!</strong></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 33%;"></div>
+                    </div>
+                    <p style="text-align: center; color: #666;">Only <strong>67 spots remaining</strong></p>
+                </div>
+
+                <div class="progress-category">
+                    <div class="category-title">🎯 Ultimate Target Challenge</div>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <div class="milestone-number">18 Bronze</div>
+                            <div class="milestone-reward">Target: 100</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">18% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">10 Silver</div>
+                            <div class="milestone-reward">Target: 200</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">5% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">4 Gold</div>
+                            <div class="milestone-reward">Target: 300</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">1.3% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">1 Diamond</div>
+                            <div class="milestone-reward">Target: 500</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">0.2% Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pune Progress -->
+            <div id="pune-progress" class="city-progress-content">
+                <div class="progress-category">
+                    <div class="category-title">🏆 The First 100 Progress</div>
+                    <div class="progress-text"><strong>22 of 100 spots filled!</strong></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 22%;"></div>
+                    </div>
+                    <p style="text-align: center; color: #666;">Only <strong>78 spots remaining</strong></p>
+                </div>
+
+                <div class="progress-category">
+                    <div class="category-title">🎯 Ultimate Target Challenge</div>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <div class="milestone-number">12 Bronze</div>
+                            <div class="milestone-reward">Target: 100</div>
+                            <div style="color: orange; font-weight: bold; margin-top: 5px;">12% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">6 Silver</div>
+                            <div class="milestone-reward">Target: 200</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">3% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">3 Gold</div>
+                            <div class="milestone-reward">Target: 300</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">1% Complete</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">1 Diamond</div>
+                            <div class="milestone-reward">Target: 500</div>
+                            <div style="color: red; font-weight: bold; margin-top: 5px;">0.2% Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Winners Announcement -->
+        <div class="winners-section">
+            <h2 class="section-title">🎊 RECENT WINNERS</h2>
+            <div class="coming-soon-card">
+                <div class="coming-soon-title">🚀 We're Not There Yet!</div>
+                <div class="coming-soon-text">
+                    Stay tuned and let's get started! You'll see all the winner details in a jiff once our contest kicks into full swing. 
+                    <br><br>
+                    <strong>Be among the first to join and you could be our very first winner! 🏆</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Sharing -->
+        <div class="social-sharing">
+            <h2 class="section-title">📢 SHARE & EARN MORE</h2>
+            <p style="margin-bottom: 20px; color: #666;">
+                Earn ₹500 for each friend who joins through your referral link!
+            </p>
+            <div class="share-buttons">
+                <button class="share-btn facebook" onclick="shareOnFacebook()">
+                    📘 Share on Facebook
+                </button>
+                <button class="share-btn twitter" onclick="shareOnTwitter()">
+                    🐦 Share on Twitter
+                </button>
+                <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+                    💬 Share on WhatsApp
+                </button>
+                <button class="share-btn telegram" onclick="shareOnTelegram()">
+                    ✈️ Share on Telegram
+                </button>
+            </div>
+        </div>
+
+        <!-- Contest Rules -->
+        <div class="rules-section">
+            <h2 class="section-title">📋 CONTEST RULES & ELIGIBILITY</h2>
+            <div class="rules-grid">
+                <div class="rules-card">
+                    <h3>🎯 How to Participate</h3>
+                    <ul class="rules-list">
+                        <li>Register with valid phone number & email</li>
+                        <li>Complete profile verification</li>
+                        <li>Share referral link to earn bonus entries</li>
+                        <li>Stay active throughout contest period</li>
+                        <li>Follow all platform guidelines</li>
+                    </ul>
+                </div>
+                
+                <div class="rules-card">
+                    <h3>✅ Eligibility Criteria</h3>
+                    <ul class="rules-list">
+                        <li>Must be 18+ years old</li>
+                        <li>Valid Indian resident with documents</li>
+                        <li>One entry per person/household</li>
+                        <li>Active bank account required for prizes</li>
+                        <li>No employees of partner companies</li>
+                    </ul>
+                </div>
+                
+                <div class="rules-card">
+                    <h3>🏆 Winner Selection</h3>
+                    <ul class="rules-list">
+                        <li>Random draw from eligible participants</li>
+                        <li>Verified by independent auditor</li>
+                        <li>Winners announced on Fridays</li>
+                        <li>Prize distribution within 7 working days</li>
+                        <li>Winners notified via registered contact</li>
+                    </ul>
+                </div>
+                
+                <div class="rules-card">
+                    <h3>📞 Important Notes</h3>
+                    <ul class="rules-list">
+                        <li>Contest subject to T&C changes</li>
+                        <li>Prizes are non-transferable</li>
+                        <li>Tax implications as per Indian law</li>
+                        <li>Customer support: 1800-XXX-XXXX</li>
+                        <li>Dispute resolution through arbitration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="terms-section">
+            <h2 class="section-title">📜 TERMS & CONDITIONS</h2>
+            <div class="terms-content">
+                <p><strong>1. Contest Period:</strong> This promotion runs from [Start Date] to [End Date] or until 1000 members are reached, whichever comes first.</p>
+                
+                <p><strong>2. Eligibility:</strong> Open to legal residents of India who are 18 years of age or older. Employees of the company and their immediate family members are not eligible.</p>
+                
+                <p><strong>3. Entry Requirements:</strong> Participants must complete registration, verify their identity, and maintain active status throughout the contest period.</p>
+                
+                <p><strong>4. Prize Distribution:</strong> All prizes will be distributed within 30 days of contest completion. Winners must provide valid banking details and tax documentation.</p>
+                
+                <p><strong>5. Tax Liability:</strong> All prizes are subject to applicable taxes as per Indian Income Tax laws. TDS will be deducted as per government regulations.</p>
+                
+                <p><strong>6. Disqualification:</strong> Any fraudulent activity, multiple accounts, or violation of rules will result in immediate disqualification.</p>
+                
+                <p><strong>7. Privacy:</strong> Participant information will be used only for contest purposes and will not be shared with third parties without consent.</p>
+                
+                <p><strong>8. Modifications:</strong> The company reserves the right to modify rules, prizes, or cancel the contest with reasonable notice.</p>
+                
+                <p><strong>9. Dispute Resolution:</strong> All disputes will be resolved through binding arbitration in accordance with Indian Arbitration and Conciliation Act.</p>
+                
+                <p><strong>10. Contact Information:</strong> For queries contact support@example.com or call 1800-XXX-XXXX (Mon-Fri, 9 AM - 6 PM IST)</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+<script>
+        // Tab switching function
+        function switchTab(button, tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+        }
+
+        // City switching function
+        function switchCity(button, cityName) {
+            // Hide all city progress contents
+            const cityContents = document.querySelectorAll('.city-progress-content');
+            cityContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all city tabs
+            const cityTabs = document.querySelectorAll('.city-tab');
+            cityTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected city content
+            document.getElementById(cityName + '-progress').classList.add('active');
+            
+            // Add active class to clicked city tab
+            button.classList.add('active');
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            // Set contest end date (15 days from now for demo)
+            const contestEnd = new Date();
+            contestEnd.setDate(contestEnd.getDate() + 15);
+            contestEnd.setHours(23, 59, 59, 999);
+            
+            function update() {
+                const now = new Date().getTime();
+                const distance = contestEnd.getTime() - now;
+                
+                if (distance < 0) {
+                    document.getElementById('countdown').innerHTML = '<h2 style="color: red;">CONTEST ENDED!</h2>';
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+            
+            update();
+            setInterval(update, 1000);
+        }
+        
+        // Social Sharing Functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Join this amazing contest and win up to ₹2,50,000! Limited spots available!');
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        }
+        
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('🎉 Amazing opportunity to win up to ₹2,50,000! Join now before spots run out! #Contest #WinBig');
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        }
+        
+        function shareOnWhatsApp() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('🎉 Hey! Check out this amazing contest - you can win up to ₹2,50,000! Limited spots available, join now: ');
+            window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+        }
+        
+        function shareOnTelegram() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('🎉 Amazing contest alert! Win up to ₹2,50,000 - Limited spots remaining!');
+            window.open(`https://t.me/share/url?url=${url}&text=${text}`, '_blank');
+        }
+        
+        // Join Contest Function
+        function joinContest() {
+            alert('🎉 Redirecting to registration page... Good luck!');
+            // In a real implementation, this would redirect to your registration page
+        }
+        
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCountdown();
+            
+            // Add click effect to prize cards
+            const prizeCards = document.querySelectorAll('.prize-card');
+            prizeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
