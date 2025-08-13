@@ -10,238 +10,27 @@
 <div id="header-container"></div>
 <div id="nav-container"></div>
 
-<!-- Enhanced Hero Section -->
-<section class="hero" id="home">
-    <div class="hero-container">
-      <!-- Left Side -->
-      <div class="hero-left">
-        <div class="detail-card">
-          <h3 class="detail-heading">Age</h3>
-          <div class="detail-value">3 to 10 years</div>
-        </div>
-        <div class="detail-card">
-          <h3 class="detail-heading">Timings</h3>
-          <div class="detail-value">9:30 AM - 5:30 PM</div>
-        </div>
-        <div class="detail-card">
-          <h3 class="detail-heading">Days</h3>
-          <div class="detail-value">Sundays & Holidays</div>
-        </div>
-      </div>
-  
-      <!-- Center -->
-      <div class="hero-center">
-        <h1 class="hero-title">Parents Day Out: Drop Your Kids With Us</h1>
-        <p class="hero-subtitle">Your perfect day starts here! ☕✨</p>
-  
-        <!-- Image -->
-        <div class="hero-image">
-          <div class="parent-visual">👫</div>
-          <div class="image-caption">Happy Parents Enjoying Their Day</div>
-        </div>
-  
-        <!-- Perks Full Width -->
-        <div class="perks-section full-width">
-          <h3 class="perks-title">We Provide Everything for <span class="free-highlight">FREE</span></h3>
-          <div class="perks-row">
-            <div class="perk-card">
-              <div class="perk-icon">🍳</div>
-              <div class="perk-name">Breakfast</div>
-              <div class="free-badge">FREE</div>
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Drop Your Kids With Us...</h1>
+                <p class="hero-tagline">Plan Your Day. The Day Is Yours!</p>
+                <div class="hero-features">
+                    <span class="feature-badge">🕘 9:30 AM - 5:30 PM</span>
+                    <span class="feature-badge">👶 Nursery to Grade V</span>
+                    <span class="feature-badge">📹 Live CCTV</span>
+                    <span class="feature-badge">🎮 Gamified Rewards</span>
+                </div>
+                <div class="hero-actions">
+                    <a href="#pricing" class="primary-btn">Book Your Slot</a>
+                    <a href="#programs" class="secondary-btn">View Programs</a>
+                </div>
             </div>
-            <div class="perk-card">
-              <div class="perk-icon">🍲</div>
-              <div class="perk-name">Meals</div>
-              <div class="free-badge">FREE</div>
+            <div class="hero-image">
+                <div class="hero-visual">👨‍👩‍👧‍👦</div>
             </div>
-            <div class="perk-card">
-              <div class="perk-icon">🍪</div>
-              <div class="perk-name">Snacks</div>
-              <div class="free-badge">FREE</div>
-            </div>
-            <div class="perk-card">
-              <div class="perk-icon">🎨</div>
-              <div class="perk-name">Activity Kit</div>
-              <div class="free-badge">FREE</div>
-            </div>
-          </div>
         </div>
-  
-        <!-- Buttons -->
-        <div class="hero-actions">
-          <a href="#pricing" class="primary-btn">Book Your Spot</a>
-          <a href="#programs" class="secondary-btn">View Programs</a>
-        </div>
-      </div>
-  
-      <!-- Right Side -->
-      <div class="hero-right">
-        <div class="detail-card">
-          <h3 class="detail-heading">Sparkling Clean</h3>
-          <div class="detail-value">Germ-free play & learning zones</div>
-        </div>
-        <div class="detail-card">
-          <h3 class="detail-heading">Safe & Secure</h3>
-          <div class="detail-value">24×7 CCTV & verified staff</div>
-        </div>
-        <div class="detail-card">
-          <h3 class="detail-heading">Caring Experts</h3>
-          <div class="detail-value">Trained educators & caretakers</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <style>
-  /* Layout */
-  .hero-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    align-items: flex-start;
-  }
-  
-  .hero-left, .hero-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    flex: 1;
-    max-width: 220px; /* keeps symmetry */
-  }
-  
-  /* Card Base */
-  .detail-card {
-    padding: 1.2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  
-  /* Left - Pastel Blue Gradient */
-  .hero-left .detail-card {
-    background: linear-gradient(135deg, #d8e9ff, #e6f0ff);
-    color: #003366;
-  }
-  
-  .hero-left .detail-heading::before {
-    font-size: 1.2rem;
-    margin-right: 0.4rem;
-  }
-  
-  /* Icons for Left Headings */
-  .hero-left .detail-card:nth-child(1) .detail-heading::before { content: "🎯"; }
-  .hero-left .detail-card:nth-child(2) .detail-heading::before { content: "⏰"; }
-  .hero-left .detail-card:nth-child(3) .detail-heading::before { content: "📅"; }
-  
-  /* Right - Pastel Green Gradient */
-  .hero-right .detail-card {
-    background: linear-gradient(135deg, #d9f8d8, #e9fbe6);
-    color: #0F5132;
-  }
-  
-  /* Headings */
-  .detail-heading {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-  }
-  
-  .detail-value {
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  
-  /* Center */
-  .hero-center {
-    flex: 2;
-    text-align: center;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  /* Perks Section */
-  .perks-section.full-width {
-    width: 100%;
-  }
-  
-  .perks-title {
-    font-size: 1.6rem;
-    text-align: center;
-    color: #333;
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-  
-  .free-highlight {
-    color: #FF4081;
-    font-weight: 700;
-  }
-  
-  .perks-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    width: 100%;
-  }
-  
-  .perk-card {
-    flex: 1;
-    background: white;
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  
-  .perk-icon {
-    font-size: 1.8rem;
-    margin-bottom: 0.3rem;
-  }
-  
-  .perk-name {
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-  }
-  
-  .free-badge {
-    background: #FF4081;
-    color: white;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: bold;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero-container {
-      flex-direction: column;
-      align-items: center;
-    }
-    .perks-row {
-      flex-wrap: wrap;
-    }
-    .perk-card {
-      min-width: calc(50% - 0.5rem);
-    }
-    .hero-left, .hero-right {
-      max-width: 100%;
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-  </style>
-  
-  
-
+    </section>
 
     <section class="service-areas" id="locations">
         <div class="container">
@@ -291,81 +80,80 @@
         </div>
     </section>
 
-    <!-- Reorganized Features Section by Priority -->
     <section class="features">
         <div class="container">
             <h2 class="section-title">Why Choose Parents Day Out? ✨</h2>
             <div class="features-grid">
-                <!-- TOP PRIORITY - Safety & Monitoring -->
-                <div class="feature-item priority-1 premium">
+                <!-- Row 1 -->
+                <div class="feature-item premium">
                     <div class="feature-icon">📹</div>
                     <div class="feature-title">Live CCTV Monitoring</div>
                     <div class="feature-description">Watch your little ones throughout the day with our secure, real-time CCTV access. Complete transparency and peace of mind, guaranteed!</div>
                     <div class="feature-badge">24/7 Access</div>
                 </div>
                 
-                <div class="feature-item priority-1 premium">
-                    <div class="feature-icon">👨‍🏫</div>
-                    <div class="feature-title">Expert Child Care Team</div>
-                    <div class="feature-description">Certified teachers, child psychologists, and trained caretakers ensure your child's safety, development, and emotional well-being.</div>
-                    <div class="feature-badge">Background Verified</div>
+                <div class="feature-item premium">
+                    <div class="feature-icon">🍎</div>
+                    <div class="feature-title">Healthify Kids</div>
+                    <div class="feature-description">Nutritionist-approved meals, organic snacks, and hydration tracking. Building healthy eating habits that last a lifetime!</div>
+                    <div class="feature-badge">Nutrition Expert</div>
                 </div>
                 
-                <!-- HIGH PRIORITY - Convenience & Communication -->
-                <div class="feature-item priority-2">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-title">Real-Time Parent Connect</div>
-                    <div class="feature-description">Hourly photo/video updates, activity reports, meal tracking, and instant messaging with your child's dedicated caretaker.</div>
-                    <div class="feature-badge">Instant Updates</div>
-                </div>
-                
-                <div class="feature-item priority-2">
-                    <div class="feature-icon">🏠</div>
-                    <div class="feature-title">Premium Hygienic Environment</div>
-                    <div class="feature-description">Hospital-grade sanitization, air purifiers, and strict cleanliness protocols ensuring the safest environment for your precious ones.</div>
-                    <div class="feature-badge">Medical Grade</div>
-                </div>
-
-                <!-- MEDIUM PRIORITY - Development & Fun -->
-                <div class="feature-item priority-3">
-                    <div class="feature-icon">🧠</div>
-                    <div class="feature-title">Age-Smart Development</div>
-                    <div class="feature-description">Scientifically designed activities for each age group (Nursery to Grade V) that boost cognitive, social, and motor skills development.</div>
-                    <div class="feature-badge">Research-Based</div>
-                </div>
-                
-                <div class="feature-item priority-3 premium">
+                <div class="feature-item premium">
                     <div class="feature-icon">🎪</div>
                     <div class="feature-title">Every Day is Special</div>
                     <div class="feature-description">Unique themed activities every Sunday & holiday! From magic shows to science experiments, cooking classes to cultural celebrations.</div>
                     <div class="feature-badge">Weekly Themes</div>
                 </div>
-                
-                <div class="feature-item priority-3">
+    
+                <!-- Row 2 -->
+                <div class="feature-item">
                     <div class="feature-icon">🎮</div>
                     <div class="feature-title">Gamified Learning</div>
                     <div class="feature-description">Kids earn rewards through fun activities, mini competitions, and educational adventures that make learning irresistibly exciting!</div>
-                    <div class="feature-badge">Reward System</div>
                 </div>
                 
-                <div class="feature-item priority-3">
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <div class="feature-title">Expert Child Care Team</div>
+                    <div class="feature-description">Certified teachers, child psychologists, and trained caretakers ensure your child's safety, development, and emotional well-being.</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">Age-Smart Development</div>
+                    <div class="feature-description">Scientifically designed activities for each age group (Nursery to Grade V) that boost cognitive, social, and motor skills development.</div>
+                </div>
+    
+                <!-- Row 3 -->
+                <div class="feature-item">
+                    <div class="feature-icon">🏠</div>
+                    <div class="feature-title">Premium Hygienic Environment</div>
+                    <div class="feature-description">Hospital-grade sanitization, air purifiers, and strict cleanliness protocols ensuring the safest environment for your precious ones.</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Real-Time Parent Connect</div>
+                    <div class="feature-description">Hourly photo/video updates, activity reports, meal tracking, and instant messaging with your child's dedicated caretaker.</div>
+                </div>
+                
+                <div class="feature-item">
                     <div class="feature-icon">🎨</div>
                     <div class="feature-title">Creative Expression Hub</div>
                     <div class="feature-description">Art studios, music rooms, dance floors, and maker spaces where children explore creativity and discover their hidden talents!</div>
-                    <div class="feature-badge">Multi-Studio</div>
                 </div>
             </div>         
         </div>
     </section>
 
-    <!-- Updated Partnership Section -->
     <section class="partnership">
         <div class="container">
             <div class="partnership-content">
                 <div class="partnership-text">
-                    <h2>Healthify Kids 🌱</h2>
-                    <div class="partnership-subtitle">Mom's Love, In Every Bite 💕</div>
-                    <p>Our exclusive cloud kitchen partnership ensures your child receives premium nutrition with fresh, healthy meals prepared under live CCTV monitoring. Every bite is crafted with love, care, and the highest quality ingredients!</p>
+                    <h2>Mom's Love, In Every Bite 💕</h2>
+                    <div class="partnership-subtitle">Fresh • Hygienic • Healthy • Nutritious</div>
+                    <p>Our exclusive partnership ensures your child receives the best nutrition with meals prepared in our state-of-the-art cloud kitchen. Watch our chefs prepare fresh, healthy meals through live CCTV access!</p>
                     <div class="partnership-features">
                         <div class="partnership-feature">Fresh ingredients daily</div>
                         <div class="partnership-feature">Live kitchen monitoring</div>
@@ -380,31 +168,45 @@
         </div>
     </section>
 
-    <!-- Streamlined Trust Section -->
     <section class="trust-section">
         <div class="container">
-            <h2 class="section-title">Beyond the Basics 🛡️</h2>
+            <h2 class="section-title">Your Trust, Our Priority 🛡️</h2>
             <div class="trust-grid">
                 <div class="trust-item">
-                    <div class="trust-icon">🚨</div>
-                    <div class="trust-title">Emergency Protocols</div>
-                    <div class="trust-description">Trained medical staff, direct hospital partnerships, and instant parent notification systems</div>
+                    <div class="trust-icon">🔒</div>
+                    <div class="trust-title">100% Safe</div>
+                    <div class="trust-description">Secure premises with trained staff and emergency protocols</div>
                 </div>
                 <div class="trust-item">
-                    <div class="trust-icon">🏆</div>
-                    <div class="trust-title">Premium Facilities</div>
-                    <div class="trust-description">State-of-the-art equipment, climate-controlled environments, and child-friendly infrastructure</div>
+                    <div class="trust-icon">🧼</div>
+                    <div class="trust-title">Hygienic</div>
+                    <div class="trust-description">Regular sanitization and cleanliness maintained throughout</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">👩‍🏫</div>
+                    <div class="trust-title">Qualified Staff</div>
+                    <div class="trust-description">Background-verified teachers and caretakers with child development training</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">💖</div>
+                    <div class="trust-title">Loving Care</div>
+                    <div class="trust-description">Personal attention and emotional support for every child</div>
                 </div>
                 <div class="trust-item">
                     <div class="trust-icon">📞</div>
-                    <div class="trust-title">24/7 Support Hotline</div>
-                    <div class="trust-description">Dedicated parent helpline with instant response for any questions, concerns, or emergencies</div>
+                    <div class="trust-title">24/7 Support</div>
+                    <div class="trust-description">Always available for parents' questions and concerns</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🏆</div>
+                    <div class="trust-title">Premium Quality</div>
+                    <div class="trust-description">Best-in-class facilities and age-appropriate activities</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="final-cta">
+  <section class="final-cta">
         <div class="container">
             <div class="three-column-cta">
                 <!-- Column 1: Promotions - Purple Theme -->

@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Parents Day Out | Kidz Holiday Hungama</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 6rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #f8f9ff, #e8f0fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(255,255,255,0.5)); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* FAQ Categories */
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 4rem;
+            padding: 0 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .category-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .category-tab:hover::before {
+            left: 100%;
+        }
+
+        .category-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        /* Color-coded category tabs */
+        .category-tab[data-category="general"].active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .category-tab[data-category="safety"].active {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .category-tab[data-category="programs"].active {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+        }
+
+        .category-tab[data-category="pricing"].active {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
+        }
+
+        .category-tab[data-category="meals"].active {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.4);
+        }
+
+        /* FAQ Container */
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .faq-section {
+            margin-bottom: 3rem;
+        }
+
+        .faq-section.hidden {
+            display: none;
+        }
+
+        .faq-section-title {
+            font-size: 2rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        /* FAQ Items - Color-coded by section */
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .faq-item:hover::before {
+            opacity: 1;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px) rotateX(2deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* General Section - Blue Theme */
+        #general .faq-item {
+            border-left: 4px solid #667eea;
+        }
+
+        #general .faq-item:hover {
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        #general .question-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        #general .faq-toggle {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        #general .faq-item.active .faq-toggle {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Safety Section - Red Theme */
+        #safety .faq-item {
+            border-left: 4px solid #ff6b6b;
+        }
+
+        #safety .faq-item:hover {
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        #safety .question-icon {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        }
+
+        #safety .faq-toggle {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        #safety .faq-item.active .faq-toggle {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Programs Section - Teal Theme */
+        #programs .faq-item {
+            border-left: 4px solid #4ecdc4;
+        }
+
+        #programs .faq-item:hover {
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.3);
+        }
+
+        #programs .question-icon {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        }
+
+        #programs .faq-toggle {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        #programs .faq-item.active .faq-toggle {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        /* Pricing Section - Pink Theme */
+        #pricing .faq-item {
+            border-left: 4px solid #f093fb;
+        }
+
+        #pricing .faq-item:hover {
+            box-shadow: 0 20px 40px rgba(240, 147, 251, 0.3);
+        }
+
+        #pricing .question-icon {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        #pricing .faq-toggle {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
+        }
+
+        #pricing .faq-item.active .faq-toggle {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        /* Meals Section - Orange Theme */
+        #meals .faq-item {
+            border-left: 4px solid #fcb69f;
+        }
+
+        #meals .faq-item:hover {
+            box-shadow: 0 20px 40px rgba(252, 182, 159, 0.3);
+        }
+
+        #meals .question-icon {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+        }
+
+        #meals .faq-toggle {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            box-shadow: 0 5px 15px rgba(252, 182, 159, 0.3);
+        }
+
+        #meals .faq-item.active .faq-toggle {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            box-shadow: 0 5px 15px rgba(252, 182, 159, 0.4);
+        }
+
+        .faq-question {
+            padding: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .question-icon {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .faq-toggle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .faq-answer-content {
+            padding: 2rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .faq-answer-content strong {
+            color: #ff6b6b;
+        }
+
+        .faq-answer-content ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .faq-answer-content li {
+            margin: 0.5rem 0;
+        }
+
+        /* Search Box */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1.5rem 4rem 1.5rem 3rem;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .search-box:focus {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .search-clear.visible {
+            opacity: 1;
+        }
+
+        /* Floating Elements */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: floatShape 20s linear infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 20%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 10%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            bottom: 30%;
+            right: 15%;
+            animation-delay: -15s;
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            padding: 0 2rem;
+        }
+
+        .cta-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-section {
+                padding: 4rem 1rem 1rem;
+            }
+
+            .faq-categories {
+                gap: 0.5rem;
+                margin: 1rem 0 2rem;
+            }
+
+            .category-tab {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .faq-container {
+                padding: 0 1rem 2rem;
+            }
+
+            .faq-question {
+                padding: 1.5rem;
+            }
+
+            .faq-question-text {
+                font-size: 1rem;
+            }
+
+            .question-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+
+            .faq-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .search-box {
+                padding: 1.2rem 3.5rem 1.2rem 2.5rem;
+            }
+        }
+
+        /* Scroll Reveal Animation */
+        .faq-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealItem 0.6s ease forwards;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes revealItem {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="header-section">
+        <h1 class="hero-title">Frequently Asked Questions</h1>
+        <p class="hero-subtitle">Everything you need to know about Parents Day Out 🌟</p>
+        
+        <div class="search-container">
+            <div class="search-icon">🔍</div>
+            <input type="text" class="search-box" placeholder="Search for answers..." id="searchBox">
+            <button class="search-clear" id="searchClear">✕</button>
+        </div>
+    </div>
+
+    <div class="faq-categories">
+        <button class="category-tab active" data-category="general">🎯 General Info</button>
+        <button class="category-tab" data-category="safety">🛡️ Safety & Security</button>
+        <button class="category-tab" data-category="programs">🎨 Programs & Activities</button>
+        <button class="category-tab" data-category="pricing">💳 Pricing & Packages</button>
+        <button class="category-tab" data-category="meals">🍽️ Meals & Nutrition</button>
+    </div>
+
+    <div class="faq-container">
+        <!-- General FAQ Section -->
+        <div class="faq-section" id="general">
+            <h2 class="faq-section-title">General Information</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">🎯</div>
+                        What is Parents Day Out exactly?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Parents Day Out</strong> is a premium childcare service designed to give parents a well-deserved break while ensuring their children have an amazing, educational, and safe experience. We provide <strong>full-day care (9:30 AM - 5:30 PM)</strong> every Sunday and holiday for kids aged 3-10 years.
+                        <br><br>
+                        <strong>What makes us special:</strong>
+                        <ul>
+                            <li>✅ Live CCTV monitoring for complete transparency</li>
+                            <li>✅ All meals, snacks, and activity kits included FREE</li>
+                            <li>✅ Certified teachers and trained caretakers</li>
+                            <li>✅ Age-appropriate educational activities and games</li>
+                            <li>✅ Real-time updates and photos sent to parents</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">📅</div>
+                        What days and hours are you open?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We operate <strong>every Sunday and on all public holidays</strong> from <strong>9:30 AM to 5:30 PM</strong>. This includes:
+                        <ul>
+                            <li>🗓️ Every Sunday without exception</li>
+                            <li>🎉 All national and regional holidays</li>
+                            <li>🎊 Festival days and special occasions</li>
+                            <li>⏰ Flexible pickup times within operating hours</li>
+                        </ul>
+                        <strong>Note:</strong> We're closed on regular weekdays and Saturdays to maintain our premium service quality and give our staff adequate rest.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">👶</div>
+                        What age groups do you accept?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We welcome children aged <strong>3 to 10 years</strong> (Nursery to Grade V). Our programs are specifically designed for different age groups:
+                        <br><br>
+                        <strong>🌱 Little Explorers (3-5 years):</strong> Focus on sensory play, basic learning, and social skills
+                        <br>
+                        <strong>🎨 Creative Minds (6-8 years):</strong> Arts, crafts, STEM activities, and skill development
+                        <br>
+                        <strong>🧠 Smart Achievers (9-10 years):</strong> Advanced projects, leadership activities, and academic support
+                        <br><br>
+                        Each child is assessed individually to ensure they're placed in age-appropriate groups for maximum fun and learning!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">🌍</div>
+                        Which cities are you available in?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Currently Operating In:</strong>
+                        <ul>
+                            <li>🏛️ Vijayawada - Multiple locations</li>
+                            <li>⛵ Visakhapatnam - City center</li>
+                            <li>🏰 Hyderabad - Premium facilities</li>
+                            <li>🌸 Bangalore - Tech hub location</li>
+                        </ul>
+                        <strong>Coming Soon To:</strong>
+                        <ul>
+                            <li>🏢 Noida - Q3 2025</li>
+                            <li>🎭 Pune - Q4 2025</li>
+                            <li>🕌 Ahmedabad - Q4 2025</li>
+                            <li>🏙️ Gurgaon - Early 2026</li>
+                        </ul>
+                        Want us in your city? <strong>Send us a message!</strong> We're expanding rapidly based on parent demand.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Safety FAQ Section -->
+        <div class="faq-section hidden" id="safety">
+            <h2 class="faq-section-title">Safety & Security</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">📹</div>
+                        How does the live CCTV monitoring work?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Our <strong>24/7 live CCTV system</strong> gives you complete transparency and peace of mind:
+                        <br><br>
+                        <strong>🔐 Secure Access:</strong> Parents receive a private, password-protected link to view their child's activity areas
+                        <br>
+                        <strong>📱 Multi-Device Support:</strong> Watch from your phone, tablet, or computer anywhere
+                        <br>
+                        <strong>🎯 Strategic Coverage:</strong> Cameras in all play areas, dining zones, and activity rooms
+                        <br>
+                        <strong>🔒 Privacy Protected:</strong> Only you can access your child's feed - complete privacy guaranteed
+                        <br>
+                        <strong>💾 Recording Available:</strong> Request recordings of special moments or activities
+                        <br><br>
+                        <strong>Note:</strong> Restroom and changing areas are camera-free zones to respect children's privacy.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">👨‍🏫</div>
+                        Are your staff members background verified?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Absolutely!</strong> Every team member undergoes our rigorous screening process:
+                        <br><br>
+                        <strong>✅ Background Verification:</strong>
+                        <ul>
+                            <li>Police verification clearance</li>
+                            <li>Previous employment checks</li>
+                            <li>Educational credential verification</li>
+                            <li>Character references from 3+ sources</li>
+                        </ul>
+                        <strong>✅ Professional Qualifications:</strong>
+                        <ul>
+                            <li>Child development or education degrees</li>
+                            <li>First aid and CPR certification</li>
+                            <li>Child psychology training</li>
+                            <li>Regular skill development workshops</li>
+                        </ul>
+                        <strong>✅ Ongoing Monitoring:</strong> Regular performance reviews, parent feedback integration, and continuous training updates.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">🏥</div>
+                        What are your emergency procedures?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We have comprehensive emergency protocols in place:
+                        <br><br>
+                        <strong>🚨 Immediate Response Team:</strong>
+                        <ul>
+                            <li>Trained medical staff on-site during all hours</li>
+                            <li>Direct partnerships with nearby hospitals</li>
+                            <li>Ambulance service on speed dial</li>
+                            <li>Pediatric specialist consultation available</li>
+                        </ul>
+                        <strong>📞 Parent Communication:</strong>
+                        <ul>
+                            <li>Instant notification for any incidents</li>
+                            <li>Regular health check updates</li>
+                            <li>24/7 parent helpline for emergencies</li>
+                        </ul>
+                        <strong>🛡️ Safety Measures:</strong> Fire safety systems, earthquake protocols, secure entry/exit points, and regular safety drills with children.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programs FAQ Section -->
+        <div class="faq-section hidden" id="programs">
+            <h2 class="faq-section-title">Programs & Activities</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">🎨</div>
+                        What activities do you offer?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Every day is a <strong>new adventure</strong> with our themed activity programs:
+                        <br><br>
+                        <strong>🎪 Creative Arts:</strong> Painting, crafts, music, dance, drama, and storytelling sessions
+                        <br>
+                        <strong>🧪 STEM Adventures:</strong> Science experiments, robotics basics, coding games, and math puzzles
+                        <br>
+                        <strong>🏃 Physical Activities:</strong> Indoor sports, yoga for kids, dance sessions, and motor skill games
+                        <br>
+                        <strong>🧠 Brain Boosters:</strong> Puzzles, memory games, critical thinking challenges, and problem-solving
+                        <br>
+                        <strong>🎭 Special Themes:</strong> Cultural celebrations, seasonal activities, magic shows, cooking classes
+                        <br><br>
+                        <strong>🎁 Bonus:</strong> Every child gets a take-home activity kit with supplies for weekend fun!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">🏆</div>
+                        Do you have reward systems for kids?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Yes!</strong> Our gamified learning system keeps children motivated and engaged:
+                        <br><br>
+                        <strong>⭐ Star Points System:</strong>
+                        <ul>
+                            <li>Earn stars for participation, kindness, creativity, and achievements</li>
+                            <li>Weekly leaderboards (non-competitive, everyone wins!)</li>
+                            <li>Special recognition certificates</li>
+                        </ul>
+                        <strong>🎁 Reward Levels:</strong>
+                        <ul>
+                            <li>Daily stickers and badges</li>
+                            <li>Weekly surprise gifts and treats</li>
+                            <li>Monthly "Star Child" celebrations</li>
+                            <li>Special privileges like "Helper of the Day"</li>
+                        </ul>
+                        <strong>🌟 Achievement Categories:</strong> Creativity Champion, Kindness Hero, Team Player, Problem Solver, and Explorer Extraordinaire!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">📚</div>
+                        Is there any educational component?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Absolutely!</strong> We believe in <strong>"Learning Through Play"</strong> - our educational approach is disguised as fun:
+                        <br><br>
+                        <strong>🧠 Cognitive Development:</strong>
+                        <ul>
+                            <li>Age-appropriate puzzles and brain teasers</li>
+                            <li>Memory enhancement games</li>
+                            <li>Pattern recognition activities</li>
+                            <li>Logic and reasoning challenges</li>
+                        </ul>
+                        <strong>🗣️ Language & Communication:</strong>
+                        <ul>
+                            <li>Storytelling and creative writing</li>
+                            <li>Public speaking confidence builders</li>
+                            <li>Vocabulary expansion games</li>
+                            <li>Multi-language exposure (English, Hindi, Regional)</li>
+                        </ul>
+                        <strong>🎯 Life Skills:</strong> Time management, organization, teamwork, empathy, and leadership qualities development.
+                        <br><br>
+                        <strong>Progress Reports:</strong> Parents receive monthly development reports highlighting their child's growth areas and achievements!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing FAQ Section -->
+        <div class="faq-section hidden" id="pricing">
+            <h2 class="faq-section-title">Pricing & Packages</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">💳</div>
+                        What are your pricing options?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We offer flexible pricing to suit every family's needs:
+                        <br><br>
+                        <strong>🎯 Drop-In Rate:</strong> ₹1,500 per day (includes everything!)
+                        <br>
+                        <strong>📦 Monthly Package:</strong> ₹4,999 for 4 Sundays (Save ₹1,001!)
+                        <br>
+                        <strong>🏆 Premium Quarterly:</strong> ₹12,999 for 3 months (Save ₹5,000!)
+                        <br>
+                        <strong>👥 Family Bundle:</strong> 25% discount for 2+ siblings
+                        <br><br>
+                        <strong>✅ What's Included in ALL Packages:</strong>
+                        <ul>
+                            <li>All meals (breakfast, lunch, 2 snacks)</li>
+                            <li>Activity kits and materials</li>
+                            <li>Live CCTV access</li>
+                            <li>Real-time updates and photos</li>
+                            <li>Professional supervision</li>
+                            <li>Take-home surprise gifts</li>
+                        </ul>
+                        <strong>🎁 Early Bird Special:</strong> Book 7 days in advance and get 15% OFF!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">💰</div>
+                        Are there any hidden charges?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Absolutely NO hidden charges!</strong> We believe in complete transparency:
+                        <br><br>
+                        <strong>✅ What's FREE:</strong>
+                        <ul>
+                            <li>Registration and enrollment</li>
+                            <li>All meals and snacks</li>
+                            <li>Activity materials and kits</li>
+                            <li>CCTV access and updates</li>
+                            <li>Special event participation</li>
+                            <li>First aid and basic medical care</li>
+                        </ul>
+                        <strong>💡 Optional Add-ons (Clearly Priced):</strong>
+                        <ul>
+                            <li>Extended hours beyond 5:30 PM: ₹200/hour</li>
+                            <li>Special birthday celebrations: ₹500</li>
+                            <li>Premium activity kits: ₹300</li>
+                            <li>Professional photo session: ₹800</li>
+                        </ul>
+                        <strong>🛡️ Money-Back Guarantee:</strong> Not satisfied? Full refund within first 2 hours of drop-off!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">💳</div>
+                        What payment methods do you accept?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We accept all major payment methods for your convenience:
+                        <br><br>
+                        <strong>💳 Digital Payments:</strong>
+                        <ul>
+                            <li>Credit/Debit Cards (Visa, MasterCard, RuPay)</li>
+                            <li>UPI (GPay, PhonePe, Paytm, etc.)</li>
+                            <li>Net Banking (All major banks)</li>
+                            <li>Digital wallets (Paytm, MobiKwik, Amazon Pay)</li>
+                        </ul>
+                        <strong>💵 Traditional Methods:</strong>
+                        <ul>
+                            <li>Cash payments at center</li>
+                            <li>Bank transfers/NEFT</li>
+                            <li>Cheques (for monthly packages)</li>
+                        </ul>
+                        <strong>🔒 Secure Processing:</strong> All online transactions are encrypted and PCI DSS compliant.
+                        <br>
+                        <strong>📧 Instant Receipts:</strong> Automatic email receipts and GST invoices for all transactions.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meals FAQ Section -->
+        <div class="faq-section hidden" id="meals">
+            <h2 class="faq-section-title">Meals & Nutrition</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">🍽️</div>
+                        What meals do you provide?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Our <strong>"Healthify Kids"</strong> meal program ensures your child gets nutritious, delicious food throughout the day:
+                        <br><br>
+                        <strong>🌅 Breakfast (10:00 AM):</strong>
+                        <ul>
+                            <li>Fresh fruit bowl and whole grain cereal</li>
+                            <li>Milk/yogurt with healthy toppings</li>
+                            <li>Mini sandwiches or parathas</li>
+                            <li>Fresh juice (no artificial colors)</li>
+                        </ul>
+                        <strong>🍽️ Lunch (12:30 PM):</strong>
+                        <ul>
+                            <li>Regional cuisine varieties (rotation menu)</li>
+                            <li>Rice/roti with dal and vegetables</li>
+                            <li>Protein-rich curries and salads</li>
+                            <li>Homemade pickles and curd</li>
+                        </ul>
+                        <strong>🍪 Snacks (3:00 PM & 4:30 PM):</strong>
+                        <ul>
+                            <li>Healthy baked items and fruit snacks</li>
+                            <li>Traditional namkeens and sweets</li>
+                            <li>Seasonal fresh fruits</li>
+                            <li>Hydrating drinks and buttermilk</li>
+                        </ul>
+                        <strong>💕 Special Touch:</strong> All meals are prepared with the same love and care as a mother's cooking!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">🥗</div>
+                        Do you handle food allergies and dietary restrictions?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Yes, absolutely!</strong> We take dietary needs very seriously:
+                        <br><br>
+                        <strong>🏥 Allergy Management:</strong>
+                        <ul>
+                            <li>Detailed allergy assessment during registration</li>
+                            <li>Separate preparation areas for allergy-free meals</li>
+                            <li>Staff trained in allergy emergency procedures</li>
+                            <li>EpiPen administration if prescribed</li>
+                        </ul>
+                        <strong>🌱 Dietary Accommodations:</strong>
+                        <ul>
+                            <li>Vegetarian/Vegan options always available</li>
+                            <li>Jain food preparations</li>
+                            <li>Gluten-free alternatives</li>
+                            <li>Sugar-free/diabetic-friendly options</li>
+                            <li>Religious dietary requirements (Halal, etc.)</li>
+                        </ul>
+                        <strong>👨‍⚕️ Medical Diets:</strong> We work with pediatric nutritionists to create special meal plans for children with specific medical dietary needs.
+                        <br><br>
+                        <strong>📝 Note:</strong> Please inform us of any dietary restrictions during enrollment - we'll create a personalized meal plan!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="faq-question-text">
+                        <div class="question-icon">📹</div>
+                        Can I see how meals are prepared?
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <strong>Absolutely!</strong> Complete transparency is our commitment:
+                        <br><br>
+                        <strong>📱 Live Kitchen Monitoring:</strong>
+                        <ul>
+                            <li>Kitchen CCTV access for all parents</li>
+                            <li>Watch meal preparation in real-time</li>
+                            <li>See hygiene and safety protocols in action</li>
+                            <li>Observe quality control measures</li>
+                        </ul>
+                        <strong>🏭 Cloud Kitchen Partnership:</strong>
+                        <ul>
+                            <li>Premium facility with hospital-grade cleanliness</li>
+                            <li>FSSAI certified and regularly audited</li>
+                            <li>Fresh ingredients sourced daily</li>
+                            <li>Temperature-controlled storage and preparation</li>
+                        </ul>
+                        <strong>📋 Quality Assurance:</strong>
+                        <ul>
+                            <li>Daily freshness checks</li>
+                            <li>Nutritionist-approved menus</li>
+                            <li>Regular health department inspections</li>
+                            <li>Parent feedback integration</li>
+                        </ul>
+                        <strong>🎥 Kitchen Tours:</strong> Schedule a visit to see our facilities in person - we're proud to show off our standards!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-cta">
+        <p class="cta-text">Still have questions? We're here to help! 💬</p>
+        <a href="#" class="cta-button">
+            <span>📞 Contact Our Family Care Team</span>
+            <span>→</span>
+        </a>
+    </div>
+
+    <script>
+        // FAQ Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const faqSections = document.querySelectorAll('.faq-section');
+
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetCategory = this.dataset.category;
+                    
+                    // Update active tab
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target section
+                    faqSections.forEach(section => {
+                        if (section.id === targetCategory) {
+                            section.classList.remove('hidden');
+                            // Trigger animation
+                            setTimeout(() => {
+                                section.querySelectorAll('.faq-item').forEach((item, index) => {
+                                    item.style.animationDelay = `${index * 0.1}s`;
+                                });
+                            }, 100);
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // FAQ Toggle functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+
+                question.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').classList.remove('active');
+                            otherItem.querySelector('.faq-toggle').textContent = '+';
+                        }
+                    });
+
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add('active');
+                        answer.classList.add('active');
+                        toggle.textContent = '×';
+                    } else {
+                        item.classList.remove('active');
+                        answer.classList.remove('active');
+                        toggle.textContent = '+';
+                    }
+                });
+            });
+
+            // Search functionality
+            const searchBox = document.getElementById('searchBox');
+            const searchClear = document.getElementById('searchClear');
+            
+            searchBox.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                const allFaqItems = document.querySelectorAll('.faq-item');
+                
+                if (query.length > 0) {
+                    searchClear.classList.add('visible');
+                    
+                    // Show all sections when searching
+                    faqSections.forEach(section => {
+                        section.classList.remove('hidden');
+                    });
+                    
+                    allFaqItems.forEach(item => {
+                        const questionText = item.querySelector('.faq-question-text').textContent.toLowerCase();
+                        const answerText = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                        
+                        if (questionText.includes(query) || answerText.includes(query)) {
+                            item.style.display = 'block';
+                            // Highlight search term
+                            highlightSearchTerm(item, query);
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                } else {
+                    searchClear.classList.remove('visible');
+                    allFaqItems.forEach(item => {
+                        item.style.display = 'block';
+                        removeHighlight(item);
+                    });
+                    
+                    // Return to first tab
+                    categoryTabs[0].click();
+                }
+            });
+
+            searchClear.addEventListener('click', function() {
+                searchBox.value = '';
+                searchBox.dispatchEvent(new Event('input'));
+                searchBox.focus();
+            });
+
+            function highlightSearchTerm(item, term) {
+                const questionElement = item.querySelector('.faq-question-text');
+                const answerElement = item.querySelector('.faq-answer-content');
+                
+                [questionElement, answerElement].forEach(element => {
+                    if (element) {
+                        const originalText = element.textContent;
+                        const regex = new RegExp(`(${term})`, 'gi');
+                        const highlightedText = originalText.replace(regex, '<mark style="background: rgba(255, 107, 107, 0.3); color: white; border-radius: 3px; padding: 2px 4px;">$1</mark>');
+                        
+                        // Only update if there's a match
+                        if (highlightedText !== originalText) {
+                            element.innerHTML = highlightedText;
+                        }
+                    }
+                });
+            }
+
+            function removeHighlight(item) {
+                const questionElement = item.querySelector('.faq-question-text');
+                const answerElement = item.querySelector('.faq-answer-content');
+                
+                [questionElement, answerElement].forEach(element => {
+                    if (element && element.innerHTML.includes('<mark')) {
+                        element.innerHTML = element.textContent;
+                    }
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Animated counter for countdown timer
+            function updateCountdown() {
+                const timerElements = document.querySelectorAll('.timer-number');
+                timerElements.forEach((element, index) => {
+                    let currentValue = parseInt(element.textContent);
+                    
+                    // Simulate countdown (this is just for demo)
+                    setInterval(() => {
+                        if (index === 3) { // seconds
+                            currentValue = currentValue > 0 ? currentValue - 1 : 59;
+                        } else if (index === 2 && currentValue === 0) { // minutes
+                            currentValue = currentValue > 0 ? currentValue - 1 : 59;
+                        }
+                        element.textContent = currentValue.toString().padStart(2, '0');
+                    }, index === 3 ? 1000 : 60000); // seconds update every 1s, others every minute
+                });
+            }
+
+            // Initialize countdown
+            if (document.querySelector('.countdown-timer')) {
+                updateCountdown();
+            }
+
+            // Add scroll reveal animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all FAQ items
+            faqItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

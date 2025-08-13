@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Progress & Winners Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Main Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 50%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* Glassmorphic Container */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 2px 16px rgba(255, 255, 255, 0.1) inset;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* Tab Navigation */
+        .main-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 8px;
+            gap: 8px;
+        }
+
+        .main-tab {
+            flex: 1;
+            padding: 16px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .main-tab.active {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .main-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Membership Level Tabs */
+        .membership-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 6px;
+            gap: 6px;
+        }
+
+        .membership-tab {
+            flex: 1;
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .membership-tab.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .data-table td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .data-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* City Column Styles */
+        .city-cell {
+            font-weight: 600;
+            color: #2c3e50;
+            border-right: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .rivalry-cell {
+            font-weight: 700;
+            padding: 20px 16px !important;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            color: #2c3e50;
+            border-right: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        /* Progress Bars in Table */
+        .progress-cell {
+            position: relative;
+        }
+
+        .table-progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .table-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width 1.5s ease;
+            position: relative;
+        }
+
+        .table-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Leader Badge */
+        .leader-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #ffd700, #ffed4a);
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-left: 8px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Numbers Formatting */
+        .number-large {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .number-small {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .membership-content {
+            display: none;
+        }
+
+        .membership-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Winners Section */
+        .winners-section {
+            margin-top: 60px;
+        }
+
+        .coming-soon-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .coming-soon-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .coming-soon-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .coming-soon-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .main-tabs {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .membership-tabs {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .membership-tab {
+                flex: 1 1 45%;
+            }
+
+            .data-table {
+                font-size: 0.9rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 8px;
+            }
+
+            .glass-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .data-table th,
+            .data-table td {
+                padding: 10px 6px;
+                font-size: 0.8rem;
+            }
+
+            .leader-badge {
+                font-size: 0.7rem;
+                padding: 2px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="section-header">
+            <h1 class="section-title">🏆 CITY RIVALRY DASHBOARD</h1>
+            <p class="section-subtitle">Track the epic battle between cities across all categories</p>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div class="glass-container">
+            <!-- Main Category Tabs -->
+            <div class="main-tabs">
+                <button class="main-tab active" onclick="switchMainTab(this, 'top100')">🏆 Top 100</button>
+                <button class="main-tab" onclick="switchMainTab(this, 'top1000')">🎯 Top 1000</button>
+                <button class="main-tab" onclick="switchMainTab(this, 'ultimate')">⚡ Ultimate Target</button>
+                <button class="main-tab" onclick="switchMainTab(this, 'mompreneurs')">👩‍💼 Mompreneurs</button>
+            </div>
+
+            <!-- Top 100 Content -->
+            <div id="top100" class="tab-content active">
+                <!-- Membership Level Tabs -->
+                <div class="membership-tabs">
+                    <button class="membership-tab active" onclick="switchMembership(this, 'guest')">👤 Guest</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'icon')">⭐ Icon</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'champion')">🏆 Champion</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'ambassador')">👑 Ambassador</button>
+                </div>
+
+                <!-- Guest Level -->
+                <div id="guest-100" class="membership-content active">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">65</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">35</td>
+                                <td class="progress-cell">
+                                    65%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 65%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">42</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">58</td>
+                                <td class="progress-cell">
+                                    42%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 42%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">88</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">12</td>
+                                <td class="progress-cell">
+                                    88%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 88%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">76</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">24</td>
+                                <td class="progress-cell">
+                                    76%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 76%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Icon Level -->
+                <div id="icon-100" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">45</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">55</td>
+                                <td class="progress-cell">
+                                    45%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 45%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">32</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">68</td>
+                                <td class="progress-cell">
+                                    32%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 32%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">72</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">28</td>
+                                <td class="progress-cell">
+                                    72%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 72%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">58</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">42</td>
+                                <td class="progress-cell">
+                                    58%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 58%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Champion Level -->
+                <div id="champion-100" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">28</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">72</td>
+                                <td class="progress-cell">
+                                    28%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 28%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">18</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">82</td>
+                                <td class="progress-cell">
+                                    18%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 18%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">55</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">45</td>
+                                <td class="progress-cell">
+                                    55%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 55%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">42</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">58</td>
+                                <td class="progress-cell">
+                                    42%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 42%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Ambassador Level -->
+                <div id="ambassador-100" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">15</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">85</td>
+                                <td class="progress-cell">
+                                    15%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 15%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">8</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">92</td>
+                                <td class="progress-cell">
+                                    8%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 8%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">32</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">68</td>
+                                <td class="progress-cell">
+                                    32%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 32%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">24</td>
+                                <td class="number-small">100</td>
+                                <td class="number-small">76</td>
+                                <td class="progress-cell">
+                                    24%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 24%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Top 1000 Content -->
+            <div id="top1000" class="tab-content">
+                <div class="membership-tabs">
+                    <button class="membership-tab active" onclick="switchMembership(this, 'guest')">👤 Guest</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'icon')">⭐ Icon</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'champion')">🏆 Champion</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'ambassador')">👑 Ambassador</button>
+                </div>
+
+                <div id="guest-1000" class="membership-content active">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">650</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">580</td>
+                                <td class="progress-cell">
+                                    42%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 42%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">880</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">120</td>
+                                <td class="progress-cell">
+                                    88%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 88%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">760</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">240</td>
+                                <td class="progress-cell">
+                                    76%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 76%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="icon-1000" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">450</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">550</td>
+                                <td class="progress-cell">
+                                    45%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 45%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">320</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">680</td>
+                                <td class="progress-cell">
+                                    32%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 32%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">720</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">280</td>
+                                <td class="progress-cell">
+                                    72%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 72%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">580</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">420</td>
+                                <td class="progress-cell">
+                                    58%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 58%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="champion-1000" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">280</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">720</td>
+                                <td class="progress-cell">
+                                    28%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 28%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">180</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">820</td>
+                                <td class="progress-cell">
+                                    18%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 18%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">550</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">450</td>
+                                <td class="progress-cell">
+                                    55%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 55%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">420</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">580</td>
+                                <td class="progress-cell">
+                                    42%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 42%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="ambassador-1000" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">150</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">850</td>
+                                <td class="progress-cell">
+                                    15%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 15%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">80</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">920</td>
+                                <td class="progress-cell">
+                                    8%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 8%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">320</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">680</td>
+                                <td class="progress-cell">
+                                    32%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 32%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">240</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">760</td>
+                                <td class="progress-cell">
+                                    24%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 24%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ultimate Target Content -->
+            <div id="ultimate" class="tab-content">
+                <div class="membership-tabs">
+                    <button class="membership-tab active" onclick="switchMembership(this, 'guest')">👤 Guest</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'icon')">⭐ Icon</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'champion')">🏆 Champion</button>
+                    <button class="membership-tab" onclick="switchMembership(this, 'ambassador')">👑 Ambassador</button>
+                </div>
+
+                <div id="guest-ultimate" class="membership-content active">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">2,500</td>
+                                <td class="number-small">5,000</td>
+                                <td class="number-small">2,500</td>
+                                <td class="progress-cell">
+                                    50%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 50%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">1,200</td>
+                                <td class="number-small">3,000</td>
+                                <td class="number-small">1,800</td>
+                                <td class="progress-cell">
+                                    40%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 40%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">12,450</td>
+                                <td class="number-small">15,000</td>
+                                <td class="number-small">2,550</td>
+                                <td class="progress-cell">
+                                    83%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 83%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">6,400</td>
+                                <td class="number-small">8,000</td>
+                                <td class="number-small">1,600</td>
+                                <td class="progress-cell">
+                                    80%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 80%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="icon-ultimate" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">1,800</td>
+                                <td class="number-small">3,000</td>
+                                <td class="number-small">1,200</td>
+                                <td class="progress-cell">
+                                    60%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">900</td>
+                                <td class="number-small">3,000</td>
+                                <td class="number-small">2,100</td>
+                                <td class="progress-cell">
+                                    30%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 30%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">6,400</td>
+                                <td class="number-small">8,000</td>
+                                <td class="number-small">1,600</td>
+                                <td class="progress-cell">
+                                    80%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 80%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">4,800</td>
+                                <td class="number-small">8,000</td>
+                                <td class="number-small">3,200</td>
+                                <td class="progress-cell">
+                                    60%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="champion-ultimate" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">1,200</td>
+                                <td class="number-small">2,000</td>
+                                <td class="number-small">800</td>
+                                <td class="progress-cell">
+                                    60%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">600</td>
+                                <td class="number-small">2,000</td>
+                                <td class="number-small">1,400</td>
+                                <td class="progress-cell">
+                                    30%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 30%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">4,000</td>
+                                <td class="number-small">5,000</td>
+                                <td class="number-small">1,000</td>
+                                <td class="progress-cell">
+                                    80%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 80%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">3,000</td>
+                                <td class="number-small">5,000</td>
+                                <td class="number-small">2,000</td>
+                                <td class="progress-cell">
+                                    60%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="ambassador-ultimate" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">600</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">400</td>
+                                <td class="progress-cell">
+                                    60%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">200</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">800</td>
+                                <td class="progress-cell">
+                                    20%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 20%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">2,400</td>
+                                <td class="number-small">3,000</td>
+                                <td class="number-small">600</td>
+                                <td class="progress-cell">
+                                    80%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 80%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">1,800</td>
+                                <td class="number-small">3,000</td>
+                                <td class="number-small">1,200</td>
+                                <td class="progress-cell">
+                                    60%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Mompreneurs Content -->
+            <div id="mompreneurs" class="tab-content">
+                <div class="membership-tabs">
+                    <button class="membership-tab active" onclick="switchMombership(this, 'basic')">🌟 Basic Mompreneur</button>
+                    <button class="membership-tab" onclick="switchMombership(this, 'premium')">👑 Premium Mompreneur</button>
+                </div>
+
+                <div id="basic-mom" class="membership-content active">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">1,245</td>
+                                <td class="number-small">2,000</td>
+                                <td class="number-small">755</td>
+                                <td class="progress-cell">
+                                    62%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 62%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">856</td>
+                                <td class="number-small">2,000</td>
+                                <td class="number-small">1,144</td>
+                                <td class="progress-cell">
+                                    43%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 43%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">2,850</td>
+                                <td class="
+                                <td class="number-small">350</td>
+                                <td class="progress-cell">
+                                    65%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 65%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">420</td>
+                                <td class="number-small">1,000</td>
+                                <td class="number-small">580</td>
+                                <td class="progress-cell">
+                                    42%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 42%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="premium-mom" class="membership-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>City/Rivalry</th>
+                                <th>Current Progress</th>
+                                <th>Target</th>
+                                <th>Remaining</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rivalry-cell">⚡ V vs V <span class="leader-badge">👑 Vijayawada</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Vijayawada</td>
+                                <td class="number-large">850</td>
+                                <td class="number-small">1,500</td>
+                                <td class="number-small">650</td>
+                                <td class="progress-cell">
+                                    57%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 57%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Visakhapatnam</td>
+                                <td class="number-large">520</td>
+                                <td class="number-small">1,500</td>
+                                <td class="number-small">980</td>
+                                <td class="progress-cell">
+                                    35%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 35%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rivalry-cell">🔥 H vs B <span class="leader-badge">👑 Hyderabad</span></td>
+                                <td class="number-large">-</td>
+                                <td class="number-small">-</td>
+                                <td class="number-small">-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Hyderabad</td>
+                                <td class="number-large">2,100</td>
+                                <td class="number-small">3,000</td>
+                                <td class="number-small">900</td>
+                                <td class="progress-cell">
+                                    70%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 70%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="city-cell">📍 Bengaluru</td>
+                                <td class="number-large">1,800</td>
+                                <td class="number-small">3,000</td>
+                                <td class="number-small">1,200</td>
+                                <td class="progress-cell">
+                                    60%
+                                    <div class="table-progress-bar">
+                                        <div class="table-progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Winners Section (Coming Soon) -->
+        <div class="winners-section">
+            <div class="glass-container">
+                <div class="coming-soon-card">
+                    <div class="coming-soon-icon">🏆</div>
+                    <h2 class="coming-soon-title">Winners Gallery</h2>
+                    <p class="coming-soon-text">
+                        The ultimate hall of fame is coming soon! Here we'll showcase the victorious cities, 
+                        celebrate milestone achievements, and crown the champions of each rivalry battle. 
+                        Stay tuned for epic celebrations! 🎉
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Main tab switching functionality
+        function switchMainTab(clickedTab, targetId) {
+            // Remove active class from all main tabs and content
+            document.querySelectorAll('.main-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            clickedTab.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+            
+            // Reset membership tabs to first tab when switching main categories
+            const activeContent = document.getElementById(targetId);
+            const firstMembershipTab = activeContent.querySelector('.membership-tab');
+            if (firstMembershipTab) {
+                // Remove active from all membership tabs in this content
+                activeContent.querySelectorAll('.membership-tab').forEach(tab => tab.classList.remove('active'));
+                activeContent.querySelectorAll('.membership-content').forEach(content => content.classList.remove('active'));
+                
+                // Activate first membership tab
+                firstMembershipTab.classList.add('active');
+                const membershipType = firstMembershipTab.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const contentId = targetId === 'top100' ? membershipType + '-100' :
+                                 targetId === 'top1000' ? membershipType + '-1000' :
+                                 targetId === 'ultimate' ? membershipType + '-ultimate' :
+                                 membershipType + '-mom';
+                const targetContent = document.getElementById(contentId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            }
+        }
+
+        // Membership tab switching for regular categories
+        function switchMembership(clickedTab, membershipType) {
+            const parentContent = clickedTab.closest('.tab-content');
+            const activeMainTab = document.querySelector('.main-tab.active');
+            const mainCategory = activeMainTab.textContent.includes('Top 100') ? '100' :
+                                activeMainTab.textContent.includes('Top 1000') ? '1000' : 'ultimate';
+            
+            // Remove active class from all membership tabs and content in this section
+            parentContent.querySelectorAll('.membership-tab').forEach(tab => tab.classList.remove('active'));
+            parentContent.querySelectorAll('.membership-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            clickedTab.classList.add('active');
+            
+            // Show corresponding membership content
+            const contentId = membershipType + '-' + mainCategory;
+            const targetContent = document.getElementById(contentId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
+
+        // Mompreneurs specific tab switching
+        function switchMombership(clickedTab, membershipType) {
+            const parentContent = clickedTab.closest('.tab-content');
+            
+            // Remove active class from all membership tabs and content in this section
+            parentContent.querySelectorAll('.membership-tab').forEach(tab => tab.classList.remove('active'));
+            parentContent.querySelectorAll('.membership-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            clickedTab.classList.add('active');
+            
+            // Show corresponding membership content
+            const contentId = membershipType + '-mom';
+            const targetContent = document.getElementById(contentId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
+
+        // Initialize progress bar animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger progress bar animations
+            setTimeout(() => {
+                document.querySelectorAll('.table-progress-fill').forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

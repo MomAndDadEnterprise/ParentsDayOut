@@ -4,212 +4,367 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parents Day Out - Header Banner</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        /* Top Bar - Sunshine Banner */
-        .top-banner {
-            background: linear-gradient(135deg, #FFD166, #FFEEA8);
-            color: #5E4200;
-            padding: 12px 0;
-            font-size: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+    /* Top Bar - Sunshine Yellow */
+    .top-banner {
+        background: linear-gradient(135deg, #FFC107, #FFD166);
+        color: #212121;
+        padding: 12px 0;
+        font-size: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
 
-        .banner-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
+    .banner-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
 
-        .banner-message {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
+    .banner-message {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+    }
 
-        .banner-highlight {
-            background-color: #EF476F;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 13px;
-            margin-left: 10px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
+    .banner-highlight {
+        background-color: #FF4081;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 13px;
+        margin-left: 10px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
 
-        .banner-actions {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+    .banner-actions {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
 
-        .banner-action {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #5E4200;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
+    .banner-action {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #212121;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
 
-        .banner-action:hover {
-            color: #EF476F;
-            transform: translateY(-1px);
-        }
+    .banner-action:hover {
+        color: #FF4081;
+        transform: translateY(-1px);
+    }
 
-        .banner-icon {
-            font-size: 17px;
-        }
+    /* City Bar - Electric Purple */
+    .city-bar {
+        background: linear-gradient(135deg, #7C4DFF, #673AB7);
+        color: white;
+        padding: 15px 0;
+        font-size: 14px;
+    }
 
-        /* City Selection Bar */
-        .city-bar {
-            background: linear-gradient(135deg, #073B4C, #118AB2);
-            color: white;
-            padding: 10px 0;
-            font-size: 14px;
-        }
+    .city-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
 
-        .city-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .city-label {
+        font-weight: 600;
+        color: #FFC107;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
 
-        .city-label {
-            font-weight: 600;
-            color: #FFD166;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .city-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-        .city-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
+    .city-link {
+        color: rgba(255,255,255,0.9);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .city-link {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
+    .city-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        transition: left 0.5s;
+    }
 
-        .city-link:hover,
-        .city-link.active {
-            background: rgba(255,209,102,0.2);
-            border-color: #FFD166;
-            color: #FFD166;
-            transform: translateY(-1px);
-        }
+    .city-link:hover::before {
+        left: 100%;
+    }
 
-        .city-whatsapp {
-            background: #25D366;
-            color: white;
-            padding: 6px 15px;
-            border-radius: 15px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+    /* City-specific colors */
+    .city-link[data-city="vijayawada"] {
+        background: linear-gradient(135deg, #FF4081, #FF6B6B);
+        border-color: #FF4757;
+    }
 
-        .city-whatsapp:hover {
-            background: #128C7E;
-            transform: translateY(-1px);
-        }
+    .city-link[data-city="vizag"] {
+        background: linear-gradient(135deg, #4ECDC4, #7FDDDA);
+        border-color: #26D0CE;
+    }
 
-        @media (max-width: 968px) {
-            .city-links {
-                gap: 15px;
-            }
-            
-            .city-link {
-                padding: 5px 10px;
-                font-size: 13px;
-            }
-        }
+    .city-link[data-city="hyderabad"] {
+        background: linear-gradient(135deg, #A8E6CF, #C8F2E0);
+        border-color: #7ED321;
+        color: #2D5016;
+    }
 
-        @media (max-width: 768px) {
-            .banner-container,
-            .city-container {
-                flex-direction: column;
-                gap: 10px;
-                padding: 12px 1.5rem;
-            }
-            
-            .banner-message {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .banner-actions {
-                width: 100%;
-                justify-content: center;
-                gap: 20px;
-            }
+    .city-link[data-city="bangalore"] {
+        background: linear-gradient(135deg, #FFB74D, #FFCC80);
+        border-color: #FF9800;
+        color: #BF360C;
+    }
 
-            .city-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 12px;
-            }
+    .city-link:hover,
+    .city-link.active {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
 
-            .city-label {
-                margin-bottom: 5px;
-            }
-        }
+    .city-whatsapp {
+        background: linear-gradient(135deg, #25D366, #2ECC71);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border: 2px solid #1DB954;
+    }
 
-        @media (max-width: 480px) {
-            .banner-message {
-                font-size: 14px;
-            }
-            
-            .banner-actions {
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-            
-            .banner-action span {
-                font-size: 13px;
-            }
+    .city-whatsapp:hover {
+        background: linear-gradient(135deg, #128C7E, #25A65A);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    }
 
-            .city-links {
-                gap: 8px;
-            }
+    .notify-btn {
+        background: linear-gradient(135deg, #7C4DFF, #673AB7);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border: 2px solid #7C4DFF;
+        cursor: pointer;
+    }
 
-            .city-link {
-                padding: 4px 8px;
-                font-size: 12px;
-            }
-        }
-    </style>
+    .notify-btn:hover {
+        background: linear-gradient(135deg, #673AB7, #7C4DFF);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(124, 77, 255, 0.3);
+    }
+
+    /* Modal - Purple Theme */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 0;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 450px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        animation: modalSlideIn 0.3s ease;
+        overflow: hidden;
+    }
+
+    @keyframes modalSlideIn {
+        from { opacity: 0; transform: translateY(-50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #7C4DFF, #673AB7);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .modal-body {
+        padding: 30px;
+    }
+
+    .modal-body h3 {
+        margin-bottom: 10px;
+        color: #212121;
+        text-align: center;
+    }
+
+    .modal-body p {
+        margin-bottom: 20px;
+        color: #666;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #212121;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #7C4DFF;
+    }
+
+    .modal-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .modal-btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 14px;
+    }
+
+    .modal-btn.cancel {
+        background: #f1f1f1;
+        color: #666;
+    }
+
+    .modal-btn.cancel:hover {
+        background: #e0e0e0;
+    }
+
+    .modal-btn.notify {
+        background: linear-gradient(135deg, #7C4DFF, #673AB7);
+        color: white;
+    }
+
+    .modal-btn.notify:hover {
+        background: linear-gradient(135deg, #673AB7, #7C4DFF);
+        transform: translateY(-1px);
+    }
+
+    .close {
+        color: rgba(255,255,255,0.7);
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    .close:hover {
+        color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+        .city-links { gap: 15px; }
+        .city-link { padding: 6px 12px; font-size: 13px; }
+    }
+
+    @media (max-width: 768px) {
+        .banner-container { flex-direction: column; gap: 10px; padding: 12px 1.5rem; }
+        .banner-message { flex-wrap: wrap; justify-content: center; }
+        .banner-actions { width: 100%; justify-content: center; gap: 20px; }
+        .city-container { gap: 15px; padding: 12px 1.5rem; flex-direction: column; }
+        .city-label { margin-bottom: 5px; }
+        .city-links { gap: 12px; }
+        .modal-content { margin: 10% auto; width: 95%; }
+        .modal-body { padding: 20px; }
+    }
+
+    @media (max-width: 480px) {
+        .banner-message { font-size: 14px; }
+        .banner-actions { flex-wrap: wrap; gap: 12px; }
+        .banner-action span { font-size: 13px; }
+        .city-links { gap: 8px; }
+        .city-link { padding: 5px 10px; font-size: 12px; }
+        .modal-buttons { flex-direction: column; gap: 10px; }
+        .modal-btn { width: 100%; }
+    }
+</style>
 </head>
 <body>
     <!-- Top Banner -->
@@ -218,7 +373,7 @@
             <div class="banner-message">
                 <span class="banner-icon">🏆</span>
                 <span>Membership Contest : Vijayawada vs Vizag ... and Hyd vs B'lore!</span>
-                <a href="city-vs-city.html" class="banner-action">
+                <a href="cityvscity.html" class="banner-action">
                     <span class="banner-highlight">Support Your City!</span>
                 </a>
             </div>
@@ -231,6 +386,7 @@
                     <span class="banner-icon">💬</span>
                     <span>Chat Now</span>
                 </a>
+                            </div>
             </div>
         </div>
     </div>
@@ -243,25 +399,185 @@
                 <span>Select Your City:</span>
             </div>
             <div class="city-links">
-                <a href="vijayawada.html" class="city-link" data-city="vijayawada">Vijayawada</a>
-                <a href="vizag.html" class="city-link" data-city="vizag">Visakhapatnam</a>
-                <a href="hyderabad.html" class="city-link" data-city="hyderabad">Hyderabad</a>
-                <a href="bangalore.html" class="city-link" data-city="bangalore">Bangalore</a>
+                <a href="vijayawada.html" class="city-link" data-city="vijayawada">
+                    <span>🏛️</span>
+                    <span>Vijayawada</span>
+                </a>
+                <a href="vizag.html" class="city-link" data-city="vizag">
+                    <span>🏖️</span>
+                    <span>Visakhapatnam</span>
+                </a>
+                <a href="hyderabad.html" class="city-link" data-city="hyderabad">
+                    <span>🏰</span>
+                    <span>Hyderabad</span>
+                </a>
+                <a href="bangalore.html" class="city-link" data-city="bangalore">
+                    <span>🌆</span>
+                    <span>Bangalore</span>
+                </a>
                 <a href="https://wa.me/919876543210?text=Hi! I want to know about ParentsDayOut centers in my city." class="city-whatsapp">
                     💬 Other Cities
                 </a>
+                <button class="notify-btn" id="notifyBtn" onclick="handleNotifyClick(event)">
+                    🔔 Get Notified of New Cities
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="notifyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>🌟 Stay Updated!</h2>
+            </div>
+            <div class="modal-body">
+                <h3>Be the first to know about new city launches!</h3>
+                <p>We'll notify you as soon as Parents Day Out opens in a new city near you.</p>
+                
+                <div class="form-group">
+                    <label for="notifyEmail">Email Address</label>
+                    <input type="email" id="notifyEmail" placeholder="Enter your email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notifyMobile">Mobile Number</label>
+                    <input type="tel" id="notifyMobile" placeholder="Enter your mobile number" required>
+                </div>
+                
+                <div class="modal-buttons">
+                    <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                    <button class="modal-btn notify" onclick="submitNotification()">Notify Me</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Define global functions IMMEDIATELY at the top level
+        window.handleNotifyClick = function(event) {
+            console.log('🚀 INLINE ONCLICK FIRED!');
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const modal = document.getElementById('notifyModal');
+            if (modal) {
+                console.log('Modal found, showing...');
+                modal.style.display = 'block';
+                modal.style.visibility = 'visible';
+                modal.style.opacity = '1';
+                document.body.style.overflow = 'hidden';
+                console.log('Modal should be visible now');
+            } else {
+                console.error('Modal not found!');
+                alert('Modal not found! Please check the HTML structure.');
+            }
+        };
+        
+        // Global function to close modal
+        window.closeModal = function() {
+            console.log('Closing modal via global function...');
+            const modal = document.getElementById('notifyModal');
+            if (modal) {
+                modal.style.display = 'none';
+                modal.style.visibility = 'hidden';
+                modal.style.opacity = '0';
+                document.body.style.overflow = 'auto';
+                
+                // Clear form fields
+                const emailInput = document.getElementById('notifyEmail');
+                const mobileInput = document.getElementById('notifyMobile');
+                if (emailInput) emailInput.value = '';
+                if (mobileInput) mobileInput.value = '';
+            }
+        };
+        
+        // Global function to submit form
+        window.submitNotification = function() {
+            console.log('Submit notification called');
+            const emailInput = document.getElementById('notifyEmail');
+            const mobileInput = document.getElementById('notifyMobile');
+            
+            const email = emailInput ? emailInput.value.trim() : '';
+            const mobile = mobileInput ? mobileInput.value.trim() : '';
+            
+            if (!email && !mobile) {
+                alert('Please provide either an email address or mobile number.');
+                return;
+            }
+
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && !emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                if (emailInput) emailInput.focus();
+                return;
+            }
+
+            // Basic mobile validation
+            const mobileRegex = /^[+]?[\d\s\-()]{10,}$/;
+            if (mobile && !mobileRegex.test(mobile)) {
+                alert('Please enter a valid mobile number.');
+                if (mobileInput) mobileInput.focus();
+                return;
+            }
+
+            // Store notification request
+            const notificationData = {
+                email: email || null,
+                mobile: mobile || null,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('notificationRequest', JSON.stringify(notificationData));
+            console.log('Notification request stored:', notificationData);
+            
+            // Show success message
+            alert('Thank you! We\'ll notify you when we launch in new cities. 🎉');
+            
+            window.closeModal();
+        };
+
+        // Immediate logging
+        console.log('🎯 Script starting - Global functions defined!');
+        console.log('Functions available:', {
+            handleNotifyClick: typeof window.handleNotifyClick,
+            closeModal: typeof window.closeModal,
+            submitNotification: typeof window.submitNotification
+        });
+        
+        // Test button detection immediately
+        setTimeout(function() {
+            const btn = document.getElementById('notifyBtn');
+            console.log('🔍 Button test after 1 second:', {
+                found: !!btn,
+                hasId: btn ? btn.id : 'N/A',
+                hasOnclick: btn ? !!btn.onclick : 'N/A'
+            });
+            
+            if (btn) {
+                // Add additional event listener as backup
+                btn.addEventListener('click', function(e) {
+                    console.log('💫 BACKUP addEventListener fired!');
+                    handleNotifyClick(e);
+                });
+                
+                // Test if we can manually trigger it
+                console.log('✅ Button ready for clicks!');
+            }
+        }, 1000);
+
+        // Standard DOM content loaded handler
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Main DOMContentLoaded fired');
+            
             const banner = document.querySelector('.top-banner');
             const cityBar = document.querySelector('.city-bar');
             
+            // Add a small delay to ensure all elements are rendered
             setTimeout(() => {
-                banner.style.opacity = '1';
-                cityBar.style.opacity = '1';
+                if (banner) banner.style.opacity = '1';
+                if (cityBar) cityBar.style.opacity = '1';
             }, 100);
 
             // Detect user's city based on URL or localStorage
@@ -301,17 +617,16 @@
                 link.addEventListener('click', function() {
                     const cityName = this.textContent.trim();
                     console.log(`City selected: ${cityName}`);
-                    // In production, this would send to your analytics service
                 });
             });
             
-            console.log('🌟 Parents Day Out header banner with city selection loaded successfully!');
+            console.log('🌟 Enhanced Parents Day Out header loaded successfully!');
         });
 
         // Add smooth animations for city links
         document.querySelectorAll('.city-link').forEach(link => {
             link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-1px) scale(1.02)';
+                this.style.transform = 'translateY(-2px) scale(1.05)';
             });
             
             link.addEventListener('mouseleave', function() {
@@ -319,6 +634,15 @@
                     this.style.transform = 'translateY(0) scale(1)';
                 }
             });
+        });
+
+        // Keyboard accessibility for modal
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('notifyModal');
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         });
     </script>
 </body>

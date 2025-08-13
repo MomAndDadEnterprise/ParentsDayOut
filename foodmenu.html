@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mom's Love - Food & Nutrition</title>
+    <title>Mom's Love - Daily School Meals</title>
     <style>
         * {
             margin: 0;
@@ -44,98 +44,36 @@
             opacity: 0.9;
         }
 
-        /* Live Kitchen Section */
-        .live-kitchen {
+        .location-info {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Today's Menu Section */
+        .todays-menu {
             background: #f8f9fa;
             padding: 3rem 0;
-            border-bottom: 3px solid #ff6b6b;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .date-info {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
             margin-bottom: 2rem;
-        }
-
-        .kitchen-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .cctv-feed {
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 16/9;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .cctv-overlay {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(255, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
             background: white;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .kitchen-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: linear-gradient(45deg, #333, #555);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ccc;
-            font-size: 1.2rem;
-        }
-
-        .kitchen-stats {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .stat-item:last-child {
-            border-bottom: none;
-        }
-
-        .stat-value {
-            font-weight: bold;
-            color: #27ae60;
-            font-size: 1.1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         /* Menu Sections */
@@ -188,7 +126,6 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .menu-card:hover {
@@ -268,32 +205,105 @@
             background: #27ae60;
         }
 
-        .customize-btn {
-            background: #3498db;
+        /* Live Kitchen Section */
+        .live-kitchen {
+            background: #2c3e50;
             color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            padding: 3rem 0;
+        }
+
+        .camera-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .camera-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
             cursor: pointer;
+            font-size: 1rem;
             font-weight: 600;
-            width: 100%;
-            margin-top: 1rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-align: left;
         }
 
-        .customize-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+        .camera-btn:hover, .camera-btn.active {
+            background: rgba(255,255,255,0.2);
+            border-color: #ff6b6b;
+            transform: translateX(5px);
         }
 
-        /* Parent Choice System */
-        .parent-system {
+        .kitchen-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cctv-feed {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16/9;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cctv-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .kitchen-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(45deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Parent Feedback System */
+        .parent-feedback {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 4rem 0;
         }
 
-        .parent-features {
+        .feedback-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
@@ -321,24 +331,47 @@
             padding: 3rem 0;
         }
 
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
+        .cert-info {
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(52, 152, 219, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #3498db;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
-        .cert-item {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem 1rem;
-            border-radius: 10px;
-            border: 2px solid #3498db;
+        .contact-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
         }
 
-        .cert-badge {
-            font-size: 2.5rem;
+        .contact-card:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
+            color: #ff6b6b;
         }
 
         /* Footer */
@@ -351,8 +384,18 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .kitchen-grid {
+            .kitchen-layout {
                 grid-template-columns: 1fr;
+            }
+            
+            .camera-controls {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+            
+            .camera-btn {
+                min-width: 150px;
             }
             
             .header h1 {
@@ -386,47 +429,22 @@
     <header class="header">
         <div class="container">
             <h1>Mom's Love Kitchen</h1>
-            <p class="tagline">"Mom's Love, in Every Bite"</p>
+            <p class="tagline">"Nutritious School Meals, Made with Love"</p>
+            <div class="location-info">
+                <strong>📍 Serving Multiple Cities</strong><br>
+                Vijayawada • Visakhapatnam • Hyderabad • Bangalore<br>
+                Fresh, healthy meals for our school communities
+            </div>
         </div>
     </header>
 
-    <!-- Live Kitchen Section -->
-    <section class="live-kitchen">
+    <!-- Today's Menu Section -->
+    <section class="todays-menu">
         <div class="container">
-            <h2 class="section-title">Live Kitchen Transparency</h2>
-            <div class="kitchen-grid">
-                <div class="cctv-feed">
-                    <div class="cctv-overlay">
-                        <div class="live-dot"></div>
-                        LIVE
-                    </div>
-                    <div class="kitchen-video">
-                        🍳 Live Kitchen Feed - Watch Our Chefs Cook With Love
-                    </div>
-                </div>
-                <div class="kitchen-stats">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">Kitchen Status</h3>
-                    <div class="stat-item">
-                        <span>Temperature</span>
-                        <span class="stat-value">22°C</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>Hygiene Score</span>
-                        <span class="stat-value">A+</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>Active Orders</span>
-                        <span class="stat-value">47</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>Fresh Ingredients</span>
-                        <span class="stat-value">Daily</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>Safety Compliance</span>
-                        <span class="stat-value">100%</span>
-                    </div>
-                </div>
+            <h2 class="section-title">Today's Menu</h2>
+            <div class="date-info">
+                <strong>Tuesday, August 12, 2025</strong><br>
+                All meals are provided free of charge to students
             </div>
         </div>
     </section>
@@ -434,399 +452,959 @@
     <!-- Menu Section -->
     <section class="menu-section">
         <div class="container">
-            <h2 class="section-title">Our Menu</h2>
+            <h2 class="section-title">Select Your City</h2>
             <div class="menu-tabs">
-                <button class="tab-btn active" onclick="showTab('breakfast')">South Indian Breakfast</button>
-                <button class="tab-btn" onclick="showTab('lunch')">Regional Lunches</button>
-                <button class="tab-btn" onclick="showTab('snacks')">Healthy Snacks</button>
-                <button class="tab-btn" onclick="showTab('custom')">Custom Meals</button>
+                <button class="tab-btn active" onclick="showTab('vijayawada')">Vijayawada</button>
+                <button class="tab-btn" onclick="showTab('visakhapatnam')">Visakhapatnam</button>
+                <button class="tab-btn" onclick="showTab('hyderabad')">Hyderabad</button>
+                <button class="tab-btn" onclick="showTab('bangalore')">Bangalore</button>
             </div>
 
-            <!-- South Indian Breakfast -->
-            <div id="breakfast" class="tab-content active">
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-image">🥞</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Classic Masala Dosa</h3>
-                            <p class="menu-description">Crispy fermented crepe with spiced potato filling, served with coconut chutney and sambar</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">320</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">12g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">8g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">52g</span>
-                                        Carbs
+            <!-- Vijayawada -->
+            <div id="vijayawada" class="tab-content active">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 style="color: #2c3e50; font-size: 1.8rem; margin-bottom: 0.5rem;">Today's Menu - Vijayawada</h3>
+                    <p style="color: #666; font-size: 1.1rem;">Authentic Andhra Pradesh cuisine</p>
+                </div>
+                
+                <!-- Breakfast Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #ff6b6b; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Breakfast (8:00 AM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🥞</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Andhra Style Pesarattu</h3>
+                                <p class="menu-description">Green gram dosa with upma stuffing, served with ginger coconut chutney - a local Vijayawada favorite</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">280</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">14g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">6g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">45g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Gluten-Free</span>
+                                    <span class="allergen-tag safe">High Protein</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag safe">Gluten-Free Option</span>
-                                <span class="allergen-tag safe">Vegan</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🥛</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Fresh Buttermilk</h3>
+                                <p class="menu-description">Traditional spiced buttermilk with curry leaves and ginger</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">85</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">4g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">2g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">12g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Dairy</span>
+                                    <span class="allergen-tag safe">Probiotic</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="menu-card">
-                        <div class="menu-image">🥣</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Protein-Rich Idli</h3>
-                            <p class="menu-description">Steamed rice and lentil cakes, enhanced with quinoa for extra protein</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">180</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">8g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">2g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">32g</span>
-                                        Carbs
+                <!-- Lunch Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #27ae60; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌞 Lunch (12:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🍛</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Andhra Meals</h3>
+                                <p class="menu-description">Rice with pappu (dal), koora (vegetables), pickle, and papad</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">520</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">18g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">12g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">85g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Complete Meal</span>
+                                    <span class="allergen-tag safe">Traditional</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag safe">Gluten-Free</span>
-                                <span class="allergen-tag safe">Low Fat</span>
-                                <span class="allergen-tag safe">Probiotic</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🐟</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Fish Curry (Tuesday Special)</h3>
+                                <p class="menu-description">Fresh water fish curry with tamarind and spices</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">180</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">25g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">8g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">5g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Fish</span>
+                                    <span class="allergen-tag safe">Omega-3 Rich</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="menu-card">
-                        <div class="menu-image">🌾</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Multi-Grain Uttapam</h3>
-                            <p class="menu-description">Thick pancake with mixed vegetables and multiple grains for complete nutrition</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">280</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">10g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">6g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">48g</span>
-                                        Carbs
+                <!-- Snacks Section -->
+                <div>
+                    <h4 style="background: #3498db; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Evening Snacks (3:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🥨</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Muruku & Mixture</h3>
+                                <p class="menu-description">Traditional Andhra snack mix with muruku, peanuts, and curry leaves</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">180</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">6g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">9g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">20g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Nuts</span>
+                                    <span class="allergen-tag safe">Traditional</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag safe">High Fiber</span>
-                                <span class="allergen-tag safe">Vegetarian</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🥤</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Fresh Lime Water</h3>
+                                <p class="menu-description">Refreshing lime water with mint and rock salt</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">25</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">0g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">0g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">6g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Vitamin C</span>
+                                    <span class="allergen-tag safe">Hydrating</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Regional Lunches -->
-            <div id="lunch" class="tab-content">
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-image">🍛</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Maharashtrian Thali</h3>
-                            <p class="menu-description">Complete meal with bhakri, dal, sabji, rice, and traditional accompaniments</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">650</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">22g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">18g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">95g</span>
-                                        Carbs
+            <!-- Visakhapatnam -->
+            <div id="visakhapatnam" class="tab-content">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 style="color: #2c3e50; font-size: 1.8rem; margin-bottom: 0.5rem;">Today's Menu - Visakhapatnam</h3>
+                    <p style="color: #666; font-size: 1.1rem;">Coastal Andhra delicacies with fresh seafood</p>
+                </div>
+                
+                <!-- Breakfast Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #ff6b6b; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Breakfast (8:00 AM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🥞</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Ragi Dosa</h3>
+                                <p class="menu-description">Finger millet dosa with coconut chutney - healthy coastal style</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">250</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">12g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">5g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">42g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">High Fiber</span>
+                                    <span class="allergen-tag safe">Calcium Rich</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag safe">Balanced Meal</span>
-                                <span class="allergen-tag safe">Vegetarian</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🍵</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Coconut Water</h3>
+                                <p class="menu-description">Fresh tender coconut water - perfect for coastal humidity</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">45</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">2g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">0g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">9g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Natural Electrolytes</span>
+                                    <span class="allergen-tag safe">Hydrating</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="menu-card">
-                        <div class="menu-image">🍜</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Bengali Fish Curry Set</h3>
-                            <p class="menu-description">Fresh fish curry with steamed rice, dal, and seasonal vegetables</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">580</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">35g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">15g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">65g</span>
-                                        Carbs
+                <!-- Lunch Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #27ae60; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌞 Lunch (12:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🍤</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Prawn Curry Rice</h3>
+                                <p class="menu-description">Fresh Bay of Bengal prawns in coconut curry with steamed rice</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">480</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">28g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">14g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">62g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Shellfish</span>
+                                    <span class="allergen-tag safe">High Protein</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag">Contains Fish</span>
-                                <span class="allergen-tag safe">Omega-3 Rich</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🥗</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Coastal Vegetable Curry</h3>
+                                <p class="menu-description">Mixed vegetables with coconut and coastal spices</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">160</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">4g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">6g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">24g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Vitamin A</span>
+                                    <span class="allergen-tag safe">High Fiber</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="menu-card">
-                        <div class="menu-image">🥘</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Punjabi Dal Makhani Combo</h3>
-                            <p class="menu-description">Creamy black lentils with butter naan, rice, and fresh salad</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">720</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">28g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">25g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">88g</span>
-                                        Carbs
+                <!-- Snacks Section -->
+                <div>
+                    <h4 style="background: #3498db; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Evening Snacks (3:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🦐</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Fish Cutlet</h3>
+                                <p class="menu-description">Crispy fish cutlet with local catch and spices</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">220</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">15g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">10g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">18g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Fish</span>
+                                    <span class="allergen-tag safe">Ocean Fresh</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag">Contains Dairy</span>
-                                <span class="allergen-tag">Contains Gluten</span>
-                                <span class="allergen-tag safe">High Protein</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🥥</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Coconut Barfi</h3>
+                                <p class="menu-description">Sweet coconut barfi made with fresh grated coconut</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">150</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">3g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">8g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">18g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Natural Sweetener</span>
+                                    <span class="allergen-tag safe">Fresh Coconut</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Healthy Snacks -->
-            <div id="snacks" class="tab-content">
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-image">🥗</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Sprouts Salad Bowl</h3>
-                            <p class="menu-description">Mixed sprouts with fresh vegetables, lemon dressing, and roasted seeds</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">160</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">12g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">4g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">22g</span>
-                                        Carbs
+            <!-- Hyderabad -->
+            <div id="hyderabad" class="tab-content">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 style="color: #2c3e50; font-size: 1.8rem; margin-bottom: 0.5rem;">Today's Menu - Hyderabad</h3>
+                    <p style="color: #666; font-size: 1.1rem;">Nizami cuisine with rich flavors and aromatic spices</p>
+                </div>
+                
+                <!-- Breakfast Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #ff6b6b; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Breakfast (8:00 AM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🫓</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Hyderabadi Haleem</h3>
+                                <p class="menu-description">Traditional breakfast haleem with lentils, wheat, and mild spices</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">320</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">16g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">10g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">42g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Gluten</span>
+                                    <span class="allergen-tag safe">High Protein</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag safe">Raw Food</span>
-                                <span class="allergen-tag safe">Vegan</span>
-                                <span class="allergen-tag safe">High Fiber</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">☕</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Irani Chai</h3>
+                                <p class="menu-description">Traditional Hyderabadi tea with cardamom and milk</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">90</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">3g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">4g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">10g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Dairy</span>
+                                    <span class="allergen-tag safe">Antioxidants</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="menu-card">
-                        <div class="menu-image">🌰</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Baked Quinoa Patties</h3>
-                            <p class="menu-description">Crispy quinoa and vegetable patties baked to perfection with mint chutney</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">220</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">9g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">8g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">30g</span>
-                                        Carbs
+                <!-- Lunch Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #27ae60; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌞 Lunch (12:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🍚</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Hyderabadi Biryani</h3>
+                                <p class="menu-description">Aromatic basmati rice with tender chicken and saffron</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">580</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">32g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">18g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">72g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Complete Meal</span>
+                                    <span class="allergen-tag safe">Aromatic Spices</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag safe">Gluten-Free</span>
-                                <span class="allergen-tag safe">Baked Not Fried</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🥛</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Raita & Shorba</h3>
+                                <p class="menu-description">Cooling cucumber raita with traditional mutton shorba</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">140</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">8g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">6g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">12g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Dairy</span>
+                                    <span class="allergen-tag safe">Probiotic</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="menu-card">
-                        <div class="menu-image">🥜</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">Trail Mix Energy Bites</h3>
-                            <p class="menu-description">Dates, nuts, and seeds rolled into perfect energy-packed bites</p>
-                            <div class="nutrition-info">
-                                <div class="nutrition-grid">
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">140</span>
-                                        Calories
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">4g</span>
-                                        Protein
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">8g</span>
-                                        Fat
-                                    </div>
-                                    <div class="nutrition-item">
-                                        <span class="nutrition-value">16g</span>
-                                        Carbs
+                <!-- Snacks Section -->
+                <div>
+                    <h4 style="background: #3498db; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Evening Snacks (3:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🥟</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Samosa & Chutney</h3>
+                                <p class="menu-description">Crispy samosas with tamarind and mint chutney</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">200</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">5g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">12g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">22g</span>
+                                            Carbs
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Gluten</span>
+                                    <span class="allergen-tag safe">Traditional</span>
+                                </div>
                             </div>
-                            <div class="allergen-tags">
-                                <span class="allergen-tag">Contains Nuts</span>
-                                <span class="allergen-tag safe">No Added Sugar</span>
-                                <span class="allergen-tag safe">Raw</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🍮</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Qubani Ka Meetha</h3>
+                                <p class="menu-description">Traditional Hyderabadi apricot dessert with cream</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">160</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">3g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">8g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">20g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Dairy</span>
+                                    <span class="allergen-tag safe">Traditional Sweet</span>
+                                </div>
                             </div>
-                            <button class="customize-btn">Customize & Order</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Custom Meals -->
-            <div id="custom" class="tab-content">
-                <div style="text-align: center; padding: 3rem 0;">
-                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: #2c3e50;">Build Your Perfect Meal</h3>
-                    <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Mix and match ingredients based on your dietary preferences and nutritional needs</p>
-                    
-                    <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-                            <div>
-                                <h4 style="color: #e74c3c; margin-bottom: 1rem;">🍚 Base</h4>
-                                <p>Brown Rice, Quinoa, Millet, Roti, Salad</p>
+            <!-- Bangalore -->
+            <div id="bangalore" class="tab-content">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 style="color: #2c3e50; font-size: 1.8rem; margin-bottom: 0.5rem;">Today's Menu - Bangalore</h3>
+                    <p style="color: #666; font-size: 1.1rem;">Karnataka specialties with a modern healthy twist</p>
+                </div>
+                
+                <!-- Breakfast Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #ff6b6b; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Breakfast (8:00 AM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🥞</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Bisi Bele Bath</h3>
+                                <p class="menu-description">Traditional Karnataka rice dish with lentils, vegetables, and aromatic spices</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">290</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">12g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">8g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">48g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Complete Protein</span>
+                                    <span class="allergen-tag safe">One-Pot Meal</span>
+                                </div>
                             </div>
-                            <div>
-                                <h4 style="color: #27ae60; margin-bottom: 1rem;">🥬 Vegetables</h4>
-                                <p>Seasonal, Organic, Locally Sourced</p>
-                            </div>
-                            <div>
-                                <h4 style="color: #3498db; margin-bottom: 1rem;">🍗 Protein</h4>
-                                <p>Dal, Paneer, Chicken, Fish, Tofu</p>
-                            </div>
-                            <div>
-                                <h4 style="color: #f39c12; margin-bottom: 1rem;">🥄 Extras</h4>
-                                <p>Nuts, Seeds, Ghee, Chutney</p>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">☕</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Filter Coffee</h3>
+                                <p class="menu-description">Authentic South Indian filter coffee with fresh milk</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">75</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">3g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">3g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">8g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag">Contains Dairy</span>
+                                    <span class="allergen-tag safe">Antioxidants</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <button style="background: #e74c3c; color: white; border: none; padding: 1rem 3rem; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 1rem;">Start Customizing</button>
+                </div>
+
+                <!-- Lunch Section -->
+                <div style="margin-bottom: 3rem;">
+                    <h4 style="background: #27ae60; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌞 Lunch (12:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🍛</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Karnataka Thali</h3>
+                                <p class="menu-description">Rice, sambar, rasam, palya (vegetable stir-fry), and pickle</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">500</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">16g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">12g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">80g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Balanced Nutrition</span>
+                                    <span class="allergen-tag safe">Vegetarian</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🍗</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Chicken Ghee Roast</h3>
+                                <p class="menu-description">Mangalorean style spicy chicken roast with aromatic spices</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">280</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">26g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">16g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">8g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">High Protein</span>
+                                    <span class="allergen-tag safe">Spicy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Snacks Section -->
+                <div>
+                    <h4 style="background: #3498db; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">🌅 Evening Snacks (3:30 PM)</h4>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <div class="menu-image">🫓</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Mysore Pak</h3>
+                                <p class="menu-description">Traditional Karnataka sweet made with gram flour and ghee</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">180</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">4g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">10g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">20g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Traditional Sweet</span>
+                                    <span class="allergen-tag safe">Energy Boost</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-card">
+                            <div class="menu-image">🥤</div>
+                            <div class="menu-content">
+                                <h3 class="menu-title">Fresh Sugarcane Juice</h3>
+                                <p class="menu-description">Freshly extracted sugarcane juice with lime and mint</p>
+                                <div class="nutrition-info">
+                                    <div class="nutrition-grid">
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">110</span>
+                                            Calories
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">0g</span>
+                                            Protein
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">0g</span>
+                                            Fat
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <span class="nutrition-value">26g</span>
+                                            Carbs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allergen-tags">
+                                    <span class="allergen-tag safe">Natural Sugar</span>
+                                    <span class="allergen-tag safe">Refreshing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Parent Choice System -->
-    <section class="parent-system">
+    <!-- Live Kitchen Section -->
+    <section class="live-kitchen">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Parent Choice Meal Planning</h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Take control of your family's nutrition with our comprehensive meal planning system</p>
+            <h2 class="section-title" style="color: white;">Kitchen Transparency</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Watch our kitchen operations live - ensuring quality and hygiene at every step</p>
             
-            <div class="parent-features">
+            <div class="kitchen-layout">
+                <div class="camera-controls">
+                    <button class="camera-btn active" onclick="switchCamera('main')">
+                        🏠 Main Kitchen View
+                    </button>
+                    <button class="camera-btn" onclick="switchCamera('prep')">
+                        🔪 Food Preparation Area
+                    </button>
+                    <button class="camera-btn" onclick="switchCamera('cooking')">
+                        🍳 Cooking Stations
+                    </button>
+                    <button class="camera-btn" onclick="switchCamera('serving')">
+                        🍽️ Serving Counter
+                    </button>
+                </div>
+                
+                <div class="cctv-feed">
+                    <div class="cctv-overlay">
+                        <div class="live-dot"></div>
+                        LIVE
+                    </div>
+                    <div class="kitchen-video" id="camera-feed">
+                        🏠 Main Kitchen - Live feed showing our chefs preparing today's meals with love and care
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Feedback System -->
+    <section class="parent-feedback">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Parent Feedback & Menu Planning</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Your feedback helps us plan better meals for your children</p>
+            
+            <div class="feedback-features">
                 <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <h3>Weekly Meal Planner</h3>
-                    <p>Plan and schedule meals for the entire week with nutritional balance tracking</p>
+                    <div class="feature-icon">💬</div>
+                    <h3>WhatsApp Groups</h3>
+                    <p>Join our class-wise WhatsApp groups to share feedback and suggestions about meals</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Dietary Goals</h3>
-                    <p>Set specific nutrition targets and track progress towards health goals</p>
+                    <div class="feature-icon">👥</div>
+                    <h3>Parent Meetings</h3>
+                    <p>Monthly meetings to discuss meal preferences, dietary requirements, and menu improvements</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
-                    <h3>Family Profiles</h3>
-                    <p>Create individual profiles with preferences, allergies, and nutritional needs</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛒</div>
-                    <h3>Smart Shopping</h3>
-                    <p>Automatically generate shopping lists based on your meal plans</p>
+                    <div class="feature-icon">📝</div>
+                    <h3>Online Feedback Forms</h3>
+                    <p>Convenient Google Forms to submit feedback, allergies information, and meal suggestions</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Nutrition Analytics</h3>
-                    <p>Detailed reports on nutrient intake, calorie balance, and health metrics</p>
+                    <h3>Menu Planning</h3>
+                    <p>Your feedback directly influences our future menu planning and seasonal meal rotations</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Quick Reorder</h3>
-                    <p>Easily reorder favorite meals and save successful meal combinations</p>
+                    <div class="feature-icon">🍎</div>
+                    <h3>Nutrition Focus</h3>
+                    <p>We consider nutritional balance, local preferences, and dietary restrictions in our planning</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Regular Updates</h3>
+                    <p>Monthly menu updates based on seasonal availability and parent feedback</p>
                 </div>
             </div>
         </div>
@@ -835,27 +1413,27 @@
     <!-- Food Promises -->
     <section style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 4rem 0;">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Our Promise to You</h2>
+            <h2 class="section-title" style="color: white;">Our Promise to Your Children</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
                 <div style="text-align: center; padding: 2rem;">
                     <div style="font-size: 4rem; margin-bottom: 1rem;">🌱</div>
                     <h3 style="margin-bottom: 1rem;">Fresh Daily</h3>
-                    <p>Ingredients sourced fresh every morning from local farms and trusted suppliers</p>
+                    <p>Ingredients sourced fresh every morning from local markets and trusted suppliers</p>
                 </div>
                 <div style="text-align: center; padding: 2rem;">
                     <div style="font-size: 4rem; margin-bottom: 1rem;">🧼</div>
                     <h3 style="margin-bottom: 1rem;">Hygiene First</h3>
-                    <p>Strict hygiene protocols followed at every step of food preparation</p>
+                    <p>Strict hygiene protocols followed at every step of food preparation and service</p>
                 </div>
                 <div style="text-align: center; padding: 2rem;">
                     <div style="font-size: 4rem; margin-bottom: 1rem;">💚</div>
                     <h3 style="margin-bottom: 1rem;">Healthy Always</h3>
-                    <p>No artificial preservatives, colors, or flavors - just pure, wholesome food</p>
+                    <p>No artificial preservatives, colors, or flavors - just pure, wholesome traditional food</p>
                 </div>
                 <div style="text-align: center; padding: 2rem;">
                     <div style="font-size: 4rem; margin-bottom: 1rem;">❤️</div>
                     <h3 style="margin-bottom: 1rem;">Made with Love</h3>
-                    <p>Every dish prepared with the same care and love as a mother's cooking</p>
+                    <p>Every dish prepared with the same care and love as homemade meals</p>
                 </div>
             </div>
         </div>
@@ -864,74 +1442,90 @@
     <!-- Certifications -->
     <section class="certifications">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Safety & Quality Certifications</h2>
-            <div class="cert-grid">
-                <div class="cert-item">
-                    <div class="cert-badge">🏆</div>
-                    <h4>FSSAI Licensed</h4>
-                    <p>Food Safety & Standards Authority of India</p>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-badge">✅</div>
-                    <h4>ISO 22000</h4>
-                    <p>Food Safety Management System</p>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-badge">🌟</div>
-                    <h4>HACCP Certified</h4>
-                    <p>Hazard Analysis Critical Control Points</p>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-badge">🥇</div>
-                    <h4>Organic Certified</h4>
-                    <p>India Organic Certification</p>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-badge">🛡️</div>
-                    <h4>Health Department</h4>
-                    <p>Regular Health Inspections Passed</p>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-badge">🌿</div>
-                    <h4>Vegan Society</h4>
-                    <p>Certified Vegan Options Available</p>
-                </div>
+            <h2 class="section-title" style="color: white;">Safety & Quality Standards</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">We are committed to achieving the highest safety and quality standards</p>
+            
+            <div class="cert-info">
+                <h3 style="color: #3498db; margin-bottom: 1.5rem; font-size: 1.5rem;">🏆 Our Certification Journey</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                    We are currently working on obtaining various food safety and quality certifications to ensure the highest standards for your children's meals. Our certification process includes:
+                </p>
+                <ul style="font-size: 1rem; line-height: 1.8; text-align: left; max-width: 600px; margin: 0 auto; list-style-type: none; padding: 0;">
+                    <li style="margin-bottom: 0.8rem;">✅ <strong>FSSAI License</strong> - Food Safety & Standards Authority of India</li>
+                    <li style="margin-bottom: 0.8rem;">✅ <strong>ISO 22000</strong> - Food Safety Management System</li>
+                    <li style="margin-bottom: 0.8rem;">✅ <strong>HACCP Standards</strong> - Hazard Analysis Critical Control Points</li>
+                    <li style="margin-bottom: 0.8rem;">✅ <strong>Municipal Health Clearance</strong> - Local health department approval</li>
+                    <li style="margin-bottom: 0.8rem;">✅ <strong>Organic Certification</strong> - For select ingredients and suppliers</li>
+                </ul>
+                <p style="font-size: 1rem; margin-top: 1.5rem; opacity: 0.9;">
+                    <strong>📋 Transparency Promise:</strong> We will update our progress at every step - from application submission to final approval. Your children's health and safety are our absolute top priority, and we believe in complete transparency throughout our certification journey.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Order Section -->
-    <section style="background: white; padding: 4rem 0;">
+    <!-- Contact & Questions Section -->
+    <section class="contact-section">
         <div class="container">
-            <h2 class="section-title">Order Now & Experience Mom's Love</h2>
+            <h2 class="section-title">Have Questions? We're Here to Help</h2>
             <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-                <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Ready to treat your family to nutritious, delicious meals made with love? Place your order now and taste the difference!</p>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Feel free to reach out to us with any questions about our meals, ingredients, or nutritional information</p>
                 
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
-                    <button style="background: #e74c3c; color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer;">📞 Call Now</button>
-                    <button style="background: #27ae60; color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer;">🛒 Order Online</button>
-                    <button style="background: #3498db; color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer;">📱 Download App</button>
+                <div class="contact-methods">
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h3>Call Us</h3>
+                        <p><strong>+91-XXX-XXX-XXXX</strong><br>Monday to Friday<br>8:00 AM - 5:00 PM</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💬</div>
+                        <h3>WhatsApp</h3>
+                        <p>Join your city's WhatsApp group<br>for quick updates and<br>direct communication</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email Us</h3>
+                        <p><strong>meals@school.edu.in</strong><br>We respond within<br>24 hours</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🏫</div>
+                        <h3>Visit School Office</h3>
+                        <p>Meet our nutrition coordinator<br>during school hours<br>for detailed discussions</p>
+                    </div>
                 </div>
                 
-                <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px;">
-                    <h3 style="color: #2c3e50; margin-bottom: 1rem;">Delivery Areas</h3>
-                    <p>We deliver fresh, hot meals across the city with our temperature-controlled delivery system</p>
-                    <p style="margin-top: 1rem; font-weight: 600; color: #e74c3c;">Free delivery on orders above ₹299</p>
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                    <h3 style="color: #2c3e50; margin-bottom: 1rem;">🚚 Meal Service Information</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Breakfast:</strong> 8:00 AM - 8:30 AM
+                        </div>
+                        <div>
+                            <strong>Lunch:</strong> 12:30 PM - 1:15 PM
+                        </div>
+                        <div>
+                            <strong>Snacks:</strong> 3:30 PM - 4:00 PM
+                        </div>
+                        <div style="color: #e74c3c;">
+                            <strong>Free for all students</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Mom's Love Kitchen. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">Made with ❤️ for families who deserve the best nutrition</p>
+            <p>&copy; 2025 Mom's Love Kitchen - School Nutrition Program</p>
+            <p>Serving healthy, nutritious meals to support your child's growth and learning</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">Vijayawada • Visakhapatnam • Hyderabad • Bangalore | Made with ❤️ for our students</p>
         </div>
     </footer>
+-->
 <div id="footer-container"></div>
-
-<script >
+    <script>
         function showTab(tabName) {
             // Hide all tab contents
             const tabContents = document.querySelectorAll('.tab-content');
@@ -952,6 +1546,28 @@
             event.target.classList.add('active');
         }
 
+        function switchCamera(cameraType) {
+            // Remove active class from all camera buttons
+            const cameraButtons = document.querySelectorAll('.camera-btn');
+            cameraButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Update camera feed content
+            const cameraFeed = document.getElementById('camera-feed');
+            const cameraTexts = {
+                'main': '🏠 Main Kitchen - Live feed showing our chefs preparing today\'s meals with love and care',
+                'prep': '🔪 Food Preparation Area - Watch ingredients being cleaned, chopped, and prepared',
+                'cooking': '🍳 Cooking Stations - Live view of cooking processes and food preparation',
+                'serving': '🍽️ Serving Counter - See how meals are plated and served to students'
+            };
+            
+            cameraFeed.innerHTML = cameraTexts[cameraType];
+        }
+
         // Add hover effects to menu cards
         document.querySelectorAll('.menu-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
@@ -963,26 +1579,26 @@
             });
         });
 
-        // Simulate live kitchen stats updates
-        function updateKitchenStats() {
-            const activeOrders = document.querySelector('.stat-item:nth-child(3) .stat-value');
-            const currentOrders = parseInt(activeOrders.textContent);
-            const newOrders = Math.max(35, Math.min(75, currentOrders + Math.floor(Math.random() * 5) - 2));
-            activeOrders.textContent = newOrders;
+        // Add loading animation for CCTV feed
+        function addCCTVLoadingEffect() {
+            const cctvFeed = document.querySelector('#camera-feed');
+            let loadingDots = 0;
+            
+            setInterval(() => {
+                loadingDots = (loadingDots + 1) % 4;
+                const dots = '.'.repeat(loadingDots);
+                const currentText = cctvFeed.innerHTML.split(' - ')[0];
+                const description = cctvFeed.innerHTML.split(' - ')[1];
+                if (description) {
+                    cctvFeed.innerHTML = `${currentText} - ${description}${dots}`;
+                }
+            }, 1000);
         }
 
-        // Update kitchen stats every 30 seconds
-        setInterval(updateKitchenStats, 30000);
+        // Initialize loading effect
+        addCCTVLoadingEffect();
 
-        // Add click handlers for customize buttons
-        document.querySelectorAll('.customize-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const menuTitle = this.parentElement.querySelector('.menu-title').textContent;
-                alert(`Customization panel for "${menuTitle}" would open here.\n\nFeatures:\n• Adjust spice level\n• Choose portion size\n• Add/remove ingredients\n• Set dietary preferences\n• Schedule delivery time`);
-            });
-        });
-
-        // Add smooth scrolling for better UX
+        // Smooth scrolling for better UX
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -996,20 +1612,18 @@
             });
         });
 
-        // Add loading animation for CCTV feed
-        function addCCTVLoadingEffect() {
-            const cctvFeed = document.querySelector('.kitchen-video');
-            let loadingDots = 0;
-            
-            setInterval(() => {
-                loadingDots = (loadingDots + 1) % 4;
-                const dots = '.'.repeat(loadingDots);
-                cctvFeed.innerHTML = `🍳 Live Kitchen Feed - Watch Our Chefs Cook With Love${dots}`;
-            }, 500);
-        }
-
-        // Initialize loading effect
-        addCCTVLoadingEffect();
+        // Update date to current date
+        window.addEventListener('load', function() {
+            const dateInfo = document.querySelector('.date-info strong');
+            const today = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            dateInfo.textContent = today.toLocaleDateString('en-US', options);
+        });
     </script>
 </body>
 </html>

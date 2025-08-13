@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parents Day Out - Premium Pamphlet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A5; margin: 0; }
+    @media print {
+      body { margin: 0; }
+      .page { width: 148mm; height: 210mm; page-break-after: always; }
+    }
+    body { font-family: 'Baloo Bhai 2', sans-serif; }
+    .script { font-family: 'Pacifico', cursive; }
+    .blob {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 60%);
+      border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+      filter: blur(40px);
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- FRONT PAGE -->
+<section class="page relative bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-600 text-white overflow-hidden">
+
+  <!-- Organic Blobs -->
+  <div class="blob" style="top:-100px;left:-100px;background:rgba(255,255,255,0.15)"></div>
+  <div class="blob" style="bottom:-150px;right:-100px;background:rgba(255,255,255,0.15)"></div>
+
+  <!-- Floating doodles -->
+  <div class="absolute top-8 left-4 text-6xl opacity-30">🎈</div>
+  <div class="absolute bottom-8 right-4 text-7xl opacity-30">🎨</div>
+
+  <div class="relative z-10 p-8 text-center">
+    <h1 class="text-5xl font-extrabold drop-shadow-lg mt-8">🌟 Parents Day Out 🌟</h1>
+    <p class="mt-2 text-lg script">Because Parents Deserve a Break, Too!</p>
+
+    <!-- Circular Image -->
+    <div class="mt-6 w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-2xl mx-auto">
+      <img src="https://images.unsplash.com/photo-1587614382346-acd977736f90?w=500" alt="Kids playing" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Curved White Info Card -->
+    <div class="relative mt-8 bg-white text-gray-900 rounded-[2rem] p-6 shadow-xl mx-auto max-w-md">
+      <h2 class="text-2xl font-bold text-purple-700">Sundays & Holidays</h2>
+      <p class="text-sm">9:30 AM – 5:30 PM • Ages 3–10 years</p>
+      <p class="text-xs">Includes breakfast, lunch, and evening snacks</p>
+    </div>
+
+    <!-- Features -->
+    <div class="mt-6 grid grid-cols-2 gap-4 text-lg text-left max-w-sm mx-auto">
+      <div>🎭 Drama & Storytime</div>
+      <div>⚽ Outdoor Games</div>
+      <div>🎨 Art & Craft</div>
+      <div>🎬 Movie + Nap</div>
+      <div>🗣 Communication Boosters</div>
+      <div>🤝 Team Skills</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute bottom-4 left-0 right-0 text-center text-sm">
+    📍 Vijayawada | Visakhapatnam | Hyderabad | Bengaluru  
+    📱 WhatsApp: <strong>98765 43210</strong>
+  </footer>
+</section>
+
+<!-- BACK PAGE -->
+<section class="page relative bg-gradient-to-br from-yellow-300 via-orange-400 to-pink-500 text-white overflow-hidden">
+
+  <!-- Organic Blobs -->
+  <div class="blob" style="top:-120px;right:-120px;background:rgba(255,255,255,0.15)"></div>
+  <div class="blob" style="bottom:-100px;left:-120px;background:rgba(255,255,255,0.15)"></div>
+
+  <!-- Floating doodles -->
+  <div class="absolute top-8 right-4 text-7xl opacity-30">🎁</div>
+  <div class="absolute bottom-8 left-4 text-6xl opacity-30">🏖</div>
+
+  <div class="relative z-10 p-8 text-center">
+    <h2 class="text-3xl font-extrabold drop-shadow-lg mt-8">✨ Exclusive Membership Perks</h2>
+    <p class="mt-2">Guest • Icon • Champion • Ambassador</p>
+    <p class="text-sm text-yellow-100">🎁 First 100 Members – Special surprises!</p>
+
+    <!-- Perk Bubbles -->
+    <div class="mt-6 flex justify-center gap-6">
+      <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center text-purple-700 text-3xl shadow-lg">💰</div>
+      <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center text-purple-700 text-3xl shadow-lg">🎉</div>
+    </div>
+
+    <!-- Perks Cards -->
+    <div class="mt-6 bg-white text-gray-900 rounded-[2rem] p-5 shadow-xl max-w-md mx-auto text-left">
+      <h3 class="text-xl font-bold text-purple-700">💰 Refer & Earn</h3>
+      <p>Earn commission for every successful referral – turn your network into rewards.</p>
+    </div>
+
+    <div class="mt-4 bg-white text-gray-900 rounded-[2rem] p-5 shadow-xl max-w-md mx-auto text-left">
+      <h3 class="text-xl font-bold text-purple-700">🎉 Win Big!</h3>
+      <ul class="list-disc pl-5">
+        <li>₹5K – ₹1L cash prize per level, per city</li>
+        <li>🏖 Family Vacation Packages worth ₹5L – ₹10L</li>
+      </ul>
+    </div>
+
+    <!-- Mompreneur -->
+    <div class="mt-4 bg-white text-gray-900 rounded-[2rem] p-5 shadow-xl max-w-md mx-auto text-left">
+      <h3 class="text-xl font-bold text-purple-700">💡 Dear Moms,</h3>
+      <p>Your free time can be your earning time. Join as an organizer or host – weekends or holidays – and start adding to your family income while making a difference.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute bottom-4 left-0 right-0 text-center text-sm">
+    &copy; 2025 Parents Day Out • All Rights Reserved
+  </footer>
+</section>
+
+</body>
+</html>

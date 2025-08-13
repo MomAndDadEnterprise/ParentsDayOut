@@ -211,6 +211,30 @@
             font-weight: bold;
         }
 
+        .plan-details {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-details tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .plan-details td {
+            padding: 0.5rem 0;
+        }
+
+        .plan-details .detail-label {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .plan-details .detail-value {
+            text-align: right;
+            font-weight: 600;
+        }
+
         .cta-button {
             width: 100%;
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -231,51 +255,6 @@
 
         .cta-button.popular {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-
-        /* Comparison Table */
-        .comparison-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 2rem;
-            overflow-x: auto;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 1rem;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .comparison-table th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .comparison-table .feature-name {
-            text-align: left;
-            font-weight: 500;
-        }
-
-        .check-mark {
-            color: #27ae60;
-            font-size: 1.2rem;
-        }
-
-        .cross-mark {
-            color: #e74c3c;
-            font-size: 1.2rem;
         }
 
         /* Guarantee Section */
@@ -315,23 +294,7 @@
             margin: 3rem 0;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .trust-badges {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
             text-align: center;
-            margin-top: 2rem;
-        }
-
-        .trust-badge {
-            padding: 1rem;
-        }
-
-        .trust-icon {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
         }
 
         /* Testimonials */
@@ -342,36 +305,7 @@
             margin: 3rem 0;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .testimonial-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid #3498db;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-            color: #555;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .testimonial-role {
-            color: #666;
-            font-size: 0.9rem;
+            text-align: center;
         }
 
         /* Payment Options */
@@ -379,10 +313,9 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 2rem;
-            margin: 3rem 0;
+            margin: 2rem 0;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
 
         .payment-methods {
@@ -414,10 +347,6 @@
             
             .pricing-card.popular {
                 transform: none;
-            }
-            
-            .comparison-table {
-                font-size: 0.9rem;
             }
             
             .payment-methods {
@@ -482,294 +411,562 @@
             </div>
         </div>
 
-        <!-- Pricing Cards -->
-        <div class="pricing-section">
-            <div class="pricing-grid">
-                <!-- Guest Plan -->
-                <div class="pricing-card fade-in">
-                    <div class="plan-icon">🌟</div>
-                    <div class="plan-name">Guest</div>
-                    <div class="plan-subtitle">Discovering our world</div>
-                    <div class="plan-duration">3 months validity • 1 slot per month</div>
-                    <div class="plan-price">₹2,999</div>
-                    <div class="price-period">total cost</div>
-                    <div class="plan-savings" style="background: #95a5a6;">₹999/month • 3 total sessions</div>
-                    
-                    <ul class="plan-features">
-                        <li><span class="feature-icon">✓</span> 3 entertainment sessions total</li>
-                        <li><span class="feature-icon">✓</span> Basic activity programs</li>
-                        <li><span class="feature-icon">✓</span> Standard supervision</li>
-                        <li><span class="feature-icon">✓</span> Mobile app access</li>
-                        <li><span class="feature-icon">✓</span> Emergency contact system</li>
-                        <li><span class="feature-icon">✗</span> Priority booking</li>
-                        <li><span class="feature-icon">✗</span> Special events access</li>
-                    </ul>
-                    
-                    <button class="cta-button">Start Discovering</button>
+        <div class="payment-section fade-in">
+            <h2 class="payment-title">💡 Flexible Payment Options</h2>
+            <p class="payment-subtitle">
+                Choose the payment method that works best for you — simple, secure, and hassle-free.
+            </p>
+        
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <div class="icon">💳</div>
+                    <h3>Credit/Debit Card</h3>
+                    <p>Pay instantly using Visa, MasterCard, or RuPay. Enjoy 5% discount on full upfront payments.</p>
                 </div>
-
-                <!-- Icon Plan -->
-                <div class="pricing-card fade-in">
-                    <div class="plan-icon">💝</div>
-                    <div class="plan-name">Icon</div>
-                    <div class="plan-subtitle">Embracing the heart of our community</div>
-                    <div class="plan-duration">6 months validity • 3 slots per month</div>
-                    <div class="plan-price">₹4,999</div>
-                    <div class="price-period">total cost</div>
-                    <div class="plan-savings">Save ₹1,000 • ₹833/month • 18 total sessions</div>
-                    
-                    <ul class="plan-features">
-                        <li><span class="feature-icon">✓</span> 18 entertainment sessions total</li>
-                        <li><span class="feature-icon">✓</span> Enhanced activity programs</li>
-                        <li><span class="feature-icon">✓</span> Priority supervision</li>
-                        <li><span class="feature-icon">✓</span> Mobile app access</li>
-                        <li><span class="feature-icon">✓</span> Emergency contact system</li>
-                        <li><span class="feature-icon">✓</span> Priority booking</li>
-                        <li><span class="feature-icon">✗</span> Special events access</li>
-                    </ul>
-                    
-                    <button class="cta-button">Join Our Community</button>
+                <div class="payment-method">
+                    <div class="icon">🏦</div>
+                    <h3>UPI & Net Banking</h3>
+                    <p>Quick and secure transfers via UPI or direct bank payments. Works with all major banks.</p>
                 </div>
-
-                <!-- Champion Plan (Popular) -->
-                <div class="pricing-card popular fade-in">
-                    <div class="plan-icon">🏆</div>
-                    <div class="plan-name">Champion</div>
-                    <div class="plan-subtitle">Driving our shared mission</div>
-                    <div class="plan-duration">12 months validity • 6 slots per month</div>
-                    <div class="plan-price">₹7,999</div>
-                    <div class="price-period">total cost</div>
-                    <div class="plan-savings">Save ₹4,000 • ₹666/month • 72 total sessions</div>
-                    
-                    <ul class="plan-features">
-                        <li><span class="feature-icon">✓</span> 72 entertainment sessions total</li>
-                        <li><span class="feature-icon">✓</span> Premium activity programs</li>
-                        <li><span class="feature-icon">✓</span> Priority supervision</li>
-                        <li><span class="feature-icon">✓</span> Mobile app access</li>
-                        <li><span class="feature-icon">✓</span> Emergency contact system</li>
-                        <li><span class="feature-icon">✓</span> Priority booking</li>
-                        <li><span class="feature-icon">✓</span> Special events access</li>
-                    </ul>
-                    
-                    <button class="cta-button popular">Drive Our Mission</button>
+                <div class="payment-method">
+                    <div class="icon">📱</div>
+                    <h3>Digital Wallets</h3>
+                    <p>Pay using PhonePe, Google Pay, Paytm and more. Perfect for quick, on-the-go transactions.</p>
                 </div>
-
-                <!-- Ambassador Plan -->
-                <div class="pricing-card fade-in">
-                    <div class="plan-icon">🌍</div>
-                    <div class="plan-name">Ambassador</div>
-                    <div class="plan-subtitle">You represent us to the world</div>
-                    <div class="plan-duration">24 months validity • 12 slots per month</div>
-                    <div class="plan-price">₹12,999</div>
-                    <div class="price-period">total cost</div>
-                    <div class="plan-savings">Save ₹11,000 • ₹541/month • 288 total sessions</div>
-                    
-                    <ul class="plan-features">
-                        <li><span class="feature-icon">✓</span> 288 entertainment sessions total</li>
-                        <li><span class="feature-icon">✓</span> VIP activity programs</li>
-                        <li><span class="feature-icon">✓</span> Dedicated supervisor</li>
-                        <li><span class="feature-icon">✓</span> Mobile app access</li>
-                        <li><span class="feature-icon">✓</span> Emergency contact system</li>
-                        <li><span class="feature-icon">✓</span> Priority booking</li>
-                        <li><span class="feature-icon">✓</span> All special events included</li>
-                    </ul>
-                    
-                    <button class="cta-button">Represent Us</button>
+                <div class="payment-method">
+                    <div class="icon">💰</div>
+                    <h3>EMI & Installments</h3>
+                    <p>0% interest on 3-month installments. Corporate sponsorships and referral discounts available.</p>
                 </div>
             </div>
         </div>
+        
+        <style>
+        .payment-section {
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .payment-title {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .payment-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
 
-        <!-- Comparison Table -->
-        <div class="comparison-section fade-in">
-            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Compare All Plans</h2>
-            <div style="overflow-x: auto;">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th class="feature-name">Features</th>
-                            <th>Guest</th>
-                            <th>Icon</th>
-                            <th style="background: #ffe6e6;">Champion</th>
-                            <th>Ambassador</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="feature-name">Monthly Entertainment Slots</td>
-                            <td>1 slot</td>
-                            <td>3 slots</td>
-                            <td><strong>6 slots</strong></td>
-                            <td>12 slots</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Total Sessions</td>
-                            <td>3 sessions</td>
-                            <td>18 sessions</td>
-                            <td><strong>72 sessions</strong></td>
-                            <td>288 sessions</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Cost per Month</td>
-                            <td>₹999</td>
-                            <td>₹833</td>
-                            <td><strong>₹666</strong></td>
-                            <td>₹541</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Activity Programs</td>
-                            <td>Basic</td>
-                            <td>Enhanced</td>
-                            <td><strong>Premium</strong></td>
-                            <td>VIP</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Priority Booking</td>
-                            <td><span class="cross-mark">✗</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Emergency Support</td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Special Events</td>
-                            <td><span class="cross-mark">✗</span></td>
-                            <td><span class="cross-mark">✗</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Dedicated Supervisor</td>
-                            <td><span class="cross-mark">✗</span></td>
-                            <td><span class="cross-mark">✗</span></td>
-                            <td><span class="cross-mark">✗</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Total Savings</td>
-                            <td>-</td>
-                            <td>₹1,000</td>
-                            <td><strong>₹4,000</strong></td>
-                            <td>₹11,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+     
+        
+        .payment-method .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+
+  
+        .payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.payment-method {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    max-width: 250px; /* prevents extra wide cards */
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.payment-method h3 {
+    margin-top: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.payment-method p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    max-width: 90%; /* keeps text contained */
+    white-space: normal; /* forces wrapping */
+}
+
+        </style>
+        
+   <!-- Pricing Table with Icons, Taglines & CTA -->
+<div class="pricing-section fade-in">
+    <h2 style="text-align: center; margin-bottom: 2rem; color: #2c3e50;">
+        Membership Options Comparison
+    </h2>
+    
+    <div style="overflow-x: auto;">
+        <table class="comparison-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+            <thead>
+                <tr>
+                    <th style="padding: 1.5rem; text-align: left; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">Plan</th>
+                    <th style="padding: 1.5rem; text-align: center; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">Guest 🌟<br><small>Try us out</small></th>
+                    <th style="padding: 1.5rem; text-align: center; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">Icon 💝<br><small>Regular fun</small></th>
+                    <th style="padding: 1.5rem; text-align: center; background: #ffe6e6; border-bottom: 2px solid #e74c3c; color: #2c3e50;">Champion 🏆<br><small>Best value</small></th>
+                    <th style="padding: 1.5rem; text-align: center; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">Ambassador 🌍<br><small>Ultimate plan</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Price Row -->
+                <tr>
+                    <td style="padding: 1rem 1.5rem; font-weight: 600;">Price</td>
+                    <td style="text-align: center; color: #e74c3c; font-weight: 700;">₹999</td>
+                    <td style="text-align: center; color: #e74c3c; font-weight: 700;">₹2,499</td>
+                    <td style="text-align: center; color: #e74c3c; font-weight: 700; background: #fff5f5;">₹4,999</td>
+                    <td style="text-align: center; color: #e74c3c; font-weight: 700;">₹9,999</td>
+                </tr>
+                
+                <!-- Spots Row -->
+                <tr>
+                    <td style="padding: 1rem 1.5rem; font-weight: 600;">Monthly Spots</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">3</td>
+                    <td style="text-align: center; background: #fff5f5;">5+1 free</td>
+                    <td style="text-align: center;">10+2 free</td>
+                </tr>
+                
+                <!-- Validity Row -->
+                <tr>
+                    <td style="padding: 1rem 1.5rem; font-weight: 600;">Validity</td>
+                    <td style="text-align: center;">3 months</td>
+                    <td style="text-align: center;">6 months</td>
+                    <td style="text-align: center; background: #fff5f5;">12 months</td>
+                    <td style="text-align: center;">12 months</td>
+                </tr>
+                
+                <!-- Siblings Row -->
+                <tr>
+                    <td style="padding: 1rem 1.5rem; font-weight: 600;">Siblings Discount</td>
+                    <td style="text-align: center;">No</td>
+                    <td style="text-align: center;">No</td>
+                    <td style="text-align: center; background: #fff5f5;">No</td>
+                    <td style="text-align: center;">Yes</td>
+                </tr>
+                
+                <!-- Referral Row -->
+                <tr>
+                    <td style="padding: 1rem 1.5rem; font-weight: 600;">Referral Commission</td>
+                    <td style="text-align: center;">Minimal</td>
+                    <td style="text-align: center;">More</td>
+                    <td style="text-align: center; background: #fff5f5;">Higher</td>
+                    <td style="text-align: center;">Highest</td>
+                </tr>
+                
+                <!-- Events Row -->
+                <tr>
+                    <td style="padding: 1rem 1.5rem; font-weight: 600;">Special Events Discount</td>
+                    <td style="text-align: center;">No</td>
+                    <td style="text-align: center;">Minimal</td>
+                    <td style="text-align: center; background: #fff5f5;">Higher</td>
+                    <td style="text-align: center;">Highest</td>
+                </tr>
+                
+                <!-- CTA Row -->
+                <tr>
+                    <td></td>
+                    <td style="text-align: center;">
+                        <button style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 170px;">
+                            Start Discovering
+                        </button>
+                    </td>
+                    <td style="text-align: center;">
+                        <button style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 170px;">
+                            Join Our Community
+                        </button>
+                    </td>
+                    <td style="text-align: center; background: #fff5f5;">
+                        <button style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 170px;">
+                            Become a Champion
+                        </button>
+                    </td>
+                    <td style="text-align: center;">
+                        <button style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 170px;">
+                            Become an Ambassador
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+     
+   <!-- 
+<section class="pricing-section">
+    <div class="pricing-grid">
+        
+   
+        <div class="pricing-card feature-card">
+            <div class="plan-icon">💰</div>
+            <div class="plan-name">Price</div>
+            <div class="plan-subtitle">One-time membership cost</div>
+            
+            <div class="plan-icon">📅</div>
+            <div class="plan-name">Monthly Spots</div>
+            <div class="plan-subtitle">Sessions you can book</div>
+            
+            <div class="plan-icon">⏳</div>
+            <div class="plan-name">Validity</div>
+            <div class="plan-subtitle">Membership duration</div>
+            
+            <div class="plan-icon">👨‍👩‍👧‍👦</div>
+            <div class="plan-name">Siblings Discount</div>
+            <div class="plan-subtitle">Benefits for siblings</div>
+            
+            <div class="plan-icon">🤝</div>
+            <div class="plan-name">Referral Commission</div>
+            <div class="plan-subtitle">Earn for referring</div>
+            
+            <div class="plan-icon">🎉</div>
+            <div class="plan-name">Special Events Discount</div>
+            <div class="plan-subtitle">Extra perks for events</div>
         </div>
+
+     
+        <div class="pricing-card">
+            <div class="plan-icon">🌟</div>
+            <div class="plan-name">Guest</div>
+            <div class="plan-subtitle">Perfect for trying out our services</div>
+            <div>₹999</div>
+            <div>1</div>
+            <div>3 months</div>
+            <div>No discount</div>
+            <div>Minimal</div>
+            <div>No</div>
+            <button class="cta-button">Start Discovering</button>
+        </div>
+
+        <div class="pricing-card">
+            <div class="plan-icon">💝</div>
+            <div class="plan-name">Icon</div>
+            <div class="plan-subtitle">Great for regular weekend outings</div>
+            <div>₹2,499</div>
+            <div>3</div>
+            <div>6 months</div>
+            <div>Yes - Minimal</div>
+            <div>More</div>
+            <div>Minimal</div>
+            <button class="cta-button">Join Our Community</button>
+        </div>
+
+        <div class="pricing-card popular">
+            <div class="plan-icon">🏆</div>
+            <div class="plan-name">Champion</div>
+            <div class="plan-subtitle">Best value for frequent users</div>
+            <div>₹4,999</div>
+            <div>5+1 free</div>
+            <div>12 months</div>
+            <div>Yes - More</div>
+            <div>Higher</div>
+            <div>Higher</div>
+            <button class="cta-button popular">Become a Champion</button>
+        </div>
+
+        <div class="pricing-card">
+            <div class="plan-icon">🌍</div>
+            <div class="plan-name">Ambassador</div>
+            <div class="plan-subtitle">For families who need frequent care</div>
+            <div>₹9,999</div>
+            <div>10+2 free</div>
+            <div>12 months</div>
+            <div>Yes</div>
+            <div>Highest</div>
+            <div>Highest</div>
+            <button class="cta-button">Become an Ambassador</button>
+        </div>
+    </div>
+</section>
+
+<style>
+.pricing-section {
+    width: 100%;
+    padding: 2rem 1rem;
+    background: #6a63ff;
+}
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.pricing-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    display: grid;
+    align-items: center;
+    gap: 0.5rem;
+}
+.plan-icon {
+    font-size: 2rem;
+}
+.plan-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.plan-subtitle {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.4rem;
+}
+.cta-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 0.8rem;
+    cursor: pointer;
+}
+.cta-button.popular {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+.popular {
+    border: 2px solid #e74c3c;
+}
+.feature-card {
+    background: #f9fafc;
+}
+</style>
+
+<div class="pricing-section fade-in">
+    <h2 style="text-align: center; margin-bottom: 2rem; color: #2c3e50;">Membership Options Comparison</h2>
+    
+    <div style="overflow-x: auto;">
+        <table class="comparison-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+            <thead>
+                <tr>
+                    <th style="padding: 1.5rem; text-align: left; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">Features</th>
+                    <th style="padding: 1.5rem; text-align: center; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">
+                        <div style="font-size: 2rem;">🌟</div>
+                        <div>Guest</div>
+                        <div style="font-size: 0.9rem; color: #666; font-style: italic;">Try our services</div>
+                    </th>
+                    <th style="padding: 1.5rem; text-align: center; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">
+                        <div style="font-size: 2rem;">💝</div>
+                        <div>Icon</div>
+                        <div style="font-size: 0.9rem; color: #666; font-style: italic;">Regular outings</div>
+                    </th>
+                    <th style="padding: 1.5rem; text-align: center; background: #ffe6e6; border-bottom: 2px solid #e74c3c; color: #2c3e50;">
+                        <div style="font-size: 2rem;">🏆</div>
+                        <div>Champion</div>
+                        <div style="font-size: 0.9rem; color: #666; font-style: italic;">Best value</div>
+                    </th>
+                    <th style="padding: 1.5rem; text-align: center; background: #f8f9fa; border-bottom: 2px solid #eee; color: #2c3e50;">
+                        <div style="font-size: 2rem;">🌍</div>
+                        <div>Ambassador</div>
+                        <div style="font-size: 0.9rem; color: #666; font-style: italic;">Frequent care</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+       
+                <tr>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; font-weight: 600;">Price</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; color: #e74c3c; font-weight: 700;">₹999</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; color: #e74c3c; font-weight: 700;">₹2,499</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; color: #e74c3c; font-weight: 700; background: #fff5f5;">₹4,999</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; color: #e74c3c; font-weight: 700;">₹9,999</td>
+                </tr>
+                
+         
+                <tr>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; font-weight: 600;">Monthly Spots</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">1</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">3</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; background: #fff5f5;">5+1 free</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">10+2 free</td>
+                </tr>
+            
+                <tr>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; font-weight: 600;">Validity</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">3 months</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">6 months</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; background: #fff5f5;">12 months</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">12 months</td>
+                </tr>
+                
+                
+                <tr>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; font-weight: 600;">Siblings Discount</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">No</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">No</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; background: #fff5f5;">No</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">Yes</td>
+                </tr>
+                
+          
+                <tr>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; font-weight: 600;">Referral Commission</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">Minimal</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">More</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; background: #fff5f5;">Higher</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">Highest</td>
+                </tr>
+          
+                <tr>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; font-weight: 600;">Special Events Discount</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">No</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">Minimal</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center; background: #fff5f5;">Higher</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; text-align: center;">Highest</td>
+                </tr>
+       
+                <tr>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; font-weight: 600;">Key Features</td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee;">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;">✓ 3 total sessions</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Basic activities</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Standard care</li>
+                        </ul>
+                    </td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee;">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;">✓ 18 total sessions</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Enhanced activities</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Priority booking</li>
+                        </ul>
+                    </td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee; background: #fff5f5;">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;">✓ 72 total sessions</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Premium activities</li>
+                            <li style="margin-bottom: 0.5rem;">✓ All events included</li>
+                        </ul>
+                    </td>
+                    <td style="padding: 1rem 1.5rem; border-bottom: 1px solid #eee;">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;">✓ 144 total sessions</li>
+                            <li style="margin-bottom: 0.5rem;">✓ VIP programs</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Dedicated staff</li>
+                        </ul>
+                    </td>
+                </tr>
+                
+          
+                <tr>
+                    <td style="padding: 1.5rem; border-bottom: none;"></td>
+                    <td style="padding: 1.5rem; border-bottom: none; text-align: center;">
+                        <button style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 150px;">Try Now</button>
+                    </td>
+                    <td style="padding: 1.5rem; border-bottom: none; text-align: center;">
+                        <button style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 150px;">Join Now</button>
+                    </td>
+                    <td style="padding: 1.5rem; border-bottom: none; text-align: center; background: #fff5f5;">
+                        <button style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 150px;">Best Value</button>
+                    </td>
+                    <td style="padding: 1.5rem; border-bottom: none; text-align: center;">
+                        <button style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; max-width: 150px;">Go Premium</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <p style="text-align: center; color: #666; margin-top: 2rem; font-style: italic;">
+        All plans include basic safety features, mobile app access, and our 100-day location guarantee
+    </p>
+</div>
+   -->
 
         <!-- Money-back Guarantee -->
         <div class="guarantee-section fade-in">
             <div class="guarantee-badge">
                 <span>100</span>
             </div>
-            <h2 style="color: #2c3e50; margin-bottom: 1rem;">100-Day Satisfaction Guarantee</h2>
-            <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">If your child doesn't love our entertainment programs within 100 days of your membership purchase, we'll refund your money in full. No questions asked. Happy kids, happy parents!</p>
+            <h2 style="color: #2c3e50; margin-bottom: 1rem;">100-Day Location Guarantee</h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">
+                We're expanding rapidly! If we can't establish a location near you within 100 days of your membership purchase, 
+                we'll refund your money in full. No questions asked.
+            </p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
                 <div>
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎪</div>
-                    <strong>Fun Activities</strong>
-                    <p>Engaging programs designed for maximum enjoyment</p>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📍</div>
+                    <strong>Expanding Network</strong>
+                    <p>New locations opening every month</p>
                 </div>
                 <div>
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
-                    <strong>Expert Supervision</strong>
-                    <p>Trained staff ensure safety and fun for all kids</p>
-                </div>
-                <div>
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔄</div>
                     <strong>Full Refund</strong>
-                    <p>Complete money-back if not completely satisfied</p>
+                    <p>100% money-back guarantee</p>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📧</div>
+                    <strong>Priority Notification</strong>
+                    <p>First to know about new locations</p>
                 </div>
             </div>
         </div>
 
         <!-- Trust Badges -->
         <div class="trust-section fade-in">
-            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Trusted by Thousands of Families</h2>
-            <div class="trust-badges">
-                <div class="trust-badge">
-                    <div class="trust-icon">🛡️</div>
-                    <strong>Safety Certified</strong>
-                    <p>All staff are background checked</p>
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Our Commitment</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 2rem;">
+                We're building this service with care and integrity. While we're new, we're committed to delivering:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🛡️</div>
+                    <strong>Safety First</strong>
+                    <p>Background-checked staff</p>
                 </div>
-                <div class="trust-badge">
-                    <div class="trust-icon">⭐</div>
-                    <strong>4.9/5 Rating</strong>
-                    <p>Based on 5,000+ parent reviews</p>
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧠</div>
+                    <strong>Quality Activities</strong>
+                    <p>Educationally valuable programs</p>
                 </div>
-                <div class="trust-badge">
-                    <div class="trust-icon">🔒</div>
-                    <strong>Secure</strong>
-                    <p>Safe facilities & secure pickup</p>
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤝</div>
+                    <strong>Transparent Pricing</strong>
+                    <p>No hidden fees</p>
                 </div>
-                <div class="trust-badge">
-                    <div class="trust-icon">🏆</div>
-                    <strong>Award Winning</strong>
-                    <p>Best Kids Entertainment 2024</p>
-                </div>
-                <div class="trust-badge">
-                    <div class="trust-icon">👨‍👩‍👧‍👦</div>
-                    <strong>50,000+</strong>
-                    <p>Happy families served</p>
-                </div>
-                <div class="trust-badge">
-                    <div class="trust-icon">📱</div>
-                    <strong>24/7 Support</strong>
-                    <p>Always here when you need us</p>
+                <div>
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+                    <strong>Responsive Support</strong>
+                    <p>Quick response to inquiries</p>
                 </div>
             </div>
         </div>
 
         <!-- Testimonials -->
         <div class="testimonials-section fade-in">
-            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">What Parents Are Saying</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">"The Champion plan has been a lifesaver! My kids love the activities and I finally get some me-time. The staff is amazing and my children are always excited to go!"</div>
-                    <div class="testimonial-author">Sarah Johnson</div>
-                    <div class="testimonial-role">Mother of 2, Champion Member</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">"Started with the Icon plan and upgraded to Ambassador. The variety of activities keeps my kids engaged for hours. Best investment for our family's well-being!"</div>
-                    <div class="testimonial-author">Michael Chen</div>
-                    <div class="testimonial-role">Working Parent, Ambassador Member</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">"As a single mom, this service has been incredible. My daughter has made friends and loves the creative activities. I can run errands stress-free!"</div>
-                    <div class="testimonial-author">Priya Patel</div>
-                    <div class="testimonial-role">Single Mom, Icon Member</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Payment Options -->
-        <div class="payment-section fade-in">
-            <h2 style="color: #2c3e50; margin-bottom: 1rem;">Flexible Payment Options</h2>
-            <p style="color: #666; margin-bottom: 2rem;">Choose the payment method that works best for your family</p>
-            
-            <div class="payment-methods">
-                <div class="payment-method">
-                    <span style="font-size: 1.5rem;">💳</span>
-                    <span>Credit/Debit Card</span>
-                </div>
-                <div class="payment-method">
-                    <span style="font-size: 1.5rem;">🏦</span>
-                    <span>UPI & Net Banking</span>
-                </div>
-                <div class="payment-method">
-                    <span style="font-size: 1.5rem;">📱</span>
-                    <span>Digital Wallets</span>
-                </div>
-                <div class="payment-method">
-                    <span style="font-size: 1.5rem;">💰</span>
-                    <span>EMI Options Available</span>
-                </div>
+            <h2 style="color: #2c3e50; margin-bottom: 1rem;">Our Journey Begins</h2>
+            <p style="color: #666; max-width: 800px; margin: 0 auto 2rem;">
+                We're excited to be launching this service and don't have customer testimonials yet. 
+                As we grow and serve more families, we'll share their genuine experiences here. 
+                Check back soon for real stories from parents who've used our service!
+            </p>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; max-width: 600px; margin: 0 auto;">
+                <p style="font-style: italic; color: #555; margin-bottom: 1rem;">
+                    "We're building something special here and can't wait to share success stories from our future members. 
+                    This space will feature authentic feedback as we begin operations."
+                </p>
+                <div style="font-weight: 600; color: #2c3e50;">- The Founders</div>
             </div>
         </div>
     </div>
@@ -806,63 +1003,9 @@
                 const planSubtitle = this.closest('.pricing-card').querySelector('.plan-subtitle').textContent;
                 
                 // Simulate checkout process
-                alert(`🎉 Excellent choice! You've selected the ${planName} plan for ${planPrice}.\n\n"${planSubtitle}"\n\nNext Steps:\n• Secure payment processing\n• Instant membership activation\n• Access to entertainment programs\n• 100-day satisfaction guarantee\n\nClick OK to proceed to checkout!`);
+                alert(`🎉 Excellent choice! You've selected the ${planName} plan for ${planPrice}.\n\n"${planSubtitle}"\n\nNext Steps:\n• Secure payment processing\n• Membership activation\n• Access to entertainment programs\n• 100-day location guarantee\n\nClick OK to proceed to checkout!`);
             });
         });
-
-        // Add hover effects to pricing cards
-        document.querySelectorAll('.pricing-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                if (!this.classList.contains('popular')) {
-                    this.style.transform = 'translateY(-15px) scale(1.02)';
-                }
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                if (!this.classList.contains('popular')) {
-                    this.style.transform = 'translateY(0) scale(1)';
-                } else {
-                    this.style.transform = 'scale(1.05)';
-                }
-            });
-        });
-
-        // Add interactive comparison table highlighting
-        document.querySelectorAll('.comparison-table th').forEach((header, index) => {
-            if (index > 0) { // Skip the first column (features)
-                header.addEventListener('mouseenter', function() {
-                    // Highlight entire column
-                    document.querySelectorAll(`.comparison-table td:nth-child(${index + 1}), .comparison-table th:nth-child(${index + 1})`).forEach(cell => {
-                        cell.style.backgroundColor = '#e3f2fd';
-                        cell.style.transition = 'background-color 0.3s ease';
-                    });
-                });
-                
-                header.addEventListener('mouseleave', function() {
-                    // Remove highlight
-                    document.querySelectorAll(`.comparison-table td:nth-child(${index + 1}), .comparison-table th:nth-child(${index + 1})`).forEach(cell => {
-                        cell.style.backgroundColor = '';
-                    });
-                });
-            }
-        });
-
-        // Calculate and display savings dynamically
-        function updateSavings() {
-            const guestMonthly = 999;
-            const plans = [
-                { name: 'Icon', months: 6, total: 4999, slots: 3 },
-                { name: 'Champion', months: 12, total: 7999, slots: 6 },
-                { name: 'Ambassador', months: 24, total: 12999, slots: 12 }
-            ];
-
-            plans.forEach(plan => {
-                const monthlyRate = plan.total / plan.months;
-                const totalSessions = plan.slots * plan.months;
-                const totalSavings = (guestMonthly * plan.months) - plan.total;
-                console.log(`${plan.name}: ₹${monthlyRate.toFixed(0)}/month, ${totalSessions} total sessions, Save ₹${totalSavings}`);
-            });
-        }
 
         // Add loading states for buttons
         function addButtonLoadingState() {
@@ -882,90 +1025,9 @@
             });
         }
 
-        // Add mobile-specific enhancements
-        function addMobileEnhancements() {
-            if (window.innerWidth <= 768) {
-                // Make pricing cards stack better on mobile
-                const pricingCards = document.querySelectorAll('.pricing-card');
-                pricingCards.forEach(card => {
-                    card.style.marginBottom = '1rem';
-                });
-
-                // Improve table scrolling on mobile
-                const table = document.querySelector('.comparison-table');
-                if (table) {
-                    table.parentElement.style.overflowX = 'auto';
-                    table.parentElement.style.webkitOverflowScrolling = 'touch';
-                }
-
-                // Add touch-friendly interactions
-                document.querySelectorAll('.pricing-card').forEach(card => {
-                    card.addEventListener('touchstart', function() {
-                        this.style.transform = 'scale(0.98)';
-                    });
-                    
-                    card.addEventListener('touchend', function() {
-                        setTimeout(() => {
-                            if (!this.classList.contains('popular')) {
-                                this.style.transform = 'translateY(0) scale(1)';
-                            } else {
-                                this.style.transform = 'scale(1.05)';
-                            }
-                        }, 100);
-                    });
-                });
-            }
-        }
-
-        // Add scroll-based animations for better UX
-        function addScrollAnimations() {
-            const scrollElements = document.querySelectorAll('.pricing-card, .testimonial-card, .trust-badge');
-            
-            const elementInView = (el, dividend = 1) => {
-                const elementTop = el.getBoundingClientRect().top;
-                return (
-                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-                );
-            };
-
-            const displayScrollElement = (element) => {
-                element.classList.add('scrolled-in-view');
-            };
-
-            const hideScrollElement = (element) => {
-                element.classList.remove('scrolled-in-view');
-            };
-
-            const handleScrollAnimation = () => {
-                scrollElements.forEach((el) => {
-                    if (elementInView(el, 1.25)) {
-                        displayScrollElement(el);
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', handleScrollAnimation);
-        }
-
-        // Add plan recommendation logic
-        function addPlanRecommendation() {
-            const recommendations = {
-                'occasional-use': 'Guest',
-                'regular-family': 'Icon',
-                'active-parents': 'Champion',
-                'frequent-users': 'Ambassador'
-            };
-
-            console.log('Plan recommendations available:', recommendations);
-        }
-
         // Initialize all enhancements
         document.addEventListener('DOMContentLoaded', function() {
-            updateSavings();
             addButtonLoadingState();
-            addMobileEnhancements();
-            addScrollAnimations();
-            addPlanRecommendation();
             
             // Add live chat widget simulation
             setTimeout(() => {
@@ -991,7 +1053,7 @@
                 `;
                 
                 chatWidget.addEventListener('click', () => {
-                    alert('💬 Live Chat Support\n\nHi! I\'m here to help you choose the perfect kids entertainment membership for your family! \n\n• Compare plan benefits\n• Learn about our activities for ages 3-10\n• Understand our satisfaction guarantee\n• Get help with booking and scheduling\n\nHow can I help make your parents day out perfect?');
+                    alert('💬 Live Chat Support\n\nHi! I\'m here to help you choose the perfect kids entertainment membership for your family! \n\n• Compare plan benefits\n• Learn about our activities\n• Understand our location guarantee\n• Get help with booking\n\nHow can I help make your parents day out perfect?');
                 });
                 
                 chatWidget.addEventListener('mouseenter', () => {
@@ -1005,24 +1067,6 @@
                 document.body.appendChild(chatWidget);
             }, 3000);
         });
-
-        // Add analytics tracking simulation
-        function trackEvent(eventName, planName = null) {
-            console.log(`Analytics: ${eventName}`, planName ? { plan: planName } : {});
-            // In real implementation, this would send to analytics service
-        }
-
-        // Track page views and interactions
-        trackEvent('page_view', 'kids_entertainment_pricing');
-
-        document.querySelectorAll('.cta-button').forEach((button, index) => {
-            button.addEventListener('click', () => {
-                const planName = button.closest('.pricing-card').querySelector('.plan-name').textContent;
-                trackEvent('plan_selected', planName);
-            });
-        });
     </script>
-
-
 </body>
 </html>

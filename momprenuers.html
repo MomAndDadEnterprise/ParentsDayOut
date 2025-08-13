@@ -448,6 +448,139 @@
         font-size: 1.2em;
       }
 
+      /* New styles for the hero options */
+      .hero-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .hero-option {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-option:nth-child(1) {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        color: white;
+      }
+
+      .hero-option:nth-child(2) {
+        background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        color: white;
+      }
+
+      .hero-option:nth-child(3) {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        color: white;
+      }
+
+      .hero-option h3 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-option p {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 20px;
+      }
+
+      .hero-option .icon {
+        font-size: 3em;
+        margin-bottom: 20px;
+        display: block;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* New styles for government boxes */
+      .government-boxes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .government-box {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .government-box h3 {
+        color: #764ba2;
+        margin-bottom: 20px;
+        font-size: 1.5em;
+        border-bottom: 2px solid #4ecdc4;
+        padding-bottom: 10px;
+      }
+
+      .government-box ul {
+        list-style-type: none;
+      }
+
+      .government-box li {
+        padding: 8px 0;
+        position: relative;
+        padding-left: 25px;
+      }
+
+      .government-box li:before {
+        content: "•";
+        color: #4ecdc4;
+        font-size: 1.5em;
+        position: absolute;
+        left: 0;
+        top: 2px;
+      }
+
+      /* New styles for program table */
+      .program-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .program-table th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px;
+        text-align: left;
+      }
+
+      .program-table td {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .program-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .program-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .program-table .highlight {
+        font-weight: bold;
+        color: #764ba2;
+      }
+
       @media (max-width: 768px) {
         .header h1 {
           font-size: 2em;
@@ -469,6 +602,15 @@
           margin: 10px;
           padding: 15px;
         }
+
+        .government-boxes {
+          grid-template-columns: 1fr;
+        }
+
+        .program-table {
+          display: block;
+          overflow-x: auto;
+        }
       }
     </style>
     <script src="js/main.js"></script>
@@ -479,65 +621,112 @@
     <div class="container">
       <header class="header">
         <div class="header-content">
-          <h1>
-            🌟 Transform Your Free Time and Show the word, the Women Empowerment
-          </h1>
+          <h1>🌟 Empower Your Entrepreneurial Journey</h1>
           <p>
-            Join our mission to empower women through enhanced opportunities,
-            competitive compensation, and comprehensive skill development
-            programs
+            Discover opportunities designed for ambitious women who want to transform their lives through business ownership and financial independence.
           </p>
         </div>
       </header>
 
-      <div class="government-partnership">
-        <h2 style="color: white">
-          🤝 Government Partnership for Women Empowerment
-        </h2>
-        <p style="font-size: 1.2em; margin-top: 20px">
-          This initiative is proudly supported by government schemes focused on
-          women's economic empowerment and skill development. We work closely
-          with local authorities to ensure sustainable growth and create lasting
-          positive impact in our communities.
-        </p>
+      <div class="hero-options">
+        <div class="hero-option">
+          <span class="icon">💰</span>
+          <h3>Start with Zero to Minimum Investment</h3>
+          <p>Launch your entrepreneurial journey with our low-cost entry programs designed to minimize financial barriers while maximizing your potential for success.</p>
+        </div>
+        <div class="hero-option">
+          <span class="icon">🚀</span>
+          <h3>Become an Entrepreneur</h3>
+          <p>Develop your business acumen through our comprehensive training programs and mentorship opportunities to build a sustainable enterprise.</p>
+        </div>
+        <div class="hero-option">
+          <span class="icon">⏱️</span>
+          <h3>Transform Your Free Time</h3>
+          <p>Convert your spare hours into extra income for your family through flexible, part-time business opportunities that fit your schedule.</p>
+        </div>
       </div>
 
       <section class="section">
-        <h2>👥 Mompreneur Programs</h2>
-        <div class="program-cards">
-          <div class="program-card">
-            <h3>🌟 Ashta-Dikpalaka Program</h3>
-            <div class="team-size">8-Member Teams</div>
-            <p>
-              Named after the eight guardian deities of directions, this program
-              creates powerful 8-member entrepreneurial teams. Each member
-              represents a different skill set, working together to build
-              sustainable businesses while maintaining work-life balance.
-            </p>
-            <ul style="margin-top: 20px; color: #666">
-              <li>• Leadership development workshops</li>
-              <li>• Business mentorship</li>
-              <li>• Collaborative project funding</li>
-              <li>• Childcare support during meetings</li>
+        <h2>🤝 Government Partnership Programs</h2>
+        <div class="government-boxes">
+          <div class="government-box">
+            <h3>Andhra Pradesh's "One Family - One Entrepreneur"</h3>
+            <ul>
+              <li><strong>Objective:</strong> Create 20 lakh entrepreneurs by 2027, targeting ₹1Cr+ turnover businesses.</li>
+              <li><strong>Funding:</strong> ₹10-25L collateral-free loans at 0% interest via AP State Financial Corporation.</li>
+              <li><strong>Sectors:</strong> Agri-processing, EVs, pharma, and coastal economy industries.</li>
+              <li><strong>Mentorship:</strong> TIE Hyderabad partners for scaling startups to unicorns.</li>
+              <li><strong>Land Banks:</strong> 500+ industrial parks with 30% reserved plots for women-led units.</li>
             </ul>
           </div>
-          <div class="program-card">
-            <h3>💫 Shadrucha MahaRanulu Program</h3>
-            <div class="team-size">6-Member Teams</div>
-            <p>
-              Inspired by the six royal virtues, this intimate program focuses
-              on 6-member teams specializing in specific market segments.
-              Perfect for mothers seeking focused expertise and deep
-              collaboration.
-            </p>
-            <ul style="margin-top: 20px; color: #666">
-              <li>• Specialized skill training</li>
-              <li>• Market research support</li>
-              <li>• Financial planning assistance</li>
-              <li>• Flexible working arrangements</li>
+          <div class="government-box">
+            <h3>Telangana's "Mahila Kotiswarulu" (Women Crorepatis)</h3>
+            <ul>
+              <li><strong>Capital:</strong> ₹1L seed grant + ₹10L loans via Stree Nidhi (5% interest subsidy).</li>
+              <li><strong>Focus:</strong> Tech-enabled SHGs (e.g., drone operators, cloud kitchens).</li>
+              <li><strong>Market Access:</strong> Govt e-Marketplace (GeM) procurement priority.</li>
+              <li><strong>Success Metric:</strong> 50,000 women to cross ₹1Cr revenue by 2026.</li>
+              <li><strong>Innovation:</strong> "She-Hubs" with 3D printing/AI labs in all districts.</li>
             </ul>
           </div>
         </div>
+      </section>
+
+      <section class="section">
+        <h2>👥 Mompreneur Programs</h2>
+        <table class="program-table">
+          <thead>
+            <tr>
+              <th>Criteria</th>
+              <th>🌟 Ashta-Dikpalaka-Aishwaryalu Program</th>
+              <th>💫 Shadruchula MahaRanulu Program</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="highlight">Age</td>
+              <td>21+ years (preference for moms)</td>
+              <td>21+ years (preference for moms)</td>
+            </tr>
+            <tr>
+              <td class="highlight">Skills</td>
+              <td>Management, leadership, business acumen</td>
+              <td>Excellent cooking skills (breakfast, lunch, snacks for students 5-17)</td>
+            </tr>
+            <tr>
+              <td class="highlight">Team Size</td>
+              <td>8-member teams</td>
+              <td>6-member teams</td>
+            </tr>
+            <tr>
+              <td class="highlight">Investment</td>
+              <td>Zero to minimum</td>
+              <td>Zero to minimum</td>
+            </tr>
+            <tr>
+              <td class="highlight">Schedule</td>
+              <td>Sundays and holidays</td>
+              <td>Sundays and holidays</td>
+            </tr>
+            <tr>
+              <td class="highlight">Benefits</td>
+              <td>
+                <ul style="list-style-type: none; padding-left: 0;">
+                  <li>• Leadership development</li>
+                  <li>• Business mentorship</li>
+                  <li>• Flexible working</li>
+                </ul>
+              </td>
+              <td>
+                <ul style="list-style-type: none; padding-left: 0;">
+                  <li>• Market access</li>
+                  <li>• Equipment support</li>
+                  <li>• Flexible working</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section class="section">
@@ -571,14 +760,14 @@
         <h2>📋 Application Requirements</h2>
         <div class="requirements-list">
           <ul>
-            <li>Minimum 18 years of age</li>
+            <li>Minimum 21 years of age - Preference for Moms </li>
             <li>Basic education qualification (varies by position)</li>
-            <li>Commitment to women empowerment initiatives</li>
+            <li>Commitment to make a change in education ecosystem</li>
             <li>Willingness to participate in training programs</li>
             <li>Strong communication skills in local language</li>
             <li>Valid identification documents</li>
-            <li>Character references from community members</li>
-            <li>Passion for creating positive social impact</li>
+            <li>References from community members will be a plus</li>
+            <li>Passion for creating positive impact on Students</li>
           </ul>
         </div>
       </section>
@@ -644,41 +833,13 @@
       </section>
 
       <section class="section">
-        <h2>💬 Success Stories</h2>
+        <h2>💬 Our Journey Begins</h2>
         <div class="testimonial">
           <div class="testimonial-text">
-            "Joining the Ashta-Dikpalaka program changed my life completely.
-            From struggling to make ends meet as a single mother, I now lead a
-            team of 8 women entrepreneurs. The support, training, and enhanced
-            compensation allowed me to provide better education for my children
-            while building a sustainable business."
+            "We're excited to embark on this transformative journey with you! While we don't have success stories to share yet, we're building the foundation for what will become countless stories of empowerment and achievement. Check back soon as we begin documenting the real experiences of our first cohort of mompreneurs."
           </div>
           <div class="testimonial-author">
-            - Priya Sharma, Team Leader, Ashta-Dikpalaka Program
-          </div>
-        </div>
-
-        <div class="testimonial">
-          <div class="testimonial-text">
-            "The caretaker program not only doubled my salary but also gave me
-            professional recognition. The training I received at Astra Skill Dev
-            Center equipped me with modern caregiving techniques. I now feel
-            confident and valued in my profession."
-          </div>
-          <div class="testimonial-author">
-            - Lakshmi Devi, Professional Caretaker
-          </div>
-        </div>
-
-        <div class="testimonial">
-          <div class="testimonial-text">
-            "As a teacher in this program, I earn three times what I used to
-            make in traditional schools. The resources, support, and innovative
-            teaching methods have made me a better educator. My students'
-            success is now my biggest reward."
-          </div>
-          <div class="testimonial-author">
-            - Dr. Meena Reddy, Senior Teacher
+            - The Empowerment Initiative Team
           </div>
         </div>
       </section>
@@ -867,7 +1028,7 @@
       // Add interactive effects
       document.addEventListener("DOMContentLoaded", function () {
         const cards = document.querySelectorAll(
-          ".compensation-card, .program-card"
+          ".compensation-card, .program-card, .hero-option"
         );
 
         const observer = new IntersectionObserver(

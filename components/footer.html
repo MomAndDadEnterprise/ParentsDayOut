@@ -105,6 +105,7 @@
             gap: 0.8rem;
             flex-wrap: wrap;
             margin-top: 1rem;
+            justify-content: flex-start;
         }
 
         .trust-badge {
@@ -115,6 +116,7 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
+            white-space: nowrap;
         }
 
         .footer-section h3 {
@@ -243,50 +245,17 @@
             box-shadow: 0 5px 15px rgba(255, 209, 102, 0.3);
         }
 
-        .newsletter {
-            margin-top: 1.5rem;
-        }
-
-        .newsletter p {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 0.4rem;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 0.7rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.85rem;
-        }
-
-        .newsletter-button {
-            background: #EF476F;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 0 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.85rem;
-        }
-
-        .newsletter-button:hover {
-            background: #FF6B6B;
-            transform: translateY(-2px);
+        /* Payment & Newsletter Section - Horizontal Layout */
+        .footer-additional {
+            margin-bottom: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .payment-info {
-            margin-top: 1.5rem;
-            padding: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.2rem;
             background: rgba(255,255,255,0.1);
             border-radius: 8px;
             border: 1px solid rgba(255,209,102,0.3);
@@ -295,36 +264,103 @@
         .payment-title {
             color: #FFD166;
             font-weight: 600;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .payment-methods {
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .payment-method {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            padding: 0.4rem 0;
+            gap: 0.4rem;
             color: rgba(255,255,255,0.9);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            white-space: nowrap;
         }
 
         .payment-highlight {
             background: #25D366;
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            margin-top: 0.8rem;
-            text-align: center;
-            font-weight: 600;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            text-align: left;
+            font-weight: 500;
             font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Newsletter - Horizontal Layout */
+        .newsletter {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-header {
+            color: #FFD166;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .newsletter-input {
+            padding: 0.7rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            width: 200px;
+        }
+
+        .newsletter-button {
+            background: #EF476F;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.7rem 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .newsletter-button:hover {
+            background: #FF6B6B;
+            transform: translateY(-2px);
         }
 
         .footer-bottom {
@@ -376,6 +412,17 @@
                 grid-template-columns: 2fr 1fr 1fr 1.5fr;
                 gap: 2rem;
             }
+            
+            .payment-methods {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .newsletter-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -399,6 +446,10 @@
                 justify-content: center;
             }
 
+            .trust-badges {
+                justify-content: center;
+            }
+
             .footer-section h3::after {
                 left: 0;
                 transform: none;
@@ -408,8 +459,24 @@
                 justify-content: center;
             }
 
+            .payment-methods {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .newsletter-content {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+            }
+
             .newsletter-form {
                 flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .newsletter-input {
+                width: 100%;
             }
 
             .footer-bottom-content {
@@ -466,6 +533,18 @@
                 height: 34px;
                 font-size: 0.9rem;
             }
+
+            .payment-methods {
+                justify-content: center;
+            }
+
+            .newsletter-content {
+                text-align: center;
+            }
+
+            .trust-badges {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -486,12 +565,6 @@
                         engaging activities, and complete peace of mind for parents. Serving 
                         families across major Indian cities since 2020.
                     </div>
-                    <div class="trust-badges">
-                        <div class="trust-badge">✅ Safety Certified</div>
-                        <div class="trust-badge">📹 Live Updates</div>
-                        <div class="trust-badge">🏆 5-Star Rated</div>
-                        <div class="trust-badge">🇮🇳 Made in India</div>
-                    </div>
                 </div>
 
                 <!-- Quick Links -->
@@ -503,19 +576,19 @@
                         <a href="offers-promotions.html">Special Offers</a>
                         <a href="gallery.html">Photo Gallery</a>
                         <a href="testimonials.html">Parent Reviews</a>
-                        <a href="faq.html">FAQs</a>
+                        <a href="locations.html">All Locations</a>
                     </div>
                 </div>
 
-                <!-- Why Choose Us -->
+                <!-- Support Section -->
                 <div class="footer-section">
-                    <h3>Why Choose Us</h3>
+                    <h3>Support</h3>
                     <div class="footer-links">
+                        <a href="faq.html">FAQs</a>
                         <a href="safety.html">Safety First</a>
                         <a href="educators.html">Expert Educators</a>
                         <a href="facilities.html">Modern Facilities</a>
                         <a href="activities.html">Engaging Activities</a>
-                        <a href="certifications.html">Certifications</a>
                         <a href="about.html">About Us</a>
                     </div>
                 </div>
@@ -529,7 +602,7 @@
                         <a href="success-stories.html">Success Stories</a>
                         <a href="jobs.html">Careers</a>
                         <a href="partnerships.html">Partnerships</a>
-                        <a href="locations.html">All Locations</a>
+                        <a href="certifications.html">Certifications</a>
                     </div>
                 </div>
 
@@ -571,25 +644,30 @@
                         <a href="#" class="social-link" title="YouTube">▶️</a>
                         <a href="#" class="social-link" title="WhatsApp">💬</a>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Payment Information -->
-                    <div class="payment-info">
-                        <div class="payment-title">
-                            💳 Easy Payment Options
-                        </div>
-                        <div class="payment-methods">
-                            <div class="payment-method">📱 UPI: parentsdayout@upi</div>
-                            <div class="payment-method">🏦 NEFT/RTGS: Available</div>
-                            <div class="payment-method">💳 Cards: Visa, MasterCard</div>
-                            <div class="payment-method">📟 QR Code: Scan & Pay</div>
-                        </div>
-                        <div class="payment-highlight">
-                            💬 WhatsApp us for instant payment links & QR codes!
-                        </div>
+            <!-- Payment & Newsletter Section - Horizontal Layout -->
+            <div class="footer-additional">
+                <!-- Payment Information - Horizontal Layout -->
+                <div class="payment-info">
+                    <div class="payment-title">💳 Easy Payment Options</div>
+                    <div class="payment-methods">
+                        <div class="payment-method">📱 UPI: parentsdayout@upi</div>
+                        <div class="payment-method">🏦 NEFT/RTGS Available</div>
+                        <div class="payment-method">💳 Cards: Visa, MasterCard</div>
+                        <div class="payment-method">📟 QR Code: Scan & Pay</div>
                     </div>
+                    <div class="payment-highlight">
+                        💬 WhatsApp us for instant payment links & QR codes!
+                    </div>
+                </div>
 
-                    <div class="newsletter">
-                        <p>Get parenting tips & activity updates:</p>
+                <!-- Newsletter - Horizontal Layout -->
+                <div class="newsletter">
+                    <div class="newsletter-header">📧 Stay Connected</div>
+                    <div class="newsletter-content">
+                        <span class="newsletter-text">Get parenting tips & updates:</span>
                         <form class="newsletter-form">
                             <input type="email" placeholder="Your email" class="newsletter-input" required>
                             <button type="submit" class="newsletter-button">Subscribe</button>
@@ -683,7 +761,7 @@
                     const successMsg = document.createElement('div');
                     successMsg.textContent = '✅ Thank you for subscribing! Check your email for parenting tips.';
                     successMsg.style.cssText = 'color: #06D6A0; font-size: 0.8rem; margin-top: 0.5rem; text-align: center;';
-                    this.appendChild(successMsg);
+                    this.parentNode.appendChild(successMsg);
                     
                     setTimeout(() => {
                         successMsg.remove();
@@ -725,137 +803,7 @@
             });
         });
 
-        // Add WhatsApp floating button for mobile
-        function addWhatsAppFloat() {
-            if (window.innerWidth <= 768) {
-                const whatsappFloat = document.createElement('a');
-                whatsappFloat.href = 'https://wa.me/919876543210?text=Hi! I want to book slots for my child and need payment details.';
-                whatsappFloat.target = '_blank';
-                whatsappFloat.innerHTML = '💬';
-                whatsappFloat.style.cssText = `
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    width: 60px;
-                    height: 60px;
-                    background: #25D366;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 1.5rem;
-                    color: white;
-                    text-decoration: none;
-                    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-                    z-index: 1000;
-                    transition: all 0.3s ease;
-                    animation: pulse 2s infinite;
-                `;
-                
-                // Add pulse animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes pulse {
-                        0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3); }
-                        50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.2); }
-                        100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3); }
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                whatsappFloat.addEventListener('mouseenter', () => {
-                    whatsappFloat.style.transform = 'scale(1.1)';
-                });
-                
-                whatsappFloat.addEventListener('mouseleave', () => {
-                    whatsappFloat.style.transform = 'scale(1)';
-                });
-                
-                document.body.appendChild(whatsappFloat);
-            }
-        }
-
-        // Add trust indicators with counter animation
-        function addTrustIndicators() {
-            const trustContainer = document.querySelector('.trust-badges');
-            if (trustContainer) {
-                setTimeout(() => {
-                    const parentCount = document.createElement('div');
-                    parentCount.className = 'trust-badge';
-                    parentCount.innerHTML = '👨‍👩‍👧‍👦 50,000+ Happy Families';
-                    trustContainer.appendChild(parentCount);
-
-                    // Animate the counter
-                    let count = 0;
-                    const target = 50000;
-                    const increment = target / 100;
-                    const counter = setInterval(() => {
-                        count += increment;
-                        if (count >= target) {
-                            count = target;
-                            clearInterval(counter);
-                        }
-                        parentCount.innerHTML = `👨‍👩‍👧‍👦 ${Math.floor(count).toLocaleString()}+ Happy Families`;
-                    }, 30);
-                }, 1000);
-            }
-        }
-
-        // Initialize enhancements
-        document.addEventListener('DOMContentLoaded', function() {
-            addWhatsAppFloat();
-            addTrustIndicators();
-            
-            // Add smooth scroll for internal links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Add payment info hover effect
-            const paymentInfo = document.querySelector('.payment-info');
-            if (paymentInfo) {
-                paymentInfo.addEventListener('mouseenter', function() {
-                    this.style.background = 'rgba(255,255,255,0.15)';
-                    this.style.transform = 'scale(1.02)';
-                });
-                
-                paymentInfo.addEventListener('mouseleave', function() {
-                    this.style.background = 'rgba(255,255,255,0.1)';
-                    this.style.transform = 'scale(1)';
-                });
-            }
-            
-            console.log("🎪 ParentsDayOut footer with payment options loaded successfully!");
-        });
-
-        // Add intersection observer for better performance
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const footerObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe footer sections
-        document.querySelectorAll('.footer-section, .footer-brand').forEach(section => {
-            footerObserver.observe(section);
-        });
+        console.log("🎪 ParentsDayOut footer with updated layout loaded successfully!");
     </script>
 </body>
 </html>

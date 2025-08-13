@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -84,7 +85,7 @@
 
         .nav-links a:hover,
         .nav-links a.active {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: #FFD166;
         }
 
@@ -105,13 +106,13 @@
             color: #333;
             min-width: 240px;
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
             z-index: 1001;
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .dropdown:hover .dropdown-menu {
@@ -157,7 +158,7 @@
             text-decoration: none;
             display: inline-block;
             font-size: 1rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
@@ -169,7 +170,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: all 0.6s;
         }
 
@@ -185,7 +186,7 @@
 
         .mobile-menu-toggle {
             display: none;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
             font-size: 1.8rem;
@@ -200,6 +201,7 @@
             .nav-links {
                 gap: 0.3rem;
             }
+
             .nav-links a {
                 padding: 0.5rem 0.6rem;
                 font-size: 0.85rem;
@@ -217,7 +219,7 @@
                 flex-direction: column;
                 gap: 0;
                 padding: 1rem 0;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             }
 
             .nav-links.mobile-open {
@@ -226,8 +228,15 @@
             }
 
             @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
 
             .nav-links li {
@@ -246,7 +255,7 @@
 
             .dropdown-menu {
                 position: static;
-                background: rgba(0,0,0,0.1);
+                background: rgba(0, 0, 0, 0.1);
                 box-shadow: none;
                 border-radius: 0;
                 border: none;
@@ -259,7 +268,7 @@
             .dropdown-menu a {
                 color: white;
                 padding: 0.8rem 3rem;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 font-size: 0.9rem;
             }
         }
@@ -272,7 +281,7 @@
             .logo-text {
                 font-size: 1.5rem;
             }
-            
+
             .cta-button {
                 padding: 0.7rem 1.2rem;
                 font-size: 0.9rem;
@@ -280,30 +289,21 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navigation">
         <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon">🎪</div>
-                <div class="logo-text">ParentsDayOut</div>
-            </div>
-            
+
+            <div class="logo-text">ParentsDayOut</div>
+
+
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="nav-link">🏠 Home</a></li>
-                                <li class="dropdown">
-                    <a href="why-us.html" class="nav-link">
+
+                <li> <a href="whyus.html" class="nav-link">
                         ⭐ Why Us
-                        <span class="dropdown-arrow">▼</span>
                     </a>
-                    <div class="dropdown-menu">
-                        <a href="safety.html">🛡️ Safety First</a>
-                        <a href="educators.html">👨‍🏫 Expert Educators</a>
-                        <a href="facilities.html">🏢 Modern Facilities</a>
-                        <a href="activities.html">🎨 Engaging Activities</a>
-                        <a href="testimonials.html">⭐ Parent Reviews</a>
-                        <a href="certifications.html">🏆 Certifications</a>
-                    </div>
                 </li>
                 <li><a href="memberships.html" class="nav-link">💰 Plans & Pricing</a></li>
                 <li><a href="dayplan.html" class="nav-link">📅 Daily Schedule</a></li>
@@ -316,7 +316,7 @@
             </ul>
 
             <div class="nav-right">
-                <a href="booking.html" class="cta-button">🚀 Book Your Slot Now</a>
+                <a href="booking.html" class="cta-button">🚀 Book Your Spot Now</a>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
                     ☰
                 </button>
@@ -325,20 +325,20 @@
     </nav>
 
     <script>
-        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+        document.getElementById('mobileMenuToggle').addEventListener('click', function () {
             const navLinks = document.getElementById('navLinks');
             this.classList.toggle('active');
             navLinks.classList.toggle('mobile-open');
-            
+
             // Toggle hamburger icon
             this.textContent = navLinks.classList.contains('mobile-open') ? '✕' : '☰';
         });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             const navLinks = document.getElementById('navLinks');
             const menuToggle = document.getElementById('mobileMenuToggle');
             const navigation = document.querySelector('.navigation');
-            
+
             if (!navigation.contains(e.target)) {
                 navLinks.classList.remove('mobile-open');
                 menuToggle.classList.remove('active');
@@ -346,7 +346,7 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
@@ -366,23 +366,23 @@
 
             // Track navigation clicks for analytics
             document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     const linkText = this.textContent.trim();
                     console.log(`Navigation clicked: ${linkText}`);
                     // In production, this would send to your analytics service
                 });
             });
-            
+
             console.log('🎪 Parents Day Out navigation loaded successfully!');
         });
 
         // Add scroll behavior to hide/show nav on mobile
         let lastScrollTop = 0;
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.innerWidth <= 768) {
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const navigation = document.querySelector('.navigation');
-                
+
                 if (scrollTop > lastScrollTop && scrollTop > 100) {
                     navigation.style.transform = 'translateY(-100%)';
                 } else {
@@ -395,16 +395,16 @@
         // Enhanced dropdown interactions
         document.querySelectorAll('.dropdown').forEach(dropdown => {
             let timeout;
-            
-            dropdown.addEventListener('mouseenter', function() {
+
+            dropdown.addEventListener('mouseenter', function () {
                 clearTimeout(timeout);
                 const menu = this.querySelector('.dropdown-menu');
                 menu.style.opacity = '1';
                 menu.style.visibility = 'visible';
                 menu.style.transform = 'translateY(0)';
             });
-            
-            dropdown.addEventListener('mouseleave', function() {
+
+            dropdown.addEventListener('mouseleave', function () {
                 const menu = this.querySelector('.dropdown-menu');
                 timeout = setTimeout(() => {
                     menu.style.opacity = '0';
@@ -415,4 +415,5 @@
         });
     </script>
 </body>
+
 </html>
